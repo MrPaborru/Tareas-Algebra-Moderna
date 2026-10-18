@@ -1,0 +1,207 @@
+% Ejercicio 1
+\begin{ejer}
+Demuestre que $\ang*{ s,r|r^{n}=s^{2}=e,rs=sr^{-1}}$ es una presentación de $D_{2n}$.
+\end{ejer}
+\begin{sol}[Demostración]
+Sea $F$ el grupo libre sobre los generadores $\set{s, r}$. Por la propiedad universal de los grupos libres, existe un único homomorfismo $\psi: F \to D_{2n}$ definido por $s \mapsto \sigma$ y $r \mapsto \rho$, donde $\sigma$ y $\rho$ son los generadores canónicos de $D_{2n}$ (reflexión y rotación). Este homomorfismo es sobreyectivo, ya que $D_{2n}$ es definido como el subgrupo de $S_n$ generado por $\sigma$ y $\rho$.
+Ahora, denotemos por $G$ a la presentación dada; es decir, por definición $G = F/N$, donde $N$ es la cerradura normal del conjunto de relatores $R \coloneq \set{r^n, s^2, rsrs^{-1}}$.
+\\
+\emph{Primero, mostremos que $N \subseteq \ker(\psi)$:}\\
+Para ello, basta verificar que $R \subseteq \ker(\psi)$, ya que $\ker(\psi)$ es un subgrupo normal:
+\[
+\psi(r^n) = \rho^n = e, \quad \psi(s^2) = \sigma^2 = e, \quad \psi(rsrs^{-1}) = \rho\sigma\rho\sigma^{-1} = \rho(\rho^{-1}) = e
+\]
+Esto, ya que $\rho$ es un giro de $2\pi/n$ radianes, $\sigma$ una reflexión, y reflejar, para después girar $2\pi/n$ radianes y, por último, volver a reflejar, es lo mismo que girar $-2\pi/n$ radianes, lo cual corresponde al inverso de $\rho$. Hemos probado que $R \subseteq \ker(\psi)$, pero $N$ es el menor subgrupo normal de $F$ que contiene a $R$; por lo tanto, $N \subseteq \ker(\psi)$. Esta inclusión implica, por propiedad universal del cociente, que existe un epimorfismo $\ubar{\psi}: F/N \twoheadrightarrow D_{2n}$, lo que nos da una primera cota para el orden de $G$:
+\[
+|G| = |F/N| \ge |D_{2n}| = 2n
+\]
+Por otro lado, probemos por inducción sobre longitud de las palabras reducidas en $F$, que todo elemento en $G$ se escribe de la forma $s^j r^i N$, con $j \en \Brack{0,1}$ y $i \en \Brack{0,n-1}$: en efecto, si la longitud es $1$, es inmediato. Si suponemos que toda palabra $x \en F$ de longitud $k$ se representa en $G$ como $xN = s^ir^jN$, entonces dada una palabra $y \en F$ de longitud $k+1$, se cumple una de dos opciones:
+\begin{itemize}
+    \item Si el último factor de $y$ es $r$, entonces $y = xr$ donde $x \en F$ tiene longitud $k$. Se sigue ---por hipótesis de inducción--- que $xN = s^ir^jN$ con $i \en \Brack{0,1}$ y $j \en \Brack{0,n-1}$, por lo tanto, $yN = s^ir^{j+1}N = s^ir^lN$ donde $l \en \Brack{0,n-1}$ es igual a $j+1$ módulo $n$.\footnote{Es evidente que $r^lN = r^{j+1}N$ gracias a que $r^nN = N$, pues $r^n \en R$.}
+
+    \item Si el último factor de $y$ es $s$, $y = xs$ donde $x \en F$ tiene longitud $k$. Se sigue ---por hipótesis de inducción--- que $xN = s^ir^jN$ con $i \en \Brack{0,1}$ y $j \en \Brack{0,n-1}$, por lo tanto, $yN = s^ir^jsN$. Notemos que, gracias a que $rsrs^{-1} \en R \subseteq N$, tenemos $rsN = sr^{-1}N$, así que es muy sencillo probar\footnote{Lo demuestro por si acaso: el caso $l=1$ lo acabamos de ver. Además, si suponemos que $r^lsN = sr^{-l}N$, entonces tenemos que $r^{l+1}sN = rr^lsN=rsr^{-l}N=sr^{-1}r^{-l}N=sr^{-(l+1)}N$. Por inducción queda demostrado.} por inducción que $r^lsN = sr^{-l}N$ para cualquier $l \en \mathbb{N}$; en particular, tenemos que $yN = s^ir^jsN = s^{i+1}r^{-j}N = s^{a}r^{b}N$ donde $a \en \Brack{0,1}$ y $b \en\Brack{0,n-1}$ son, respectivamente, iguales a $i+1$ módulo $2$ y a $-j$ módulo $n$.
+\end{itemize}
+En cualquier caso, queda probado que $yN = s^ar^bN$ para algunos $a \en \Brack{0,1}$ y $b \en\Brack{0,n-1}$. Esto concluye la prueba de inducción. Como todo elemento de $G$ se escribe de la forma recién mencionada, entonces $G$ tiene a lo sumo $2n$ elementos, pero ya teníamos que $|G| \geq 2n$. De ambas desigualdades se concluye que $|G| = 2n$. Como $\ubar{\psi}$ es una función sobreyectiva entre dos conjuntos finitos de la misma cardinalidad, se sigue que es biyectiva, i.e., $\ubar{\psi} \colon G \cong D_{2n}$.
+\end{sol}\clearpage
+
+% Ejercicio 2
+\begin{ejer}
+Sean $a$ y $b$ elementos distintos de orden $2$ en un grupo $G$ y supongamos que $ab$ tiene orden finito $n \ge 3$. Probar que el subgrupo generado por $a$ y $b$ es isomorfo al grupo diédrico $D_{2n}$.
+\end{ejer}
+\begin{sol}[Demostración]
+Gracias al ejercicio anterior, basta con probar que $\ang{a,b} \cong \ang*{ s,r|r^{n}=s^{2}=e,rs=sr^{-1}}$. Bajo la notación del \myref{ejer:1.1}, existe un único homomorfismo $\varphi \colon F \to \ang{a,b}$ tal que $\varphi(s) = a$ y $\varphi(r) = ab$. Como $b = a(ab)$, se sigue que $\im \varphi = \ang{a,ab} = \ang{a,b}$, i.e., $\varphi$ es sobreyectiva. Luego,
+\[
+\varphi(r^n) = (ab)^n = e, \quad \varphi(s^2)=a^2 = e, \quad\varphi(rsrs^{-1}) = (ab)a(ab)a^{-1} = e
+\]
+De esto se sigue que $R = \set{r^n,s^2,rsrs^{-1}} \subseteq \ker(\varphi)$, por tanto, $N \subseteq \ker(\varphi)$. Por la propiedad universal del cociente, existe un epimorfismo de grupos $\ubar{\varphi} \colon F/N \twoheadrightarrow \ang{a,b}$ tal que $xN \mapsto \varphi(x)$. Esto implica, en particular, que $2n = |G| \geq |\ang{a,b}|$.\footnote{En el ejercicio anterior ya vimos que $G$ tiene $2n$ elementos al igual que $D_{2n}$.} Más aún, notemos que los siguientes dos subconjuntos de $\ang{a,b}$ son disjuntos:
+\[
+\set*{(ab)^k \given k \en \Brack{0, n-1}}%
+\quad\text{y}\quad%
+\set*{a(ab)^k \given k \en \Brack{0, n-1}}
+\]
+ya que, si tuviéramos $a(ab)^k = (ab)^l$, entonces $a = (ab)^{l-k}$ de donde se seguiría $a \en \ang{ab}$, pero recordemos que $b = a(ab)$, por lo que también tendríamos $b \en \ang{ab}$; sin embargo, un grupo cíclico tiene como máximo un elemento de orden $2$, así que se seguiría $a=b$, lo cuál es absurdo. Por lo tanto, los conjuntos de arriba son disjuntos y, además, cada uno tiene $n$ elementos; luego, $|\ang{a,b}| \geq 2n$. Usando las dos desigualdades obtenidas concluimos que $|\ang{a,b}| = 2n = |G|$. Finalmente, $\ubar{\psi}$ es una función sobreyectiva entre conjuntos finitos de la misma cardinalidad, por lo que tiene que ser biyectiva, i.e., $\ubar{\psi} \colon G \cong \ang{a,b}$. Como ya teníamos $D_{2n} \cong G$, entonces $D_{2n} \cong \ang{a,b}$.
+\end{sol}\clearpage
+
+% Ejercicio 3
+\begin{ejer}
+Defina la relación de equivalencia en $\operatorname{SL}_{2}(\mathbb{Z})$ por $A \sim A^{\prime} \iff A^{\prime}=\pm A$. Demuestre que $\sim$ es compatible con la estructura de grupo y que el cociente $\operatorname{SL}_{2}(\mathbb{Z})/\{\pm I\}$ (esto es, $\operatorname{PSL}_{2}(\mathbb{Z})$) está generado por 
+\[
+A \coloneq \left(\;\begin{matrix}0 & -1 \\ 1 & 0\end{matrix}\;\right)%
+\quad\text{y}\quad%
+B \coloneq \left(\;\begin{matrix}1 & -1 \\ 1 & 0\end{matrix}\;\right)
+\]
+\end{ejer}
+\begin{sol}[Demostración]%\vphantom{r}\par\vspace{1em}
+\emph{Veamos que $\sim$ es una relación de equivalencia:}
+\begin{itemize}
+  \item(\emph{Reflexiva}). Para todo $A\en \operatorname{SL}_2(\mathbb{Z})$ se tiene $A=A$, luego $A\sim A$.
+  \item(\emph{Simétrica}). Si $A\sim A'$, entonces $A'=\pm A$. Multiplicando por $\pm1$ (que es su propio inverso), obtenemos $A=\pm A'$, por lo que $A'\sim A$.
+  \item(\emph{Transitiva}). Si $A\sim A'$ y $A'\sim A''$, existen $\varepsilon,\delta\en\{\pm1\}$ tales que $A'=\varepsilon A$ y $A''=\delta A'$. Entonces
+  $A''=\delta(\varepsilon A)=(\delta\varepsilon)A$,
+  y como $\delta\varepsilon\en\{\pm1\}$ se sigue que $A\sim A''$.
+\end{itemize}
+Por lo tanto $\sim$ es una relación de equivalencia.\vspace{1em}\\
+\emph{Veamos que $\sim$ es compatible con el producto de matrices:}\\
+Supongamos $A\sim A'$ y $B\sim B'$, por lo que existen $\varepsilon,\delta\en\{\pm1\}$ con $A'=\varepsilon A$ y $B'=\delta B$.
+Luego,
+\[
+A'B'=(\varepsilon A)(\delta B)=(\varepsilon\delta)(AB)
+\]
+Como $\varepsilon\delta\en\set{\pm1}$, deducimos que
+$A'B'=\pm(AB)$,
+es decir, $AB\sim A'B'$. En consecuencia, $\sim$ es compatible con la operación del grupo $\operatorname{SL}_2(\mathbb{Z})$.\vspace{1em}\\
+\emph{Veamos que $[A]$ y $[B]$ generan a $\operatorname{PSL}_{2}(\mathbb{Z})$:}\\
+Es obvio que $A,B \en \operatorname{SL}_{2}(\mathbb{Z})$. Denotemos $T \coloneq -BA$, esto implica que $[T] = [B][A]$ en $\operatorname{PSL}_{2}(\mathbb{Z})$ y
+\[
+T = \left(\;\begin{matrix}1 & 1 \\ 0 & 1\end{matrix}\;\right)%
+\quad\text{por lo cual,}\quad%
+T^k = \left(\;\begin{matrix}1 & k \\ 0 & 1\end{matrix}\;\right),
+\quad%
+\forall k \en \mathbb{Z}
+\]
+Probemos, por inducción (fuerte y empezando en el cero) respecto al módulo de la $(2,1)\text{-ésima}$ entrada, que toda matriz $M \en \operatorname{SL}_{2}(\mathbb{Z})$ es generada en $\operatorname{PSL}_{2}(\mathbb{Z})$ por $[A]$ y $[B]$, i.e., $[M] \en \ang*{[A],[B]}$:
+\begin{itemize}
+\item Si $M \en \operatorname{SL}_{2}(\mathbb{Z})$ es tal que $M_{2,1} = 0$, entonces 
+\[
+1 = \det M = M_{1,1}M_{2,2} - 0\cdot M_{1,2} = M_{1,1}M_{2,2}
+\]
+por lo cual, $(M_{1,1},M_{2,2}) = \pm(1,1)$ ---ya que son enteros---. Si $M_{1,1} = M_{2,2} = 1$, entonces 
+\[
+M =\left(\;
+    \begin{matrix}
+    1 & M_{1,2} \\
+    0 & 1
+    \end{matrix}
+\;\right)
+\]
+así que $M = T^{M_{1,2}} = (-BA)^{M_{1,2}}$, i.e., $[M] = ([B][A])^{M_{1,2}} \en \ang*{[A],[B]}$. En el otro caso, si $M_{1,1} = M_{2,2} = -1$, se tiene
+\[
+M =%
+\left(\;
+    \begin{matrix}
+    -1 & M_{1,2} \\
+    0 & -1
+    \end{matrix}
+\;\right)%
+= -
+\left(\;
+    \begin{matrix}
+    1 & -M_{1,2} \\
+    0 & 1
+    \end{matrix}
+\;\right)
+\]
+por lo que $M = -T^{-M_{1,2}}$, es decir, $[M] = ([B][A])^{-M_{1,2}} \en \ang*{[A],[B]}$. En cualquier caso, se cumple que $[M] \en \ang{[A],[B]}$.
+
+\item Para el paso inductivo, supongamos que cualquier matriz en $\operatorname{SL}_{2}(\mathbb{Z})$ cuya $(2,1)\text{-ésima}$ tiene módulo menor o igual a $n$, pertenece a $\ang{[A],[B]}$; y sea $M \en \operatorname{SL}_{2}(\mathbb{Z})$ con $|M_{2,1}| = n + 1$. Por algoritmo de la división,\footnote{Notemos que $|M_{2,1}| \neq 0$.} existen únicos $q,r \en \mathbb{Z}$ tales que 
+\[
+M_{1,1} = qM_{2,1} + r,%
+\quad%
+0 \leq r \leq n
+\]
+Ahora, calculemos el siguiente producto,
+\[
+AT^{-q} =%
+\left(\;
+    \begin{matrix}
+    0 & -1 \\
+    1 & 0
+    \end{matrix}
+\;\right)
+\left(\;
+    \begin{matrix}
+    1 & -q \\
+    0 & 1
+    \end{matrix}
+\;\right)%
+=%
+\left(\;
+    \begin{matrix}
+    0 & -1 \\
+    1 & -q
+    \end{matrix}
+\;\right)
+\]
+Por lo cual,
+\begin{align*}
+(AT^{-q})M 
+&=%
+\left(\;
+    \begin{matrix}
+    0 & -1 \\
+    1 & -q
+    \end{matrix}
+\;\right)
+\left(\;
+    \begin{matrix}
+    M_{1,1} & M_{1,2} \\
+    M_{2,1} & M_{2,2}
+    \end{matrix}
+\;\right)
+=%
+\left(\;
+    \begin{matrix}
+    -M_{2,1}           & -M_{2,2} \\
+    M_{1,1} - qM_{2,1} & M_{1,2} - qM_{2,2}
+    \end{matrix}
+\;\right)\\
+&=%
+\left(\;
+    \begin{matrix}
+    -M_{2,1} & -M_{2,2} \\
+    r        & M_{1,2} - qM_{2,2}
+    \end{matrix}
+\;\right)
+\end{align*}
+Como esta última matriz de $\operatorname{SL}_{2}(\mathbb{Z})$ tiene $(2,1)\text{-ésima}$ entrada con módulo $r \leq n$, la hipótesis de inducción implica que $[A][T]^{-q}[M] = [(AT^{-q})M] \en \ang*{[A],[B]}$, pero ya tenemos que $[A][T]^{-q} = [A]([B][A])^{-q} \en \ang*{[A], [B]}$; por lo tanto, $[M] \en \ang*{[A],[B]}$.
+\end{itemize}
+Hemos probado mediante inducción que $\operatorname{PSL}_{2}(\mathbb{Z}) = \ang*{[A], [B]}$.
+\end{sol}\clearpage
+
+% Ejercicio 4
+\begin{ejer}
+Sea $G$ un grupo finito y sea $H$ un subgrupo de índice $p$, donde $p$ es el menor primo que divide a $|G|$. Demuestre que $H$ es normal en $G$.
+\end{ejer}
+\begin{sol}[Demostración]
+Denotemos por $X$ al conjunto de clases izquierdas módulo $H$, es decir,
+\[
+X \coloneq \set{aH \subseteq G \given a \en G}
+\]
+Por definición, $|X| = [G:H] = p$. Notemos que $G$ actúa sobre $X$ mediante multiplicación por la izquierda, i.e., hay un homomorfismo $\Phi \colon G \to S_X$ tal que $g \mapsto \varphi_g$ donde $\varphi_g(aH) = gaH$.\footnote{Es evidente que $\varphi_g$ es permutación, ya que su inversa es $\varphi_{g^{-1}}$; además, $\varphi_g \circ \varphi_h = \varphi_{gh}$. También es importante notar que cada $\varphi_g$ está bien definida gracias a que $g(aH) = (ga)H$.}\vspace{1em}\\
+\emph{Probemos que $H = \ker \Phi
+$:}\\
+Si $g \en \ker \Phi$, entonces $\varphi_g = \id_X$; en particular, $gH = \varphi_g(H) = H$. Luego, como $e \en H$, se sigue que $g = ge \en gH = H$, es decir, $g \en H$. Hemos probado que $\ker \Phi \subseteq H$. Por otro lado, el teorema de isomorfismo implica que $G/\ker\phi \cong \im \Phi \leq S_X$; por lo cual, $|{\im\Phi}|$ divide a $|S_X| = p!$ (recordemos que $|X| = p$ por hipótesis) y, como $|{\im\Phi}| = |G|/|{\ker\Phi}|$, $|{\im\Phi}|$ también divide a $|G|$. Se sigue que $|{\im\Phi}|$ divide a $\gcd(|G|,p!)$. Sin embargo, los factores primos de $p!$ son primos menores o iguales a $p$, mientras que el menor factor primo de $|G|$ es $|p|$; esto demuestra que $\gcd(|G|,p!) = p$. Tenemos entonces que $|{\im\Phi}|$ divide a $p$; más aún, ya teníamos que $\ker\Phi \leq H$ por lo que $|{\ker\Phi}| \leq |H|$ y 
+\[
+p = |G|/|H| \leq |G|/|{\ker\Phi}| = |{\im\Phi}| \leq p
+\]
+De esto se sigue que $|G|/|H| = |G|/|{\ker\Phi}|$ y, por consiguiente, $|H| = |{\ker\Phi}|$. Como ya teníamos que $\ker\Phi \leq H$ y ambos son grupos finitos del mismo orden, concluimos que $\ker\Phi = H$. Finalmente, $H$ es normal por ser el kernel de un homomorfismo de grupos.
+\end{sol}
+
+% Ejercicio 5
+\begin{ejer}
+Demuestre que si $H$ y $K$ son subgrupos finitos de $G$ cuyos ordenes son primos relativos entonces $H \cap K = 1$.
+\end{ejer}
+\begin{sol}[Demostración]
+Notemos que $H \cap K$ es subgrupo tanto de $H$ como de $K$. Luego, por teorema de Lagrange, $|H \cap K|$ divide a $|H|$ y a $|K|$; sin embargo, $|H|$ y $|K|$ son primos relativos, por lo cual $|H \cap K| = 1$. Esto prueba que $H \cap K = \set{e}$.
+\end{sol}
+

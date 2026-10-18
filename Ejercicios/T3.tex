@@ -1,0 +1,128 @@
+%------------------ Ejercicio 1 -----------------
+\begin{ejer}
+Demuestre que el centro de $S_n$ es trivial para todo $n \geq 3$.
+\end{ejer}
+\begin{sol}[Demostración]
+Sea $\sigma \en Z(S_n)$ arbitrario y supongamos por contradicción que $\sigma \neq e$; es decir, que existe un $i \en \Brack{1,n}$ tal que $\sigma(i) \neq i$. Denotemos $j \coloneq \sigma(i)$ y sea $k \en \Brack{1,n} - \set{i,j}$ (el cual existe ya que $n >2$). En particular, tenemos que $\sigma$ conmuta con toda transposición, por lo cual, $\sigma (i\;k) = (i\;k) \sigma$ así que (gracias a que las transposiciones tienen orden 2)
+\[
+(i\;k) \sigma (i\;k) = (i\;k)^{-1} \sigma (i\;k) = \sigma
+\]
+evaluando en $i$, obtenemos que
+\[
+j = \sigma(i) = (i\;k) \sigma (i\;k)(i)%
+= (i\;k)(\sigma(k))
+\]
+Ahora existen dos posibilidades:
+\begin{itemize}
+    \item $\sigma(k) \en \set{i,k}$: en este caso, tendríamos que $j = (i\;k)(\sigma(k))\en \set{i,k}$ lo cual es absurdo ya que $i,j$ y $k$ son distintos entre sí.
+
+    \item  $\sigma(k) \notin \set{i,k}$: en este caso, $(i\;k)$ deja fijo a $\sigma(k)$ así que tendríamos $j = \sigma(k)$; sin embargo, por definición tenemos $j = \sigma(i)$, por lo cual $\sigma(i) = \sigma(k)$ de donde se sigue $i=k$. Esto es absurdo, pues $i,j$ y $k$ son distintos entre sí.
+\end{itemize}
+En cualquier caso, llegamos a una contradicción. El error estuvo en suponer que existe un elemento en $Z(S_n)$ distinto de $e$, por lo tanto, $Z(S_n) = \set{e}$.
+\end{sol}
+
+%------------------ Ejercicio 2 -----------------
+\begin{ejer}
+Demuestre que todo grupo de orden $p^2$ es conmutativo.
+\end{ejer}
+\begin{sol}[Demostración]
+Sea $G$ un grupo de orden $p^2$ ($p$ primo). Como $Z(G) \leq G$ el teorema de Lagrange implica que $|Z(G)|$ divide a $p^2$, por lo cual, $|Z(G)| \en \set{1,p,p^2}$. Más aún, \href{https://drive.google.com/file/d/1Ya8QphqXaE-2Ao5ZX9yohvMls9xXDGwX/view?usp=drivesdk}{\emph{ya vimos en clase}} que todo $p\text{-grupo}$ no trivial tiene centro no trivial, así que solo hay dos opciones:
+\begin{itemize}
+    \item Si $|Z(G)| = p^2$ entonces $Z(G) = G$ y, por definición, se sigue que $G$ es abeliano.
+
+    \item Si $|Z(G)| = p$ entonces, gracias a que $Z(G)$ es siempre un subgrupo normal,\footnote{Esto es sencillo de probar: si $g \en G$ y $a \en Z(G)$, entonces $a$ y $g$ conmutan, por lo cual $gag^{-1} = agg^{-1} = a \en Z(G)$.} tenemos que $G/Z(G)$ es un grupo de orden $p$ y, por consiguiente, cíclico. Luego, es un resultado \href{https://drive.google.com/file/d/1Ya8QphqXaE-2Ao5ZX9yohvMls9xXDGwX/view?usp=drivesdk}{\emph{visto en clase}} que si $G/Z(G)$ es cíclico, entonces se sigue que $G$ es abeliano.
+\end{itemize}
+En cualquier caso, hemos probado que $G$ es abeliano.
+\end{sol}
+
+%------------------ Ejercicio 3 -----------------
+\begin{ejer}
+Demuestre que ningún $p\text{-grupo}$ de orden mayor o igual a $p^2$ puede ser simple.
+\end{ejer}
+\begin{sol}[Demostración]
+Sea $G$ un grupo de orden $p^k$ para algún $k \geq 2$.
+Usaremos dos resultados vistos en la prueba del \myref{ejer:3.2}: $Z(G)$ es subgrupo normal de $G$ y $Z(G)$ es no trivial siempre que $G$ sea $p\text{-grupo}$ no trivial. Hay dos posibilidades:
+\begin{itemize}
+    \item Si $Z(G) < G$ entonces $Z(G)$ es un subgrupo normal de $G$ distinto de $G$ y $\set{e}$, es decir, $G$ no es simple.
+
+    \item si $Z(G) = G$ entonces $G$ es abeliano, por lo cual, todos sus subgrupos son normales. Luego, el teorema de Cauchy implica que existe un elemento $a \en G$ de orden $p$; por lo tanto, $\ang{a} \trianglelefteq G$ tiene orden $p$ así que es distinto de $\set{e}$ y de $G$. Esto prueba que $G$ no es simple. 
+\end{itemize}
+En cualquier caso, hemos probado que $G$ no es simple.
+\end{sol}
+
+%------------------ Ejercicio 4 -----------------
+\begin{ejer}
+Sea $G$ un grupo finito de orden $n$ y sea $p < n$ un primo que divide a $n$. Suponga que el único divisor de $n$ congruente con $1\pmod{p}$ es $1$. Demuestre que $G$ no puede ser simple.
+\end{ejer}
+\begin{sol}[Demostración]
+Por el primer teorema de Sylow, $G$ tiene un $p\text{-subgrupo}$ de Sylow $P$ de orden $p^k$ con $k \geq 1$ (pues $p|n$) y denotemos $m \coloneq [G:P]$. Luego, el tercer teorema de Sylow dice que $n_p|m$ (en particular, $n_p|n$) y que $n_p = 1\mod p$ donde $n_p$ es la cantidad de $p\text{-subgrupos}$ de Sylow de $G$. Entonces, por hipótesis, se sigue que $n_p = 1$. Ahora bien, para cada $g \en G$, se tiene que $gPg^{-1}$ es $p\text{-subgrupo}$ de Sylow,\footnote{Como la conjugación es automorfismo, $gPg^{-1}$ es un subgrupo de $G$ con $p^k$ elementos.} pero ya vimos que solo existe un $p\text{-subgrupo}$ de Sylow de $G$; de esto se sigue que $gPg^{-1} = P$. Como $g \en G$ es arbitrario, hemos probado que $P \trianglelefteq G$. Ahora existen dos posibilidades:
+\begin{itemize}
+    \item Si $m=1$, entonces tenemos que $G = P$, por lo cual $n = p^k$; sin embargo, $p < n$ así que $k \geq 2$. Entonces el \myref{ejer:3.3} implica que $G$ no es simple.
+
+    \item Si $m>1$, entonces $n \neq p^k$ y $P$ es un subgrupo normal de $G$ distinto de $G$ y $\set{e}$, es decir, $G$ no es simple.
+\end{itemize}
+En cualquier caso, hemos probado que $G$ no es simple.
+\end{sol}\clearpage
+
+%------------------ Ejercicio 5 -----------------
+\begin{ejer}
+Para un grupo $G$ se define la
+serie central ascendente
+\[
+Z_0 \trianglelefteq Z_1 \trianglelefteq Z_2 \trianglelefteq \cdots
+\]
+de subgrupos normales de $G$ de manera inductiva:
+\[
+Z_0 = \{e\}, \quad Z_{i+1}/Z_i = Z(G/Z_i).
+\]
+Se dice que $G$ es nilpotente si existe $m$ tal que $Z_m = G$.
+\begin{enumerate}[label = (\alph*)]
+\item Demuestre que todo subgrupo propio $H < G$ de un grupo nilpotente finito está propiamente contenido en su normalizador $N_G(H)$.
+
+\item Deduzca que todos los subgrupos de Sylow de un grupo nilpotente finito son normales.
+\end{enumerate}
+\end{ejer}
+\begin{sol}[Demostración]
+Cuando $G$ es nilpotente, el buen orden de $\mathbb{N}$ implica que existe un mínimo $m$ tal que $Z_m = G$. En tal caso, decimos que $G$ es nilpotente de clase $m$, o bien, que $m$ es el índice de nilpotencia de $G$. Antes de comenzar la prueba de los incisos, daré algunos resultados auxiliares.\vspace{1em}\\
+\emph{Decir que $Z_{i+1}/Z_i = Z(G/Z_i)$ equivale a decir que $Z_{i+1} = \set{a \en G \given [a,b] \en Z_i,\; \forall b \en G}$}:\\
+Por teorema de correspondencia, $Z_{i+1}/Z_i = Z(G/Z_i)$ es equivalente a que $Z_{i+1} = p^{-1}(Z(G/Z_i))$ donde $p \colon G \to G/Z_i$ es la proyección canónica. Por lo tanto, basta probar que 
+\[
+p^{-1}(Z(G/Z_i)) =%
+\set{a \en G \given [a,b] \en Z_i,\; \forall b \en G}
+\]
+Esto es así: $a \en p^{-1}(Z(G/Z_i))$ sii $aZ_i \en Z(G/Z_i)$, sii $aZ_i$ conmuta con todo $bZ_i \en G/Z_i$, sii $[a,b]Z_i =[aZ_i,bZ_i] = Z_i$ para todo $b \en G$,\footnote{Que dos elementos conmuten equivale a que su conmutador, $[a,b] \coloneq aba^{-1}b^{-1}$, es trivial. Además, por cómo está definido el producto en el cociente, es inmediato que $[a,b]Z_i = [aZ_i,bZ_i]$.} sii $[a,b] \en Z_i$ para todo $b \en G$. Esto prueba lo deseado.\vspace{1em}\\
+\emph{Si $G$ es nilpotente de clase $m$, entonces $G/Z(G)$ es nilpotente de clase $m-1$}:\\
+Con este fin, veamos que la serie central ascendente de $G/Z(G)$ es
+\begin{gather}\label{serie:1}
+Z_1/Z(G) \trianglelefteq Z_2/Z(G) \trianglelefteq \cdots \trianglelefteq Z_m/Z(G) \trianglelefteq \cdots
+\end{gather}
+En efecto, tenemos que $Z_1/\set{e} = Z(G/\set{e}) = Z(G)/\set{e}$ por lo que $Z_1 = Z(G)$ y $Z_1/Z(G)$ es trivial.\footnote{\emph{Importante notar}: esto prueba que $Z(G) \leq Z_k$ para todo $k \en \mathbb{N}$, y como ya vimos que todo elemento de $G$ normaliza a $Z(G)$, en particular también lo hace todo elemento de $Z_k$. Esto justifica que $Z(G) \trianglelefteq Z_k$ para todo $k \en \mathbb{N}$. Más aún, como $Z_k \trianglelefteq Z_{k+1}$, el tercer teorema de isomorfismo garantiza que $Z_k/Z(G) \trianglelefteq Z_{k+1}/Z(G)$.} Además, veamos que para cada $i \en \mathbb{N}$ se cumple
+\[
+\frac{Z_{i+1}/Z(G)}{Z_i/Z(G)} = Z\left( \frac{G/Z(G)}{Z_i/Z(G)} \right)
+\]
+En efecto, ya vimos en el resultado anterior que esto equivale a probar que
+\[
+Z_{i+1}/Z(G) = \set*{aZ(G) \en G/Z(G) \given [aZ(G),bZ(G)] \en Z_i/Z(G),\; \forall bZ(G) \en G/Z(G)}
+\]
+Además, ya tenemos por hipótesis que $Z_{i+1} = \set{a \en G \given [a,b] \en Z_i,\; \forall b \en G}$; luego, para cada $a \en G$, $aZ(G) \en Z_{i+1}/Z(G)$ sii $a \en Z_{i+1}$, sii $[a,b] \en Z_i$ para cada $b \en G$, sii $[a,b]Z(G) \en Z_i/Z(G)$ para cada $b \en G$, sii $[aZ(G),bZ(G)] \en Z_i/Z(G)$ para cada $bZ(G) \en G/Z(G)$. Hemos demostrado que la serie de \eqref{serie:1} es la serie central ascendente de $G/Z(G)$; de hecho, como dicha comienza en $Z_1/Z(G)$, entonces $Z_{i}/Z(G)$ es el $(i-1)\text{-ésimo}$ término de la sucesión. Finalmente, tenemos que $Z_m/Z(G) = G/Z(G)$, por lo que $G/Z(G)$ es nilpotente; más aún, si $k < m$ entonces $Z_k < G$ (pues $m$ es el índice de nilpotencia de $G$) de donde se sigue que $Z_k/Z(G) < G/Z(G)$. Esto prueba que $G/Z(G)$ es nilpotente de clase $m-1$, ya que el mínimo término de la serie en el que se alcanza $G/Z(G)$ es el $(m-1)\text{-ésimo}$, i.e., $Z_m/Z(G)$.\vspace{1em}\\
+\emph{Probemos cada inciso:}
+\begin{enumerate}[label = (\alph*)]
+    \item Primero descartemos el caso trivial: si $Z(G) \nleq H$ entonces existe $a \en Z(G)$ tal que $a \notin H$; sin embargo, $a$ conmuta con todos los elementos de $H$, por lo cual $aHa^{-1} = H$ de donde $a \en N_G(H)$, pero ya teníamos que $a \notin H$. Esto prueba que $H < N_G(H)$ siempre que $Z(G) \nleq H < G$. Para el caso general usaremos inducción:\par
+    \begin{itemize}
+    \item Si $G$ es nilpotente finito de clase $1$, entonces obtenemos que $G = Z_1 = Z(G)$ por lo que $G$ es abeliano y todos sus subgrupos son normales; en particular, $H$ es normal en $G$ de donde se sigue que $N_G(H) = G$ (ya que $N_G(H)$ es el subgrupo de $G$ más grande en el cual $H$ es normal). Por hipótesis, $H < G$ así que también $H < N_G(H)$.
+
+    \item Para el paso inductivo, supongamos que todo grupo nilpotente finito de clase $m$ satisface la propiedad del inciso (a) y sea $G$ un grupo finito nilpotente de clase $m+1$. Para cualquier subgrupo propio $H < G$ tenemos dos opciones: o bien $Z(G) \leq H$, o bien $Z(G) \nleq H$. El segundo caso ya vimos que satisface trivialmente el inciso (a), por lo que supongamos $Z(G) \leq H$. Ya habíamos visto en el \myref{ejer:3.2} que $Z(G) \trianglelefteq G$, por lo que el teorema de correspondencia garantiza que $Z(G) \trianglelefteq H$ y $H / Z(G) < G / Z(G)$. No obstante, ya vimos que $G/Z(G)$ es nilpotente de clase $m$, así que la hipótesis de inducción implica que $H/Z(G) < N_{G/Z(G)}(H/Z(G))$. Solo faltaría verificar que
+    \[
+    N_{G/Z(G)}(H/Z(G)) = N_G(H) / Z(G)
+    \]
+    en efecto, $aZ(G) \en N_G(H)/Z(G)$ sii $a \en N_G(H)$, sii $aha^{-1} \en H$ para cada $h \en H$, sii $aha^{-1}Z(G) \en H/Z(G)$ para cada $h \en H$, sii $aZ(G)\cdot hZ(G) \cdot a^{-1}Z(G) \en H/Z(G)$ para cada $hZ(G) \en H/Z(G)$, sii $aZ(G) \en N_{G/Z(G)}(H/Z(G))$. Esto prueba la igualdad que buscábamos, por lo que tenemos $H/Z(G) < N_G(H)/Z(G)$. Luego, el teorema de correspondencia implica que $H < N_G(H)$.
+    \end{itemize}
+    Hemos probado por inducción que si $H < G$ entonces $H<N_G(H)$ con $G$ nilpotente finito.
+
+    \item \emph{Veamos que si $P$ es $p\text{-subgrupo}$ Sylow de $G$ y $H \trianglelefteq G$ es tal que $P \trianglelefteq H$, entonces $P \trianglelefteq G$}:\\
+    Es obvio que $P$ también es $p\text{-subgrupo}$ Sylow de $H$ (si hubiera un $p\text{-grupo}$ de orden mayor en $H$, este también estaría en $G$, lo cual contradiría que $P$ es $p\text{-Sylow}$ en $G$). Luego, el segundo teorema de Sylow implica que cualquier otro $p\text{-subgrupo}$ Sylow de $H$ es de la forma $hPh^{-1}$ con $h \en H$; sin embargo, $hPh^{-1} = P$ ya que $P$ es subgrupo normal de $H$. Se sigue que $P$ es el único $p\text{-subgrupo}$ Sylow de $H$. Ahora bien, sea $g \en G$ arbitrario, como $H \trianglelefteq G$ tenemos que $gPg^{-1} \subseteq gHg^{-1} = H$ y, gracias a que la conjugación es automorfismo y preserva el orden, se sigue que $gPg^{-1}$ es un $p\text{-subgrupo}$ Sylow de $H$. Luego, la unicidad implica $gPg^{-1} = P$. Como $g \en G$ es arbitrario, hemos demostrado que $P \trianglelefteq G$.\vspace{1em}\\
+    \emph{Ahora veamos que $N_G(N_G(P)) = N_G(P)$ siempre que $P$ es un $p\text{-subgrupo}$ Sylow de $G$}:\\
+    Ya sabemos que todo grupo está contenido en su normalizador (más aún, es normal en él), así que ya tenemos la contención "$\supseteq$". Para la otra contención, notemos que se cumple $P \trianglelefteq N_G(P)$ y $N_G(P) \trianglelefteq N_G(N_G(P))$, por lo cual, el resultado previo garantiza que $P \trianglelefteq N_G(N_G(P))$; sin embargo, $N_G(P)$ es definido como el mayor subgrupo de $G$ en el que $P$ es normal. Por lo tanto, $N_G(N_G(P)) \subseteq N_G(P)$. De ambas contenciones se sigue que $N_G(N_G(P)) = N_G(P)$.\par\vspace{1em}
+    Ahora sea $P$ un $p\text{-subgrupo}$ Sylow de $G$ y supongamos por contradicción que $P$ no es normal. En este caso, no todo elemento de $G$ normaliza a $P$, por lo cual, $N_G(P) < G$. No obstante, por un lado el inciso (a) implica que $N_G(P) < N_G(N_G(P))$ y, por otro lado, el resultado anterior implica que $N_G(P) = N_G(N_G(P))$. Esto es una contradicción, el error estuvo en suponer que $P$ no es normal. Por lo tanto, todo $p\text{-subgrupo}$ de $G$ tiene que ser normal.
+\end{enumerate}
+\end{sol}

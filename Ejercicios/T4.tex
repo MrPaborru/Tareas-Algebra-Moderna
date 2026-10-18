@@ -1,0 +1,92 @@
+%------------- Ejercicio 1 ------------
+\begin{ejer}
+Sean $I , J$ ideales en un anillo conmutativo $R$ tales que $I + J = (1)$. Demuestre que $IJ = I \cap J$.
+\end{ejer}
+\begin{sol}[Demostración]
+Es evidente que $IJ \subseteq I \cap J$: si $i \en I$ y $j \en J$, entonces por ser ideales $ij \en I$ y $ij \en J$, de donde $ij \en I \cap J$; como $IJ$ es el ideal más chico que contiene a los elementos de esta forma, se sigue que $IJ \subseteq I \cap J$. Para la otra contención sea $k \en I \cap J$, entonces existen $i \en I$ y $j \en J$ tales que $i + j = 1$; por lo tanto, $k = k(i + j) = ki + kj = ik + kj \en IJ$ ya que $ik \en IJ$ y $kj \en IJ$. Esto prueba la otra contención.
+\end{sol}
+
+%------------- Ejercicio 2 ------------
+\begin{ejer}
+Sea $R$ un anillo conmutativo, $a \in R$ y $f_1(x), \ldots, f_r(x) \in R[x]$.
+\begin{enumerate}[label=(\alph*)]
+\item Pruebe la igualdad de ideales:
+\[
+(f_1(x), \ldots, f_r(x), x - a) = (f_1(a), \ldots, f_r(a), x - a).
+\]
+\item Pruebe el truco de sustitución:
+\[
+R[x]/(f_1(x), \ldots, f_r(x), x - a) \cong R/(f_1(a), \ldots, f_r(a)).
+\]
+\end{enumerate}
+\end{ejer}
+\begin{sol}[Demostración]
+Denotemos $I \coloneq(f_1(x), \ldots, f_r(x), x - a)$ y $J \coloneq (f_1(a), \ldots, f_r(a), x - a)$.
+\begin{enumerate}[label=(\alph*)]
+\item Por algoritmo de la división para polinomios, para cada $k \en \set{1,\dots,r}$ tenemos
+\[
+f_k(x) = (x-a)q_k(x) + f_k(a),
+\quad\text{para algún}\quad q_k(x) \en R[x]
+\]
+De esto se sigue que $f_k(x) \en J$ para cada $k \en \set{1,\dots,r}$, así que $I \subseteq J$. La contención recíproca es análoga: para cada $k \en \set{1,\dots,r}$ tenemos
+\[
+f_k(a) = -(x-a)q_k(x) + f_k(x) \en I
+\]
+Por lo tanto, $J \subseteq I$. De ambas contenciones concluimos que $I=J$.
+
+\item Por el inciso anterior y el teorema de isomorfismo tenemos
+\[
+\frac{R[x]}{I} = \frac{R[x]}{J} \cong \frac{R[x]/(x-a)}{J/(x-a)}
+\]
+pero el morfismo evaluación induce un isomorfismo $R[x]/(x-a) \cong R$, bajo el cual el ideal $J/(x-a)$ se corresponde con el ideal $(f_1(a),\dots,f_r(a))$. Por lo tanto
+\[
+\frac{R[x]/(x-a)}{J/(x-a)} \cong \frac{R}{(f_1(a),\dots,f_r(a))}
+\]
+de donde se sigue que $R[x]/I \cong R/(f_1(a),\dots,f_r(a))$.
+\end{enumerate}
+\end{sol}
+
+%------------- Ejercicio 3 ------------
+\begin{ejer}
+Sea $R$ un anillo. Un $R$-módulo $M \neq 0$ es \emph{simple} si sus únicos submódulos son $\{0\}$ y $M$. Sean $M, N$ $R$-módulos simples y $\varphi \colon M \to N$ un homomorfismo de $R$-módulos. Demuestre que $\varphi = 0$ o bien $\varphi$ es un isomorfismo.
+\end{ejer}
+\begin{sol}[Demostración]
+Si $\varphi$ no es trivial, su imagen es submódulo no nulo de $N$, $\set0 \lneq \im(\varphi) \leq N$; como $N$ es simple, forzosamente $\im(\varphi) = N$ así que $\varphi$ es sobre. Por otro lado, como $\varphi$ no es nula, su kernel es submódulo propio de $M$, i.e., $\ker(\varphi) \lneq M$, así que $\ker(\varphi) = \set0$ y $\varphi$ es inyectiva. De esto se sigue que $\varphi$ es un isomorfismo.
+\end{sol}
+
+%------------- Ejercicio 4 ------------
+\begin{ejer}
+Sea $R$ un anillo, $M$ un $R$-módulo y $p \colon M \to M$ un homomorfismo tal que $p^2 = p$ (proyección). Pruebe que
+\[
+M \cong \ker(p) \oplus \operatorname{im}(p).
+\]
+\end{ejer}
+\begin{sol}[Demostración]
+\emph{Primero notemos que $p|_{\im(p)}$ es la inclusión canónica $\iota_{\im(p)} \colon \im(p) \hookrightarrow M$}:\\ Si $y \en \im(p)$, existe $x \en M$ tal que $y = p(x)$; luego, $p(y) = p^2(x) = p(x) = y$. Esto prueba $p|_{\im(p)} = \iota_{\im(p)}$. Por otro lado, es obvio que si $x \en M$ entonces $x - p(x) \en \ker(p)$, ya que 
+\[
+p(x-p(x)) = p(x) - p^2(x) = p(x) - p(x) = 0 
+\]
+De esto se sigue que todo $x \en M$ se puede escribir como
+\[
+x = \underbrace{(x - p(x))}_{\en\ker(p)} + \underbrace{p(x)}_{\en\im(p)}
+\]
+Es decir, $M = \ker(p) + \im(p)$. Además, ya vimos que $p \circ \iota_{\im(p)} = \iota_{\im(p)}$, pero por definición $\ker(\iota_{\im(p)}) = \set0$. Luego,
+\[
+\set0 = \ker(p \circ \iota_{\im(p)}) = \iota_{\im(p)}^{-1}(\ker(p)) = \ker(p) \cap \im(p)
+\]
+En conclusión, $M = \ker(p) \oplus \im(p)$.
+\end{sol}%\clearpage
+
+%------------- Ejercicio 5 ------------
+\begin{ejer}
+Sea $R = \mathbb{Z}[x_1, x_2, \ldots ]$ el anillo de polinomios en infinitas variables. Pruebe que el ideal $(x_1, x_2, \ldots)$ de $R$ no es finitamente generado (como ideal, es decir, como $R$-módulo).
+\end{ejer}
+\begin{sol}[Demostración]
+Denotemos $I \coloneq (x_1,x_2,\dots)$ y supongamos por contradicción que $I$ es generado por $f_1,f_2,\dots,f_r \en \mathbb{Z}[x_1,x_2,\dots]$; en particular, $f_1,f_2,\dots,f_r \en I$. Notemos que los elementos de $I$ son de la forma
+\[
+\sum^n_{i=1}q_ix_i,
+\quad\text{con}\quad
+q_i \en \mathbb{Z}[x_1,x_2,\dots]
+\]
+En particular, los $f_k$ también lo son, por lo que $f_k \en (x_1,x_2,\dots,x_{n_k})$ para algún $n_k \en \mathbb{N}$ para cada $k \en \set{1,\dots,r}$. Esto implica que $I = (f_1,\dots,f_r) \subseteq (x_1,\dots,x_N)$ con $N = \max\set{n_1,\dots,n_k}$. No obstante, $x_{N+1} \en I$ mientras que es evidente\footnote{La forma más sencilla de probarlo es considerar el morfismo evaluación en $x_{N+1} = 1$ y $x_{n} = 0$ para todo $n \en \mathbb{N}\setminus\set{N+1}$: por un lado, $\ev(x_{N+1})=1$ y, por otro lado, $\ev{}$ es cero en cualquier elemento de $(x_1,\dots,x_N)$, de donde $x_{N+1} \notin (x_1,\dots,x_N)$. Otra forma de probarlo es ver directamente que cualquier monomio $q_ix_i$ con $i\leq N$, o bien es cero, o bien tiene a la variable $x_i$, por lo que $x_{N+1}$ no se puede obtener sumando estos monomios.} que $x_{N+1} \notin (x_1,\dots,x_N)$: esto es una contradicción. El error estuvo en suponer que $I$ es finitamente generado, por lo cual no puede serlo.
+\end{sol}

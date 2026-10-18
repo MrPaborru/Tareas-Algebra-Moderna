@@ -1,0 +1,413 @@
+%------------------------------ Ejercicio 1 -------------------------------
+\begin{ejer}
+El diagrama siguiente muestra algunas clases importantes de dominios conmutativos: dominios enteros, dominios con factorización, dominios únicos de factorización, dominios principales, dominios euclídeos y campos, junto con la clase de dominios noetherianos.
+\input{Figuras/Tipo anillos}
+Para cada inclusión mostrada en el diagrama, exhiba un anillo $R$ que pertenezca a la clase más pequeña pero no a la siguiente, mostrando así que la inclusión es estricta. Justifique por qué $R$ cumple las propiedades que definen la clase menor y por qué no satisface las de la clase mayor, indicando explícitamente las propiedades que distinguen ambas clases y cómo se verifican (o fallan) en el ejemplo elegido.
+\end{ejer}
+\begin{sol}\hphantom{r}
+\begin{enumerate}[label={\bfseries\Roman*}., wide, itemsep=1em]
+
+\item\addcontentsline{toc}{subsection}{\texorpdfstring{Dominios con factorización $\subsetneq$ Dominios enteros}{Dominios con factorización contenidos en Dominios enteros}}
+\emph{\bfseries Dominios con factorización $\subsetneq$ Dominios enteros:}\\
+Un dominio con factorización es un dominio entero en el que todo elemento se descompone como producto (no necesariamente único) de elementos irreducibles. Para exhibir un dominio entero $R$ que no sea de factorización bastaría con que tenga un elemento no unitario $r \en R$ que solo se pueda descomponer como producto de elementos donde uno de ellos es reducible, i.e., tal que $r = r_1 \cdots r_n$ (podemos suponer si perder generalidad que ninguno es unidad) implica que (por ejemplo) $r_n$ es reducible así que $r_n = s_ns_{n+1}$ donde $s_n$ y $s_{n+1}$ no son unidades; luego, $r = r_1 \cdots r_{n-1}s_ns_{n+1}$ y, volviendo a aplicar el mismo proceso obtenemos $r = r_1 \cdots s_{n}t_{n+1}t_{n+2}$ por lo que cualquier descomposición de $r$ (en no unidades) se puede descomponer en más elementos no unitarios aún. Esta es la propiedad que buscamos para $R$, que tenga un elemento que se pueda descomponer "infinitamente" en producto de no unidades.
+\[
+r = r_1\cdots r_n = r_1 \cdots (s_ns_{n+1}) = r_1\dots s_n(t_{n+1} t_{n+2}) = r_1\dots s_nt_{n+1}(u_{n+2}u_{n+3}) = \cdots
+\]
+Por este motivo, escogemos $R = \mathbb{Z} + x\mathbb{Q}[x]$. Claramente $R$ es dominio entero ya que es subanillo de $\mathbb{Q}[x]$; además, el elemento no unitario $x \en R$ satisface que, si $x = f_1(x) \cdots f_n(x)$ con $f_k(x) \en R$, entonces $1 = \deg(x) = \deg f_1(x) + \cdots + \deg f_n(x)$. Como el grado es un entero no negativo, la única forma de que sumen $1$ es que uno de ellos sea uno y el resto cero, podemos suponer que $\deg f_k(x) = 0$ con $1\leq k < n$ y $\deg f_n(x) = 1$. Por lo tanto, $f_k(x) = a_k \en \mathbb{Z}$ con $1 \leq k < n$ y $f_n(x) = ax + b$ con $a \en \mathbb{Q}$ y $b \en \mathbb{Z}$. Se sigue que $x = a_1 \cdots a_{n-1}(ax + b) = (a_1 \cdots a_{n-1}a)x + (a_1 \cdots a_{n-1}b)$ de donde
+\[
+a_1 \cdots a_{n-1}a = 1%
+\quad\text{y}\quad%
+a_1 \cdots a_{n-1}b = 0%
+\]
+Como los $a_k \neq 0$ (pues tienen grado cero) se sigue que $b = 0$; más aún, como $a \en \mathbb{Q}$, se sigue que $a = (a_1\cdots a_{n-1})^{-1}$. Esto implica que $f_n(x) = (a_1\cdots a_{n-1})^{-1}x$; sin embargo, $f_n(x)$ no es irreducible, ya que $f_n(x) = 2 \cdot (2a_1\cdots a_{n-1})^{-1}x$ donde $2, (2a_1\cdots a_{n-1})^{-1}x\en R$ no son unidades. Hemos probado que $x \en R$ no se puede descomponer como producto de elementos irreducibles así que $R$ es un dominio entero que no es dominio de factorización. Como vimos al inicio, la propiedad clave fue que $x \en R$ se puede descomponer "infinitamente" en no unidades dentro de $R$:
+\[
+x = 2 \cdot (2^{-1}x) = 2 \cdot 2 \cdot (4^{-1}x) = \cdots= 2^n \cdot (2^{-n}x) = \cdots
+\]
+
+\item\addcontentsline{toc}{subsection}{\texorpdfstring{DFU $\subsetneq$ Dominios con factorización}{DFU contenidos en Dominios con factorización}}
+\emph{\bfseries DFU $\subsetneq$ Dominios con factorización:}\\
+La propiedad que distingue ambas clases es la unicidad (módulo asociados) de la descomposición en irreducibles. Por lo tanto, basta con dar un dominio entero que tenga factorizaciones pero no sean únicas módulo asociados. El ejemplo más conocido con dichas propiedades es 
+\[
+R \coloneq \mathbb{Z}[\sqrt{-5}] = \set[\big]{a + b\sqrt{-5} \en \mathbb{C} \given a,b\en \mathbb{Z}}
+\] 
+Este es un ejemplo de \emph{anillo de enteros cuadráticos}, los cuales son anillos de la forma $\mathbb{Z}[\sqrt{d}]$ con $d \equiv 2,3 \mod 4$, o bien de la forma $\mathbb{Z}\big[\frac{1+\sqrt{d}}{2}\big]$ con $d \equiv 1 \mod 4$, con $d \en \mathbb{Z}$ libre de cuadrado. En estos anillos, el \emph{conjugado} de un $a + b\sqrt{d}$ (resp. $a+b\frac{1+\sqrt{d}}{2}$) se define como
+\[
+\ubar{a+b\sqrt{d}} = a - b\sqrt{d},%
+\quad\text{(resp. $\ubar{a+b\tfrac{1+\sqrt{d}}{2}} = a+b\tfrac{1-\sqrt{d}}{2} = (a+b) - b\tfrac{1+\sqrt{d}}{2}$)}
+\]
+Luego, la \emph{norma} de un entero cuadrático $z$ se define como su producto con su conjugado, i.e., $N(z) = z\ubar{z}$. En cualquier caso, la norma de un entero cuadrático siempre es un entero, pues
+\[
+N\big(a + b\sqrt{d}\big) = a^2 - b^2d \en \mathbb{Z},
+\quad(\text{resp.}\quad%
+N\left(a+b\tfrac{1+\sqrt{d}}{2}\right) = \big(a + \tfrac{b}{2}\big)^2-\tfrac{b^2d}{4} = a^2 + ab + b^2\big(\tfrac{1-d}{4}\big) \en \mathbb{Z})
+\]
+ya que, por hipótesis, en el segundo caso $4|(1-d)$. Más aún, es sencillo notar que, cuando $d<0$, el conjugado de un entero gaussiano coincide con su conjugado como número complejo, por lo cual, su norma coincide con su módulo al cuadrado (en particular, siempre es no negativa). De este hecho se sigue inmediatamente que la norma y el conjugado son multiplicativos cuando $d < 0$ (también lo son cuando $d>0$, pero no lo probaré ya que solo necesito el caso $d<0$).
+
+\begin{lema}\label{lema:unidades}
+Un entero cuadrático es una unidad si y solo si tiene norma $\pm1$. En particular, si dos enteros cuadráticos son asociados entonces sus normas tienen el mismo valor absoluto.
+\end{lema}\vspace{-1.5em}
+\begin{proof}
+Si $z \en \mathbb{Z}[\sqrt{d}]$ (resp. $z\en\mathbb{Z}\big[\frac{1+\sqrt{d}}{2}\big]$) es una unidad, entonces existe $z^{-1} \en \mathbb{Z}[\sqrt{d}]$ (resp. $z^{-1}\en\mathbb{Z}\big[\frac{1+\sqrt{d}}{2}\big]$) tal que $zz^{-1} = 1$. Luego \[1 = N(1) = N(zz^{-1}) = N(z)N(z^{-1})\] como la norma siempre es un entero se sigue $N(z) = \pm1$. Recíprocamente, si $N(z) = \pm1$ entonces $z\ubar{z} = \pm1$ de donde $z(\pm\ubar{z}) = 1$ y $z$ es unidad. Por otro lado, de esto se sigue que si $z_1,z_2$ son asociados, existe una unidad $u$ tal que $z_1 = uz_2$, i.e., $N(z_1) = N(u)N(z_2) = \pm N(z_2)$.
+\end{proof}
+\emph{Ahora podemos probar que $R = \mathbb{Z}[\sqrt{-5}]$ no es DFU:}\\
+Notemos que $6 \en R$ se descompone como  
+\[
+6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})
+\]
+Además, $N(2) = 4$, $N(3) = 9$ y $N(1+\sqrt{-5}) = N(1-\sqrt{-5}) = 6$, por lo que del \myref{lema:unidades} se sigue que ningún par de estos elementos son asociados así que las descomposiciones no son equivalentes. Más aún, veamos que cada uno de estos números son irreducibles en $R$. En efecto, primero notemos que si $z = a + b\sqrt{d}$ con $d<0$ y $b\neq0$ , entonces $N(z) = a^2 + |d|b^2 \geq |d|$. Esto prueba lo siguiente
+\begin{lema}\label{lema:normamin}
+Si $z \en \mathbb{Z}[\sqrt{d}]$ con $d<0$ tiene parte imaginaria no nula, su norma es al menos $|d|$.  
+\end{lema}\vspace{-0.5em}
+Luego, por la multiplicatividad de $N$, todo par de elementos de $R$ cuyo producto sea $3$ debe tener normas cuyo producto es $9$. Es decir, o bien uno de ellos tiene norma $9$, de donde se sigue que el otro tiene norma $1$ y por tanto es una unidad, o bien ambos tienen norma $3$. En este último caso, por (\myref{lema:normamin}), ambos tienen parte imaginaria nula, de modo que son enteros; y como $3$ es primo en $\mathbb{Z}$, se concluye que uno de ellos es $\pm1$ (una unidad) y el otro $\pm3$. En cualquier caso, uno de los factores es unidad. Esto prueba que $3$ es irreducible en $R$. De manera análoga se demuestra que $2$ es irreducible. Asimismo, si un par de elementos de $R$ tiene por producto a $1+\sqrt{-5}$ (resp. $1-\sqrt{-5}$), sus normas deben multiplicar $6$. Como el producto de enteros no puede ser complejo, se sigue que al menos uno de los factores tiene parte imaginaria no nula; por lo tanto, su norma es mayor o igual que $5$, lo cual implica que su norma es exactamente $6$. De esto se deduce que el otro factor tiene norma $1$, y por consiguiente es una unidad. En conclusión, tanto $1+\sqrt{-5}$ como $1-\sqrt{-5}$ son irreducibles.\par
+Hemos demostrado que $6$ tiene dos factorizaciones no equivalentes en irreducibles, por lo que $R$ no tiene factorización única. Ahora solo resta probar que $R$ es dominio con factorización. Para ello probaremos algo aún más fuerte: que $R$ es dominio noetheriano (pues, como indica el diagrama del ejercicio, esto implica que tiene factorizaciones). Como $R$ es subanillo de $\mathbb{C}$, se sigue de inmediato que $R$ es dominio entero. Además, el mapeo evaluación $\ev_{\sqrt{-5}} \colon \mathbb{Z}[x] \to \mathbb{Z}[\sqrt{-5}]$ es un homomorfismo sobreyectivo de anillos. Ahora bien, $\mathbb{Z}[x]$ es noetheriano gracias al teorema de la base de Hilbert, y la imagen homomorfa de un anillo noetheriano es un anillo noetheriano. Por lo tanto, $\mathbb{Z}[\sqrt{-5}] = \im(\ev_{\sqrt{-5}})$ es anillo noetheriano. En particular, es dominio con factorización.
+
+\item\addcontentsline{toc}{subsection}{\texorpdfstring{Dominios noetherianos $\subsetneq$ Dominios con factorización}{Dominios noetherianos contenidos en Dominios con factorización:}}
+\emph{\bfseries Dominios noetherianos $\subsetneq$ Dominios con factorización:}\\
+En el ejercicio 5 de la lista de ejercicios anterior, vimos que $R = \mathbb{Z}[x_1,x_2,\dots]$ tiene un ideal que no es finitamente generado. Esto implica ---según una de las definiciones equivalentes de anillo noetheriano--- que $R$ no es noetheriano; no obstante, es sencillo verificar que sí tiene factorizaciones (más aún, el mismo argumento se puede usar para probar que $R$ es DFU si damos por hecho el teorema: $A$ DFU $\implies$ $A[x]$ DFU). En efecto, para cada $f \en \mathbb{Z}[x_1,x_2,\dots]$ existe un $n\en\mathbb{N}$ tal que $f \en \mathbb{Z}[x_1,\dots,x_n]$ y, más aún, $f$ es irreducible en $\mathbb{Z}[x_1,x_2,\dots]$ si y solo si lo es en $\mathbb{Z}[x_1,\dots,x_n]$.%
+\footnote{
+    Esto se debe a que, si $f = ab$ con $a,b\en\mathbb{Z}[x_1,x_2,\dots]$, entonces forzosamente $a,b \en \mathbb{Z}[x_1,\dots,x_n]$. En consecuencia, si $f$ es irreducible en $\mathbb{Z}[x_1,x_2,\dots]$, al ser $a,b \en \mathbb{Z}[x_1,\dots,x_n]$ se sigue que uno de ellos debe ser una unidad, es decir, $a = \pm 1$ o $b = \pm 1$. Recíprocamente, si $f$ es irreducible en $\mathbb{Z}[x_1,\dots,x_n]$, entonces toda factorización $f = ab$ en $\mathbb{Z}[x_1,x_2,\dots]$ debe involucrar factores $a,b$ que, de nuevo, pertenecen a $\mathbb{Z}[x_1,\dots,x_n]$. Por tanto, como $f$ es irreducible en este subanillo, uno de los factores es necesariamente una unidad. Así, $f$ también es irreducible en $\mathbb{Z}[x_1,x_2,\dots]$.
+}%
+Sin embargo, por el teorema de la base de Hilbert, para cada $n\en\mathbb{N}$ tenemos que $\mathbb{Z}[x_1,\dots,x_n]$ es noetheriano (en particular, tiene factorizaciones); luego, gracias a que todo $f \en \mathbb{Z}[x_1,x_2\dots]$ pertenece a algún $\mathbb{Z}[x_1,\dots,x_n]$ se sigue que tiene una factorización en irreducibles $f = f_1\cdots f_k$ dentro de $\mathbb{Z}[x_1,\dots,x_n]$ y, por lo visto anteriormente, cada $f_i$ también es irreducible en $\mathbb{Z}[x_1,x_2,\dots]$ así que $f_1\cdots f_k$ también es una factorización en irreducibles para $f$ dentro de $\mathbb{Z}[x_1,x_2\dots]$. Hemos probado que $R$ es dominio con factorización.
+
+\item\addcontentsline{toc}{subsection}{\texorpdfstring{DIP $\subsetneq$ DFU $\cap$ Dominios noetherianos}{DIP contenidos en DFU y Dominios noetherianos}}
+\emph{\bfseries DIP $\subsetneq$ DFU $\cap$ Dominios noetherianos:}\\
+Como $\mathbb{Z}$ dominio noetheriano, el teorema de la base de Hilbert implica que $R = \mathbb{Z}[x]$ es dominio noetheriano, pero también tenemos que $\mathbb{Z}$ es DFU, por lo que un teorema visto en clase implica que $\mathbb{Z}[x]$ es también DFU. No obstante, ya vimos en clase que $\mathbb{Z}[x]$ no es DIP, puesto que el ideal
+\[
+(2,x) = \set{2a(x) + xb(x) \given a(x),b(x) \en \mathbb{Z}[x]}
+\]
+no es principal, ya que si tuviésemos $(2,x) = (f(x))$ entonces $x \en (f(x))$ de donde $x = f(x)g(x)$ con $f(x),g(x) \en \mathbb{Z}[x]$ así que forzosamente $f(x) = \pm 1$ o $f(x) = \pm x$. Es evidente que $f(x) \neq \pm x$ ya que $2 \noten (\pm x)$, así que $f(x) = \pm1$ de donde se sigue que $(2,x) = (\pm1) = \mathbb{Z}[x]$: esto es absurdo, ya que $x + 1 \noten (2,x)$.\footnote{Esto es así, ya que para todo $f(x) = 2a(x) + xb(x)$ el polinomio $xb(x)$ tiene término independiente nulo, por lo que el término independiente de $f(x)$ es igual al término independiente de $2a(x)$, siendo este último un entero par. Esto prueba que todos los polinomios en $(2,x)$ tienen término independiente par, de donde $x+1 \noten (2,x)$.} El error estuvo en suponer que $(2,x)$ es principal, así que $\mathbb{Z}[x]$ no es DIP.
+
+\item\addcontentsline{toc}{subsection}{\texorpdfstring{Dominios euclídeos $\subsetneq$ DIP}{Dominios euclídeos contenidos en DIP}}
+\emph{\bfseries Dominios euclídeos $\subsetneq$ DIP:}\\
+Para probar que la contención es propia, necesitamos exhibir un DIP $R$ que no es dominio euclídeo, i.e., que no admite una valuación euclidiana; sin embargo, en general es complicado demostrar que un anillo no posee valuaciones euclidianas, por lo que optaremos por una estrategia distinta: probaremos una propiedad que deben cumplir todos los dominios euclídeos (de preferencia que tal propiedad no involucre a la valuación directamente) y luego probaremos que $R$ no satisface dicha propiedad. Esto probará que $R$ no puede ser euclídeo. A continuación, presento la propiedad.
+
+\begin{lema}\label{lema:propdiv}
+ Si $R$ es un dominio euclídeo que no es campo, existe una no unidad $c \en R$ distinta de cero, tal que para cada $a \en R$ existen $q,r \en R$ de modo que $a = qc + r$ y $r$ es unidad o es nulo.
+\end{lema}\vspace{-1.5em}
+\begin{proof}
+Denotemos por $R^*$ al conjunto de unidades de $R$ y sea $v$ una valuación euclidiana para $R$. Como $R$ no es campo, se sigue que $R\setminus(R^* \cup \set0) \neq \varnothing$ por lo cual $v(R\setminus(R^* \cup \set0)) \subseteq \mathbb{N}_0$ es no vacío, así que tiene un elemento mínimo, i.e., 
+\[
+\exists c \en R\setminus(R^* \cup \set0),\quad%
+v(c) = \min v(R\setminus(R^* \cup \set0))
+\]
+ahora bien, para cualquier $a \en R$ existen (ya que $v$ es valuación euclidiana) $q,r \en R$ tales que 
+\[
+a = qc + r%
+\quad\text{y}\quad%
+v(r) < v(c)  \;\;\text{o}\;\; r=0
+\]
+pero el primer caso, $v(r) < v(c)$, implica que $r \noten R\setminus(R^* \cup \set0)$, i.e., que $r \en R^*$ (ya que el dominio de $v$ excluye al cero). Es decir, $a = qc +r$ donde $r$ es unidad o es nulo. 
+\end{proof}
+
+\emph{Veamos que $R = \mathbb{Z}\big[\frac{1+\sqrt{-19}}{2}\big]$ no satisface la propiedad del \myref{lema:propdiv}}:\\
+Con este fin, denotaremos $\delta = \frac12(1+\sqrt{-19})$ (como $-19 \equiv 1 \mod 4$, $\mathbb{Z}[\delta]$ es anillo de enteros cuadráticos) y probaremos el siguiente lema.
+\begin{lema}\label{lema:normamin2}
+Sea $z \en \mathbb{Z}\big[\frac{1+\sqrt{d}}{2}\big]$ un entero cuadrático con $d<0$ (recordemos que $d \equiv 1 \mod 4$), si $z$ tiene parte imaginaria no nula, entonces $N(z) \geq \frac{1}{4}(1 + \abs{d})$. En particular, si $p\en\mathbb{Z}$ es un entero primo tal que $\abs{p} < \frac14(1+\abs{d})$, entonces $p$ es irreducible en $\mathbb{Z}\big[\frac{1+\sqrt{d}}{2}\big]$.
+\end{lema}\vspace{-2em}
+\begin{proof}
+Existen $a,b \en \mathbb{Z}$ con $z = a + b\frac{1+\sqrt{d}}{2}$, como $\frac{b}{2}\sqrt{\abs{d}} = \Im(z) \neq 0$, se sigue que $b \neq 0$. Ya vimos que $N(z) = \big(a + \tfrac{b}{2}\big)^2 - \tfrac{b^2d}{4}$, por lo que, gracias a que $d<0$,
+\[
+N(z) = \big(a + \tfrac{b}{2}\big)^2 + \tfrac{b^2\abs{d}}{4}
+\]
+Tomemos $r = 2a + b$, entonces $N(z) = (\frac{r}{2})^2 + \frac{b^2\abs{d}}{4} = \frac{1}{4}(r^2 + b^2\abs{d})$ y hay dos posibilidades:
+\begin{itemize}
+    \item Si $b$ es impar, entonces $r$ también es impar, de donde $r^2$ y $b^2$ son mayores o iguales a $1$; luego, $N(z) = \frac{1}{4}(r^2 + b^2\abs{d}) \geq \frac14(1 + \abs{d})$.
+
+    \item Si $b$ es par, $b^2 \geq 4$ (ya que no es cero), por lo que $N(z) = \frac{1}{4}(r^2 + b^2\abs{d}) \geq \frac14(4\abs{d}) = \abs{d}$, pero $d < 0$ así que $\abs{d} \geq 1$ y $\abs{d} \geq \frac{1}{4}(1+\abs{d})$. Por tanto, $N(z) \geq \frac{1}{4}(1+\abs{d})$.
+\end{itemize}
+Para lo segundo notemos que, si $p = ab$ con $a,b\en\mathbb{Z}\big[\frac{1+\sqrt{d}}{2}\big]$, entonces $N(a)N(b) = N(p) = p^2$. Como $p\en\mathbb{Z}$ es primo solo hay dos posibilidades: o bien uno de los dos, $N(a)$ o $N(b)$, es igual a $p^2$, en cuyo caso el otro será igual a $1$, y ya sea $a$ o $b$ será unidad; o bien, $N(a) = N(b) = \abs{p} < \frac14(1+\abs{d})$ de donde (gracias a lo probado anteriormente) $a$ y $b$ tienen parte imaginaria nula, por lo que $a,b\en\mathbb{Z}$ son tales que $p = ab$. Como $p$ es primo en los enteros, esto implica que $a = \pm 1$ o $b = \pm1$. En cualquier caso, esto prueba que $p$ es irreducible en $\mathbb{Z}\big[\frac{1+\sqrt{d}}{2}\big]$.
+\end{proof}
+
+Este lema prueba que \emph{$2$ y $3$ son irreducibles en $\mathbb{Z}[\delta]$}. Por otro lado, también implica que todo $z \en \mathbb{Z}[\delta]$ con parte imaginaria no nula, tiene $N(z) \geq 5$. De esto se sigue que, si $z$ es unidad (i.e. $N(z) = 1$), se tiene $\Im(z) = 0$, por lo cual $z \en \mathbb{Z}$ y $z^2 = N(z) =1$; es decir, $z = \pm1$. Por lo tanto, \emph{las unidades de $\mathbb{Z}[\delta]$ son $1$ y $-1$}.
+
+Ahora bien, supongamos por contradicción que $\mathbb{Z}[\delta]$ satisface el \myref{lema:propdiv}, es decir ---ya que las unidades son $1$ y $-1$---, existe $c\en\mathbb{Z}[\delta]\setminus\set{1,0,-1}$ de modo que para cada $a\en\mathbb{Z}[\delta]$ existen $q\en\mathbb{Z}[\delta]$ y $r\en\set{1,0,-1}$ tales que $a = qc + r$. En particular, existen $q\en\mathbb{Z}[\delta]$ y $r\en\set{1,0,-1}$ de modo que $2 = qc + r$. Esto significa que hay tres posibilidades:
+\begin{itemize}
+    \item Si $r=0$, tenemos $2 = qc$; pero $2$ es irreducible y por hipótesis $c$ no es unidad. Se sigue que $q = \pm 1$ y $c = \pm2$.
+
+    \item Si $r = -1$, tenemos $3 = qc$; pero $3$ es irreducible y por hipótesis $c$ no es unidad. Se sigue que $q = \pm 1$ y $c = \pm3$.
+    
+    \item Si $r = 1$, tenemos $1 = qc$; pero esto es imposible ya que $c$ no es unidad. Se sigue que no se puede $r = 1$ y los únicos casos posibles son los dos anteriores.
+\end{itemize}
+De cualquier modo, se cumple que $c \en \set{2,-2,3,-3}$; sin embargo, veremos que ni $\pm2$ ni $\pm3$ satisfacen la propiedad que supusimos para $c$: para cada $q \en \mathbb{Z}[\delta]$ con $q= q_1 + q_2\delta$, tenemos que
+\[
+\delta - qc = \underbrace{-q_1c}_{\en\mathbb{Z}} + \underbrace{(1-q_2c)}_{\en\mathbb{Z}}\delta 
+\]
+como $c\en\set{2,-2,3,-3}$ tenemos que $1 - q_2c\neq 0$ así que $\delta - qc\noten\set{1,0,-1}$. Esto contradice la suposición de que para cada $a\en\mathbb{Z}[\delta]$ existen $q\en\mathbb{Z}[\delta]$ y $r\en\set{1,0,-1}$ con $a = qc + r$. El error fue suponer que $\mathbb{Z}[\delta]$ satisface la propiedad del \myref{lema:propdiv}, por lo tanto, $\mathbb{Z}[\delta]$ no es dominio euclídeo.\par\vspace{1em}
+
+\emph{Ahora veamos que $\mathbb{Z}[\delta]$ es un DIP}:\\
+Sea $I$ un ideal no nulo de $\mathbb{Z}[\delta]$ (el ideal trivial siempre es principal). Luego, como la norma $N$ toma valores en $\mathbb{N}_0$ y $I\setminus\set0 \neq \varnothing$, se sigue que existe $a \en I\setminus\set0$ tal que $N(a) = \min N(I\setminus\set0)$. El objetivo es probar que $I = \ang{a}$, pero ya tenemos $\ang{a} \subseteq I$, así que sea $b \en I$ arbitrario. Es sencillo notar que $b/a \en \mathbb{Q}[\delta]$ (pues $b/a = N(a)^{-1}b\ubar{a}$ y $b\ubar{a}\en\mathbb{Z}[\delta]$), por lo que $b/a = u + v\delta$ con $u,v\en\mathbb{Q}$. Además, se tiene $b/a - \round{v}\delta = u + (v - \round{v})\delta$,%
+\footnote{%
+    Para cada $x \en \mathbb{R}$, denotaremos por $\round{x}$ al entero más cercano a $x$ (en caso de estar en la mitad de dos enteros, se escoge el menor); de este modo, $x - \round{x} \en (-\nicefrac12,\nicefrac12]$.
+}
+así que la parte imaginaria de este último es
+\[
+\Im(b/a - \round{v}\delta) = (v - \round{v})\Im(\delta) = (v - \round{v})\tfrac{\sqrt{19}}{2}
+\]
+como $-\frac12 < (v - \round{v}) \leq \frac12$ esto implica que $-\frac{\sqrt{19}}{4} < \Im(b/a - \round{v}\delta) \leq \frac{\sqrt{19}}{4}$. Ahora denotemos $b' = b - a\round{v}\delta$ ---de modo que $b/a - \round{v}\delta = b'/a$--- y analicemos dos casos para $\Im(b'/a)$:%
+\footnote{%
+    Notemos que $\frac{\sqrt{3}}{2} = \frac{2\sqrt{3}}{2} = \frac{\sqrt{12}}{4} < \frac{\sqrt{19}}{4}$.
+}
+\begin{enumerate}[label=\arabic*.]
+    \item Si $-\frac{\sqrt{3}}{2} < \Im(b'/a) < \frac{\sqrt{3}}{2}$, entonces poniendo $x \coloneq \Re(b'/a)$ se tiene que 
+    \[
+    \Re(b'/a - \round{x}) = x - \round{x}
+    \quad\text{y}\quad
+    \Im(b'/a - \round{x}) = \Im(b'/a)
+    \]
+    pero $(x - \round{x})^2 \leq \frac14$ y $\Im(b'/a)^2 < \frac34$. Por tanto
+    \[
+    \abs\big{b/a - \round{v}\delta - \round{x}} = \abs\big{b'/a - \round{x}} < \tfrac14 + \tfrac34 = 1
+    \]
+    tomando $q \coloneq \round{x} + \round{v}\delta \en \mathbb{Z}[\delta]$ vimos que se cumple $\abs{b/a - q} < 1$, de donde $\abs{b - qa} < \abs{a}$, es decir, $N(b - qa) < N(a)$; sin embargo, ya que $a,b\en I$, se sigue que $b - qa \en I$, así que la minimalidad de $N(a)$ implica $b - qa = 0$. Esto demuestra que $b = qa \en \ang{a}$.
+
+    \item (Veremos que este caso es imposible). Si $\frac{\sqrt{3}}{2} \leq \Im(b'/a) \leq \frac{\sqrt{19}}{4}$ o $-\frac{\sqrt{19}}{4} < \Im(b'/a) \leq -\frac{\sqrt{3}}{2}$ podemos escoger $b'' = \pm b'$ de modo que aseguremos $-\frac{\sqrt{19}}{4} \leq \Im(b''/a) \leq -\frac{\sqrt{3}}{2}$. Luego,
+    \[
+    \Im(2b''/a + \delta) = 2\Im(b''/a) + \Im(\delta) = 2\Im(b''/a) + \tfrac{\sqrt{19}}{2} 
+    \]
+    pero $-\frac{\sqrt{19}}{2} \leq 2\Im(b''/a) \leq -\sqrt{3}$, así que se cumple
+    \[
+    0 \leq \Im(2b''/a + \delta) \leq \tfrac{\sqrt{19}}{2} - \sqrt{3}
+    \]
+    No obstante, $\frac{\sqrt{3}}{2} = \frac{3\sqrt{3} - 2\sqrt{3}}{2} = \frac{\sqrt{27}}{2} - \sqrt{3} > \frac{\sqrt{19}}{2} - \sqrt{3}$. Luego, $0 \leq \Im(2b''/a + \delta) < \frac{\sqrt{3}}{2}$ y ---análogamente al caso 1--- si tomamos $x \coloneq \Re(2b''/a + \delta)$ tenemos que
+    \[
+    \Re(2b''/a + \delta - \round{x}) = x - \round{x}
+    \quad\text{y}\quad
+    \Im(2b''/a + \delta - \round{x}) = \Im(2b''/a + \delta)
+    \]
+    pero $(x - \round{x})^2 \leq \tfrac{1}{4}$ y $\Im(2b''/a + \delta)^2 < \tfrac{3}{4}$, así que\footnote{recordando que $b'' = \pm b'$ y $b'/a = b/a - \round{v}\delta$.} se cumple
+    \[
+    \abs\big{\pm2(b/a - \round{v}\delta) + \delta - \round{x}}%
+    =\abs\big{2b''/a + \delta - \round{x}}%
+    < \tfrac14 + \tfrac34 = 1
+    \]
+    Finalmente, si tomamos $q = \round{x} + (\pm2\round{v} - 1)\delta \en \mathbb{Z}[\delta]$, se tiene $\abs{\pm2b/a - q} < 1$ por lo que $\abs{\pm2b - qa} < \abs{a}$, i.e., $N(\pm2b - qa) < N(a)$; sin embargo, $\pm2b - qa \en I$, por lo que la minimalidad de $N(a)$ implica que $\pm2b - qa = 0$, es decir, $\pm2b = qa$. Ahora denotamos $b_0 = \pm b$, de modo que $2b_0 = qa$. En consecuencia, sustituyendo el valor de $q$,
+    \[
+    b_0/a = \tfrac12q = \tfrac{\round{x}}{2} + \left(\pm\round{v} - \tfrac12\right)\delta
+    \]
+    Como $\round{x}$ es un entero, $\frac{\round{x}}{2}$ está en la mitad de dos enteros, así que $\round*{\!\frac{\round{x}}{2}\!} + \frac12 = \frac{\round{x}}{2}$. Luego,
+    \[
+    b_0/a%
+    = \round*{\tfrac{\round{x}}{2}} + \tfrac12 + \left(\pm\round{v} - \tfrac12\right)\delta%
+    = \underbrace{\left(\round*{\tfrac{\round{x}}{2}} \pm \round{v}\delta\right)}_{\en\mathbb{Z}[\delta]} + \left(\tfrac12 - \tfrac12\delta\right)
+    \]
+    Además, $\tfrac12-\tfrac12\delta = \tfrac{1}{2} - \tfrac{1 + \sqrt{-19}}{4} = \tfrac{1-\sqrt{-19}}{4} = \tfrac12\ubar{\delta}$. Esto implica que, si definimos $z \coloneq \round*{\!\tfrac{\round{x}}{2}\!} \pm \round{v}\delta$, se cumple que $b_0/a = z + \tfrac12\ubar\delta$. Gracias a esto último, el elemento $b_1 \coloneq b_0 - za$ (que pertenece a $I$ ya que $b_0 = \pm b,a\en I$ y $z \en\mathbb{Z}[\delta]$) satisface que $b_1/a = b_0/a - z = \tfrac12\ubar\delta$. Luego,
+    \[
+    \delta b_1/a - 2 = \tfrac12\delta\ubar\delta - 2 = \tfrac52 - 2 = \tfrac12
+    \]
+    Es decir, $\delta b_1 - 2a = \tfrac12a$, de donde $N(\delta b_1 - 2a) = \frac14N(a)$. Como escogimos $a \neq 0$, se sigue que $\delta b_1 - 2a = \tfrac12a \neq 0$ y $0 < N(\delta b_1 - 2a) < N(a)$; sin embargo, ya que $b_1,a \en I$, se sigue que $\delta b_1 - 2a \en I\setminus\set0$ tiene norma estrictamente menor a $N(a)$. Esto es una contradicción, ya que definimos $a$ de modo que $N(a) = \min N(I\setminus\set0)$. Se sigue que este segundo caso es imposible, así que solo puede ocurrir el primer caso: $-\tfrac{\sqrt{3}}{2} < \Im(b'/a) < \tfrac{\sqrt{3}}{2}$.
+\end{enumerate}
+En cualquier caso, llegamos a que $b \en \ang{a}$. Como $b \en I$ fue arbitrario, hemos probado $I \subseteq \ang{a}$ lo que completa la igualdad $I = \ang{a}$. En conclusión, $\mathbb{Z}[\delta]$ es un DIP.
+
+\item\addcontentsline{toc}{subsection}{\texorpdfstring{Campos $\subsetneq$ Dominios euclídeos}{Campos contenidos en Dominios euclídeos}}
+\emph{\bfseries Campos $\subsetneq$ Dominios euclídeos:}\\
+Ya sabemos que $\mathbb{Z}$ es un dominio euclídeo cuya valoración euclidiana es el valor absoluto (algoritmo de la división), pero no es un campo.
+\end{enumerate}
+\end{sol}
+
+%------------------------------ Ejercicio 2 -------------------------------
+\begin{ejer}[Localización de un anillo conmutativo]
+Sea $R$ un anillo conmutativo y $S \subset R$ un subconjunto multiplicativo, es decir, $1 \en S$ y si $s, t \en S$ entonces $st \en S$.
+Considere el conjunto de pares $(a, s)$ con $a \en R$, $s \en S$, y la relación
+\[
+(a, s) \sim (a', s')%
+\quad\iff\quad%
+(\exists t \en S)\; t(s'a - sa') = 0.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Pruebe que $\sim$ es una relación de equivalencia.
+
+    \item Denote por $\frac{a}{s}$ a la clase de $(a, s)$ y defina las operaciones
+    \[
+    \frac{a}{s} + \frac{a'}{s'} = \frac{as' + a's}{ss'},
+    \qquad
+    \frac{a}{s} \cdot \frac{a'}{s'} = \frac{aa'}{ss'}.
+    \]
+    Demuestre que dichas operaciones están bien definidas.
+
+    \item Pruebe que el conjunto $S^{-1}R$ de clases de equivalencia, con las operaciones anteriores, es un anillo conmutativo y que la aplicación
+    \[
+    \ell : R \to S^{-1}R,
+    \qquad
+    \ell(a) = \frac{a}{1},
+    \]
+    es un homomorfismo de anillos.
+
+    \item Pruebe que todo elemento $\ell(s)$ con $s \en S$ es invertible en $S^{-1}R$.
+
+    \item Demuestre la propiedad universal de la localización: si $f : R \to R'$ es un homomorfismo de anillos tal que $f(s)$ es invertible en $R'$ para todo $s \en S$, existe un único homomorfismo
+    $
+    \ubar{f} : S^{-1}R \to R'
+    $ 
+    tal que $\ubar{f} \circ \ell = f$.
+
+    \item Si $R$ es un dominio entero y $0 \noten S$, pruebe que $S^{-1}R$ es un dominio entero.
+\end{enumerate}
+\end{ejer}
+\begin{sol}[Demostración]
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Probemos que $\sim$ es relación de equivalencia:}
+\begin{itemize}
+\item \emph{Reflexividad:} Para $(a,s)$, tomamos $t=1 \en S$, entonces $1(sa - sa) = 0$, luego $(a,s) \sim (a,s)$.
+
+\item \emph{Simetría:} Si $(a,s) \sim (a',s')$, existe $t \en S$ tal que $t(s'a - sa') = 0$. Como $R$ es conmutativo, $t(sa' - s'a) = -t(s'a - sa') = 0$, luego $(a',s') \sim (a,s)$.
+
+\item \emph{Transitividad:} Supongamos $(a,s) \sim (a',s')$ y $(a',s') \sim (a'',s'')$. Existen $t,t' \en S$ tales que:
+\[
+t(s'a - sa') = 0 \quad \text{y} \quad t'(s''a' - s'a'') = 0
+\]
+Multiplicando la primera por $t's''$ y la segunda por $ts$, obtenemos:
+\[
+t's''t(s'a - sa') = 0 \quad \text{y} \quad tst'(s''a' - s'a'') = 0
+\]
+Sumando ambas ecuaciones y usando que $R$ es conmutativo:
+\[
+tt'(s's''a - ss''a' + ss''a' - ss'a'') = tt'(s's''a - ss'a'') = tt's'(s''a-sa'') = 0
+\]
+Como $tt's' \en S$ (pues $S$ es multiplicativo), tenemos $(a,s) \sim (a'',s'')$.
+\end{itemize}
+
+\item \textbf{Probemos que las operaciones están bien definidas:}
+\begin{itemize}
+\item \emph{Suma:} Sean $\frac{a}{s} = \frac{a'}{s'}$ y $\frac{b}{t} = \frac{b'}{t'}$. Existen $u,v \en S$ tales que:
+\[
+u(s'a - sa') = 0 \quad \text{y} \quad v(t'b - tb') = 0
+\]
+Queremos mostrar que $\frac{at + bs}{st} = \frac{a't' + b's'}{s't'}$, es decir, que existe $w \en S$ tal que:
+\[
+w\big(s't'(at + bs) - st(a't' + b's')\big) = 0
+\]
+Tomamos $w = uv \en S$. Desarrollando:
+\begin{align*}
+w\big(s't'at + s't'bs - sta't' - stb's'\big)%
+&= uv\big(s't'at - sta't' + s't'bs - stb's'\big) \\
+&= uv\big(t't(s'a - sa') + s's(t'b - tb')\big)\\
+&= vt't\underbrace{\big(u(s'a - sa')\big)}_{=0} + us's\underbrace{\big(v(t'b - tb')\big)}_{=0} = 0
+\end{align*}
+
+\item \emph{Producto:} Con las mismas hipótesis, queremos probar que $\frac{ab}{st} = \frac{a'b'}{s't'}$, es decir, que
+\[
+\exists w\en S,\quad
+w(s't'ab - sta'b') = 0
+\]
+Tomamos $w = uv \en S$. Luego,
+\[
+w(s't'ab - sta'b') = uv\big((s'a)(t'b) - (sa')(tb')\big)
+\]
+Sumando términos intermedios, $(s'a)(t'b) - (sa')(tb') = (s'a)(t'b - tb') + (tb')(s'a - sa')$:
+\begin{align*}
+uv\big((s'a)(t'b) - (sa')(tb')\big)%
+&= uv\big( (s'a)(t'b - tb') + (tb')(s'a - sa') \big)\\
+&= us'a\underbrace{\big(v(t'b - tb')\big)}_{=0} + vtb'\underbrace{\big(u(s'a - sa')\big)}_{=0}
+\end{align*}
+\end{itemize}
+
+\item \textbf{Probemos que $S^{-1}R$ es anillo y $\ell$ es homomorfismo:}\\
+Ya vimos que las operaciones están bien definidas, ahora verifiquemos los axiomas de anillo conmutativo con $\frac01$ como neutro aditivo y $\tfrac11$ como identidad:
+\begin{itemize}
+\item \emph{Clausura.}
+$at+bs\en R$ y $st\en S$, así que $\frac{at+bs}{st}\en S^{-1}R$. Del mismo modo $\frac{ab}{st}\en S^{-1}R$.
+
+\item \emph{Asociatividad de la suma.}
+\[
+\Big(\frac{a}{s}+\frac{b}{t}\Big)+\frac{c}{u}
+= \frac{at+bs}{st}+\frac{c}{u}
+= \frac{(at+bs)u + cst}{stu}
+= \frac{atu+b s u+c s t}{stu}
+\]
+\[
+\frac{a}{s}+\Big(\frac{b}{t}+\frac{c}{u}\Big)
+= \frac{a}{s}+\frac{bu+ct}{tu}
+= \frac{a tu + (bu+ct)s}{stu}
+= \frac{atu + bsu + cst}{stu}
+\]
+Es decir, $\Big(\frac{a}{s}+\frac{b}{t}\Big)+\frac{c}{u} = \frac{a}{s}+\Big(\frac{b}{t}+\frac{c}{u}\Big)$.
+\item \emph{Neutro aditivo.} $\frac{0}{1}$ satisface
+\[
+\frac{a}{s}+\frac{0}{1}=\frac{a\cdot 1 + 0\cdot s}{s\cdot 1}=\frac{a}{s}
+\]
+
+\item \emph{Inverso aditivo.} El inverso aditivo de $\frac{a}{s}$ es $\frac{-a}{s}$:
+\[
+\frac{a}{s}+\frac{-a}{s}=\frac{as+(-a)s}{ss}=\frac{0}{ss}=\frac{0}{1}
+\]
+Esto último ya que $1\cdot0 - ss\cdot0 = 0$.
+
+\item \emph{Conmutatividad de la suma.}
+\[
+\frac{a}{s}+\frac{b}{t}=\frac{at+bs}{st}=\frac{bs+at}{ts}=\frac{b}{t}+\frac{a}{s}
+\]
+
+\item \emph{Asociatividad del producto.}
+\[
+\Big(\frac{a}{s}\cdot\frac{b}{t}\Big)\cdot\frac{c}{u}
+= \frac{ab}{st}\cdot\frac{c}{u}
+= \frac{(ab)c}{stu},
+\qquad
+\frac{a}{s}\cdot\Big(\frac{b}{t}\cdot\frac{c}{u}\Big)
+= \frac{a}{s}\cdot\frac{bc}{tu}
+= \frac{a(bc)}{stu}.
+\]
+
+Es decir, $\Big(\frac{a}{s}\cdot\frac{b}{t}\Big)\cdot\frac{c}{u} = \frac{a}{s}\cdot\Big(\frac{b}{t}\cdot\frac{c}{u}\Big)$.
+
+\item \emph{Identidad multiplicativa.} Es obvio que $\frac{1}{1}$ es unidad:
+\[
+\frac{a}{s}\cdot\frac{1}{1}=\frac{a\cdot 1}{s\cdot 1}=\frac{a}{s}.
+\]
+
+\item \emph{Distributividad.} Solo veamos la izquierda, la derecha se sigue de la conmutatividad del producto que probaremos en el siguiente punto.
+\[
+\frac{a}{s}\cdot\Big(\frac{b}{t}+\frac{c}{u}\Big)
+= \frac{a}{s}\cdot\frac{bu+ct}{tu}
+= \frac{a(bu+ct)}{stu}
+= \frac{abu + act}{stu},
+\]
+\[
+\frac{a}{s}\cdot\frac{b}{t} + \frac{a}{s}\cdot\frac{c}{u}
+= \frac{ab}{st} + \frac{ac}{su}
+= \frac{ab\,u}{stu} + \frac{ac\,t}{stu}
+= \frac{abu + act}{stu}.
+\]
+Es decir, $\frac{a}{s}\cdot\Big(\frac{b}{t}+\frac{c}{u}\Big) = \frac{a}{s}\cdot\frac{b}{t} + \frac{a}{s}\cdot\frac{c}{u}$.
+
+\item \emph{Conmutatividad del producto.}
+\[
+\frac{a}{s}\cdot\frac{b}{t}=\frac{ab}{st}=\frac{ba}{ts}=\frac{b}{t}\cdot\frac{a}{s}
+\]
+\end{itemize}
+Hemos demostrado que $S^{-1}R$ satisface todos los axiomas de anillo conmutativo con identidad. Ahora veamos que $\ell \colon R \to S^{-1}R$ con $a \mapsto \tfrac{a}{1}$ es homomorfismo de anillos.
+\begin{itemize}
+\item $\ell(a+b) = \frac{a+b}{1} = \frac{a}{1} + \frac{b}{1} = \ell(a) + \ell(b)$.
+
+\item $\ell(ab) = \frac{ab}{1} = \frac{a}{1} \cdot \frac{b}{1} = \ell(a)\ell(b)$.
+
+\item $\ell(1) = \frac{1}{1}$, que es el neutro multiplicativo.
+\end{itemize}
+
+\item Para cada $s \en S$, tenemos $\ell(s) = \frac{s}{1}$. Es sencillo verificar que su inverso es $\frac{1}{s}$, pues:
+\[
+\frac{s}{1} \cdot \frac{1}{s} = \frac{s}{s} = \frac{1}{1}
+\]
+ya que $1(s\cdot 1 - 1\cdot s) = 0$.
+
+\item Definimos $\ubar{f} \colon S^{-1}R \to R'$ tal que $\ubar{f}\left(\frac{a}{s}\right) = f(a)f(s)^{-1}$. Veamos que $\ubar{f}$ está bien definida: si $\frac{a}{s} = \frac{a'}{s'}$, existe $t \en S$ tal que $t(s'a - sa') = 0$. Aplicando $f$ ---y usando que es homomorfismo de anillos---,
+\[
+f(t)\cdot\big(f(s')f(a) - f(s)f(a')\big) = 0
+\]
+$f(t)$ es invertible (pues $t \en S$), así que multiplicando por su inverso: $f(s')f(a) = f(s)f(a')$. Luego, ya que $s,s'\en S$, sus imágenes bajo $f$ son invertibles así que $f(a)f(s)^{-1} = f(a')f(s')^{-1}$. Esto prueba que $\ubar{f}$ está bien definida. Además, $\ubar{f} \circ \ell(a) = \ubar{f}\left(\frac{a}{1}\right) = f(a)f(1)^{-1} = f(a)$,\footnote{Como la imagen de la identidad bajo un homomorfismo es la identidad del codominio, se sigue que $f(1) = f(1)^{-1}$ es la identidad.} por lo que $\ubar{f} \circ\ell = f$. Para ver la unicidad de $\ubar{f}$ supongamos que $g \colon S^{-1}R \to R'$ es tal que $g \circ \ell = f$. Como un homomorfismo de anillos manda inversos multiplicativos en inversos multiplicativos y ya vimos que cuando $s \en S$ se tiene $(\frac{1}{s})^{-1} = \frac{s}{1}$,\footnote{Por lo tanto, $(\frac{s}{1})^{-1} = \frac{1}{s}$ y $g(\frac{1}{s}) = g(\frac{s}{1})^{-1}$.} entonces
+\[
+g\left(\frac{a}{s}\right)%
+= g\left(\frac{a}{1}\cdot\frac{1}{s}\right)%
+= g\left(\frac{a}{1}\right)g\Big(\frac{1}{s}\Big)%
+= g\left(\frac{a}{1}\right)g\left(\frac{s}{1}\right)^{-1}%
+= g\left(\ell(a)\right)g\left(\ell(s)\right)^{-1}%
+= f(a)f(s)^{-1}%
+= \ubar{f}\left(\frac{a}{s}\right)
+\]
+Es decir, $g = \ubar{f}$, por lo que $\ubar{f}$ es única.
+
+\item Supongamos $\frac{a}{s} \cdot \frac{b}{t} = \frac{0}{1}$. Entonces $\frac{ab}{st} = \frac{0}{1}$, luego existe $u \en S$ tal que $u(1\cdot ab - st\cdot 0) = uab = 0$. Como $R$ es dominio y $u \neq 0$ (pues $0 \notin S$), tenemos $ab = 0$. Como $R$ es dominio, $a = 0$ o $b = 0$, luego $\frac{a}{s} = \frac{0}{s} = \frac{0}{1}$ o $\frac{b}{t} = \frac{0}{t} = \frac{0}{1}$.
+\end{enumerate}
+\end{sol}
+
+

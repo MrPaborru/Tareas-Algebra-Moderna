@@ -1,0 +1,238 @@
+%------------------------------------- Ejercicio 1 -----------------------------------
+\begin{ejer}
+Sea $R$ un dominio entero y $M$ un $R$-módulo finitamente generado. Demuestre que $M$ es un módulo de torsión si y sólo si su rango es cero.
+\end{ejer}
+\begin{sol}
+Sea $r = \rk M$. Probemos la equivalencia.
+
+\emph{Necesidad:}\\ Supongamos que $M$ es de torsión. Para cualquier elemento no nulo $m \en M$, existe $\alpha \en R \setminus \{0\}$ tal que $\alpha m = 0$, luego el conjunto $\{m\}$ es linealmente dependiente. Como todo subconjunto no vacío de $M$ contiene algún $m \neq 0$ (o es vacío), ningún subconjunto no vacío puede ser linealmente independiente. El único conjunto linealmente independiente es el vacío, por lo que $r = 0$.
+
+\emph{Suficiencia:}\\ Si $r = 0$, entonces el conjunto maximal linealmente independiente es vacío. En particular, para cualquier $m \en M$, el conjunto $\{m\}$ es linealmente dependiente. Luego existe $\beta \en R \setminus \{0\}$ con $\beta m = 0$, por lo que $m$ es de torsión. Como esto vale para todo $m \en M$, $M$ es un módulo de torsión.
+\end{sol}
+
+%------------------------------------- Ejercicio 2 -----------------------------------
+\begin{ejer}
+Sea $R$ un dominio entero. Demuestre que si $R$ es un dominio de ideales principales (PID), entonces todo $R$-módulo finitamente generado es libre de torsión si y solo si es libre.
+\end{ejer}
+\begin{sol}
+\emph{Necesidad}:\\
+Supongamos que $M$ es libre. Entonces existe un conjunto $\{b_1, \dots, b_n\} \subseteq M$ que es base de $M$. Sea $m \in M$ un elemento de torsión, es decir, existe $r \in R \setminus \{0\}$ tal que $r \cdot m = 0$. Escribimos $m = \sum_{i=1}^n \alpha_i b_i$ con $\alpha_i \in R$. Luego,
+\[
+0 = r \cdot m = \sum_{i=1}^n (r \alpha_i) b_i.
+\]
+Por la independencia lineal de la base, $r \alpha_i = 0$ para cada $i$. Como $r \neq 0$ y $R$ es dominio entero, se tiene $\alpha_i = 0$ para todo $i$, luego $m = 0$. Así, $M$ es libre de torsión.
+
+\emph{Suficiencia:}\\
+Supongamos que $M$ es libre de torsión. Por el teorema de estructura para módulos finitamente generados sobre un DIP, existe un isomorfismo
+\[
+M \cong R^r \oplus T(M),
+\]
+donde $r = \rk M$ y $T(M)$ es el submódulo de torsión de $M$. Dado que $M$ es libre de torsión, $T(M) = 0$, por lo que $M \cong R^r$, es decir, $M$ es libre.
+\end{sol}
+
+%------------------------------------- Ejercicio 3 -----------------------------------
+\begin{ejer}
+Sea $R$ un dominio entero y $M$ un $R$-módulo finitamente generado. Demuestre que $\rk M = r$ si y sólo si $M$ posee un submódulo libre $N \cong R^r$ tal que el cociente $M/N$ es de torsión.
+
+En el caso de que $R$ sea un dominio principal, muestre además que la sucesión exacta corta  
+\[0 \longrightarrow N \longrightarrow M \longrightarrow M/N \longrightarrow 0\]  
+se escinde, de modo que $M \cong N \oplus M/N $.
+\end{ejer}
+\begin{sol}
+\emph{Necesidad:}\\
+Si $\rk M = r$ entonces existe un conjunto l.i. $\set{x_1,\dots ,x_r} \subseteq M$ maximal, por lo que tomamos $N = \ang{x_1,\dots,x_r}$, i.e., $\set{x_1,\dots ,x_r}$ es base de $N$ y $N \cong R^r$. Veamos que $M/N$ es de torsión: si $y+N\en M/N$ entonces (por maximalidad) $\set{x_1,\dots,x_r,y}$ es l.d., así que existen $\alpha_1,\dots,\alpha_{r+1}\en R$ no todos cero con 
+\[
+\sum^r_{i=1} \alpha_ix_i + \alpha_{r+1}y = 0
+\]
+en particular, $\alpha_{r+1} \neq 0$, pues en caso contrario, tendríamos $\sum \alpha_ix_i = 0$ con algún $\alpha_i \neq 0$ (con $i= 1,\dots r$, ya que ya tenemos $\alpha_{r+1} = 0$) lo cual contradiría la independencia lineal de $\set{x_1,\dots,x_r}$.  Luego,
+\[
+\alpha_{r+1}y = -\sum^r_{i=1} \alpha_ix_i \en N,%
+\quad\text{con}\quad\alpha_{r+1} \neq 0
+\]
+así que $\alpha_{r+1}(y + N) = \alpha_{r+1}y + N = N$ con $\alpha_{r+1} \neq 0$, lo que demuestra que $y+N \en \operatorname{Tor}(M/N)$. Como $y+N\en M/N$ es arbitrario, se sigue que $M/N$ es de torsión.\par
+\emph{Suficiencia:}\\
+Supongamos que existe $N\leq M$ con $N \cong R^r$ y $M/N$ de torsión. Tomemos $\set{x_1,\dots,x_r} \subseteq N$ una base para $N$ (en particular, es l.i.), veamos que es subconjunto l.i. maximal en $M$: si tomamos cualquier $y\en M$, tenemos que $y+N$ es de torsión en $M/N$, por lo que existe $\alpha \en R\setminus\set0$ tal que $\alpha y +N = N$, i.e., $\alpha y \en N$. Como $\set{x_1,\dots,x_r}$ es base de $N$, existen $\alpha_1,\dots,\alpha_r \en R$ con
+\[
+\alpha y = \sum^n_{i=1}\alpha_1x_i%
+\quad\implies\quad%
+\alpha y - \sum^n_{i=1}\alpha_1x_i = 0,
+\]
+Como $\alpha \neq 0$, esto implica que $\set{x_1,\dots,x_r,y}$ es l.d. Hemos demostrado que $\set{x_1,\dots,x_r}$ es l.i. maximal en $M$, así que $\rk M = r$.\par
+\emph{Probemos el segundo resultado:}\\
+Sea $R$ un dominio principal y sea $M$ un $R$-módulo finitamente generado de rango $r$. 
+Supongamos que $N \subseteq M$ es un submódulo libre de rango $r$, i.e.\ $N \cong R^r$. 
+
+Por la clasificación de módulos finitamente generados sobre un PID, existe una descomposición
+\[
+M \;\cong\; R^r \oplus T,
+\]
+donde $T$ es la parte de torsión de $M$. Bajo esta descomposición, el submódulo libre $N$ 
+corresponde al sumando $R^r \subseteq R^r \oplus T$. Así, tras identificar $M$ con 
+$R^r \oplus T$, podemos suponer sin pérdida de generalidad que
+\[
+N = R^r \oplus 0.
+\]
+
+Entonces el cociente se identifica naturalmente como
+\[
+M/N \;\cong\; (R^r \oplus T)/(R^r \oplus 0)
+   \;\cong\; T.
+\]
+
+Consideremos ahora la sucesión exacta corta
+\[
+0 \longrightarrow N \longrightarrow M \xrightarrow{\pi} M/N \longrightarrow 0.
+\]
+Bajo las identificaciones anteriores, la proyección canónica
+\[
+\pi \colon M = R^r \oplus T \longrightarrow M/N \cong T
+\]
+es simplemente la proyección sobre el segundo factor, i.e.\ $\pi(x,t)=t$.
+
+Definimos un morfismo
+\[
+s \colon M/N \cong T \longrightarrow M = R^r \oplus T
+\]
+por
+\[
+s(t) = (0,t).
+\]
+
+Este morfismo es $R$-lineal y satisface
+\[
+\pi \circ s(t) = \pi(0,t) = t = \mathrm{id}_{M/N}(t).
+\]
+Por tanto, $s$ es una sección de $\pi$; en otras palabras, la proyección 
+$\pi$ posee un inverso por la derecha, así que por \emph{lema de escisión}, la sucesión exacta corta se escinde y
+\[
+M \cong N \oplus M/N.
+\]
+\end{sol}
+
+%------------------------------------- Ejercicio 4 -----------------------------------
+\begin{ejer}
+Sean $R$ un dominio entero y  
+\[0 \longrightarrow M_1 \xlongrightarrow{\psi} M_2 \xlongrightarrow{\phi} M_3 \longrightarrow 0\]  
+una sucesión exacta corta de $R$-módulos finitamente generados. Pruebe que  
+\[\rk M_2 = \rk M_1 + \rk M_3.\]
+\end{ejer}
+\begin{sol}
+Sea $r_i = \rk M_i$ para $i = 1, 2, 3 $. Demostraremos que $r_2 = r_1 + r_3 $.
+
+\emph{Primero probemos $r_2 \geq r_1 + r_3 $:}
+
+Sean $\{x_1, \dots, x_{r_1}\} \subseteq M_1$ y $\{y_1, \dots, y_{r_3}\} \subseteq M_3$ un conjuntos linealmente independientes maximales. Para cada $y_j $, elegimos $\tilde{y}_j \en M_2$ tal que $\phi(\tilde{y}_j) = y_j $.  
+Afirmamos que $\{x_1, \dots, x_a, \tilde{y}_1, \dots, \tilde{y}_b\}$ es linealmente independiente en $M_2 $.  
+Supongamos que 
+\[
+\sum_{i=1}^a c_i x_i + \sum_{j=1}^b d_j \tilde{y}_j = 0, \quad c_i, d_j \en R.
+\]
+Aplicando $\phi $, y como $\phi(x_i) = 0 $, obtenemos
+\[
+\sum_{j=1}^b d_j y_j = 0.
+\]
+Por independencia de $\{y_j\}_j $, $d_j = 0$ para todo $j $. Luego,
+\[
+\sum_{i=1}^a c_i x_i = 0,
+\]
+y por independencia de $\{x_i\}_i $, $c_i = 0 $. Así, el conjunto es l.i., de donde $r_2 \geq r_1 + r_3 $.
+
+\emph{Ahora probemos $r_2 \leq r_1 + r_3 $:}
+
+Sea $\{z_1, \dots, z_{r_2}\} \subseteq M_2$ un conjunto l.i. maximal y consideremos $\{\phi(z_1), \dots, \phi(z_c)\} \subseteq M_3 $. Sea $J \subseteq \{1, \dots, r_2\}$ un subconjunto maximal tal que $\{\phi(z_j) : j \en J\}$ es linealmente independiente en $M_3 $, luego $|J| \leq r_3 $.  
+Para cada $k \notin J $, el conjunto $\{\phi(z_j) : j \en J \cup \{k\}\}$ es linealmente dependiente. Así, para cada $k \notin J $, existen $s_k \en R \setminus \{0\}$ y $a_{jk} \en R$ tales que
+\[
+s_k \phi(z_k) = \sum_{j \en J} a_{jk} \phi(z_j),
+\]
+luego
+\[
+\phi\left( s_k z_k - \sum_{j \en J} a_{jk} z_j \right) = 0,
+\]
+por lo que $w_k = s_k z_k - \sum_{j \en J} a_{jk} z_j \en \ker \phi = \im\psi $.  
+Afirmamos que $\{w_k : k \notin J\}$ es linealmente independiente en $\im\psi$. Supongamos que
+\[
+\sum_{k \notin J} b_k w_k = 0.
+\]
+Sustituyendo $w_k $:
+\[
+\sum_{k \notin J} b_k \left( s_k z_k - \sum_{j \en J} a_{jk} z_j \right) = 0.
+\]
+Reordenando:
+\[
+\sum_{k \notin J} b_k s_k z_k - \sum_{j \en J} \left( \sum_{k \notin J} b_k a_{jk} \right) z_j = 0.
+\]
+Por independencia de $\{z_1, \dots, z_{r_2}\} $, para cada $k \notin J $, $b_k s_k = 0 $. Como $s_k \neq 0$ y $R$ es dominio, $b_k = 0 $. Así, $\{w_k\}$ es linealmente independiente; sin embargo, $\rk\im\psi \leq \rk M_1 = r_1$, por lo que $r_2 - |J| \leq r_1 $.  
+Como $|J| \leq r_3 $, tenemos $c \leq |J| + r_1 \leq r_3 + r_1 $, es decir, $r_2 \leq r_1 + r_3 $. De ambos pasos, concluimos que $r_2 = r_1 + r_3 $.
+\end{sol}
+
+%------------------------------------- Ejercicio 5 -----------------------------------
+\begin{ejer}
+Considere el anillo de polinomios $R = k[x] $, donde $k$ es un cuerpo, y la matriz  
+\[A = 
+\begin{pmatrix}
+1 + 3x & 2x & 3x \\
+1 + 2x & 1 + 2x - x^2 & 2x \\
+x & x^2 & x
+\end{pmatrix}.\]  
+Mediante \textit{operaciones elementales por filas y columnas} sobre $R$ (como en la Proposición 4.13 de Aluffi), transforme $A$ en una matriz más simple $A'$ que represente un módulo isomorfo al presentado por $A $. Elimine entradas y factores invertibles hasta obtener una matriz diagonal o casi diagonal, cuyos elementos no nulos $d_i(x)$ satisfagan $d_1 | d_2 | d_3 $.
+
+Describa el módulo resultante como suma directa de $R$-módulos cíclicos de la forma $R/(d_i(x)) $, identificando, si la hay, su parte libre, y exprese la respuesta final de acuerdo con el Teorema de Clasificación de Módulos Finitamente Generados sobre un PID.
+\end{ejer}
+\begin{sol}
+\begin{align*}
+\begin{pmatrix}
+1+3x & 2x & 3x \\
+1+2x & 1+2x - x^{2} & 2x \\
+x & x^{2} & x
+\end{pmatrix}
+&\xrightarrow{\,C_1\to C_1-C_3\,}
+\begin{pmatrix}
+1 & 2x & 3x \\
+1 & 1+2x - x^{2} & 2x \\
+0 & x^{2} & x
+\end{pmatrix}\\
+&\xrightarrow{\,C_2\to C_2-2xC_1\,}
+\begin{pmatrix}
+1 & 0 & 3x \\
+1 & 1 - x^{2} & 2x \\
+0 & x^{2} & x
+\end{pmatrix}\\
+&\xrightarrow{\,C_3\to C_3-3xC_1\,}
+\begin{pmatrix}
+1 & 0 & 0 \\
+1 & 1 - x^{2} & -x \\
+0 & x^{2} & x
+\end{pmatrix}\\
+&\xrightarrow{\,R_2\to R_2-R_1\,}
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 - x^{2} & -x \\
+0 & x^{2} & x
+\end{pmatrix}\\
+&\xrightarrow{\,R_2\to R_2+R_3\,}
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & x^{2} & x
+\end{pmatrix}\\
+&\xrightarrow{\,R_3\to R_3 - x^{2}R_2\,}
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & x
+\end{pmatrix}.
+\end{align*}
+
+Así obtenemos los invariantes $d_1 = 1$, $d_2 = 1$, $d_3 = x$, con $1 \mid 1 \mid x$.
+
+El módulo presentado es
+\[
+\coker(A') \cong R/(1) \oplus R/(1) \oplus R/(x)
+\cong R/(x).
+\]
+
+En consecuencia, el módulo no tiene parte libre y coincide con su parte de torsión, que es
+\[
+R/(x) \cong k.
+\]
+\end{sol}

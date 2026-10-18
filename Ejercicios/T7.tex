@@ -1,0 +1,581 @@
+%------------------------------ Ejercicio 1 -------------------------------
+\begin{ejer}
+Sea $\p(x) = x^4 - 2 \en \mathbb{Q}[x]$.
+\begin{enumerate}[label=\alph*)]
+\item Determine todas las raíces de $\p(x)$ en $\mathbb{C}$. Factorice $\p(x)$ sobre $\mathbb{Q}$, sobre $\mathbb{R}$ y sobre $\mathbb{Q}(i)$.
+
+\item Determine un campo de descomposición $K$ de $\p(x)$ sobre $\mathbb{Q}$. Describa la torre de extensiones $\mathbb{Q} \subseteq \mathbb{Q}(\sqrt[4]{2}) \subseteq K$ y utilice esta para calcular el grado de la extensión $[K : \mathbb{Q}]$.
+
+\item Demuestre que $K / \mathbb{Q}$ es una extensión de Galois y determine el grupo de Galois $\gal(K / \mathbb{Q})$. Identifique este grupo con el grupo diédrico $D_8$ de orden 8 y descríbalo como un subgrupo de $S_4$.
+
+\item Utilizando el Teorema Fundamental de la Teoría de Galois, describa todos los subcampos intermedios $\mathbb{Q} \subseteq E \subseteq K$.
+\end{enumerate}
+\end{ejer}
+\begin{sol}\hphantom{x}
+\begin{enumerate}[label=\alph*)]
+\item 
+Sobre los complejos, $\p(x)$ se factoriza como:
+\[
+\p(x) = x^4 - 2 = (x^2-\sqrt{2})(x^2+\sqrt{2}) = (x-\sqrt[4]{2})(x+\sqrt[4]{2})(x-i\sqrt[4]{2})(x+i\sqrt[4]{2})
+\]
+por lo que sus raíces son $\pm\sqrt[4]{2}$ y $\pm i\sqrt[4]{2}$. Sobre $\mathbb{Q}$ el criterio de Eisenstein garantiza que $\p(x)$ es irreducible,%
+\footnote{
+    Basta notar que $1\noten(2)$, $2\en(2)$ y $2\noten(2)^2 = (4)$.
+} %
+así que $\p(x)$ no tiene factores propios. Por otro lado, sobre $\mathbb{R}$ ya sabemos que 
+\[
+\p(x) = (x-\sqrt[4]{2})(x+\sqrt[4]{2})(x^2+\sqrt{2})
+\]
+donde los primeros dos factores son irreducibles por ser lineales (pues $\mathbb{R}$ es campo) y $(x^2+\sqrt{2})$ lo es por no tener raíces en $\mathbb{R}$.% 
+\footnote{
+    Recordemos que un polinomio de grado a lo sumo tres es irreducible sobre un campo si y solo si no tiene raíces en dicho campo: en efecto, pues si tiene factores propios no unitarios, alguno de dichos factores tendrá grado uno, i.e., será un factor lineal, por lo que su coeficiente constante dividido entre su coeficiente lineal será un elemento del campo que es raíz del factor lineal y, por tanto, del polinomio. Recíprocamente, si el polinomio tiene una raíz $r$ en el campo, entonces $(x-r)$ es un factor propio no unitario del polinomio en cuestión.
+} %
+Por último, veamos que $\p$ es irreducible sobre $\mathbb{Q}(i)$: sabemos que $\p(x)$ es irreducible sobre $\mathbb{Q}$, así que $\brack{\mathbb{Q}(\sqrt[4]{2}),\mathbb{Q}} = 4$. Por otro lado, $x^2+1$ es irreducible sobre $\mathbb{Q}(\sqrt[4]{2})$ ya que no tiene raíces en este campo, así que el polinomio mínimo de $i$ sobre $\mathbb{Q}(\sqrt[4]{2})$ es $x^2+1$, por lo que $[\mathbb{Q}(\sqrt[4]{2},i) : \mathbb{Q}(\sqrt[4]{2})] = 2$. Se sigue, por multiplicatividad del grado, que $[\mathbb{Q}(\sqrt[4]{2},i) : \mathbb{Q}] = 8$; además, también sabemos que $[\mathbb{Q}(i) : \mathbb{Q}] =2$ ya que el polinomio mínimo de $i$ sobre $\mathbb{Q}$ es también $x^2+1$.
+Luego, nuevamente por multiplicatividad:
+\[
+[\mathbb{Q}(\sqrt[4]{2},i) : \mathbb{Q}(i)]%
+= \frac{[\mathbb{Q}(\sqrt[4]{2},i) : \mathbb{Q}]}{[\mathbb{Q}(i) : \mathbb{Q}]}%
+= \frac{8}{2} = 4
+\]
+Esto prueba que el polinomio mínimo de $\sqrt[4]{2}$ sobre $\mathbb{Q}(i)$ tiene grado $4$; sin embargo, $\sqrt[4]{2}$ es raíz de $\p(x)$ y este último tiene grado $4$. Se sigue que $\p(x)$ es el polinomio mínimo de $\sqrt[4]{2}$ sobre $\mathbb{Q}(i)$, por lo cual es irreducible en $\mathbb{Q}(i)$.
+
+\item 
+Como $\p(x)$ tiene todas sus raíces en $\mathbb{C}$, su campo de descomposición sobre $\mathbb{Q}$ es simplemente 
+\[
+K \coloneq \mathbb{Q}\big(\sqrt[4]{2},-\sqrt[4]{2},i\sqrt[4]{2},-i\sqrt[4]{2}\big) \subseteq \mathbb{C}
+\]
+Además, notemos que $\sqrt[4]{2},-\sqrt[4]{2},i\sqrt[4]{2},-i\sqrt[4]{2} \en \mathbb{Q}(\sqrt[4]{2},i)$, por lo cual $K \subseteq \mathbb{Q}(\sqrt[4]{2},i)$; recíprocamente, $\sqrt[4]{2} \en K$ y $i = \frac12(i\sqrt[4]{2})(\sqrt[4]{2})^3 \en K$, de donde $\mathbb{Q}(\sqrt[4]{2},i) \subseteq K$. Hemos probado que $K = \mathbb{Q}(\sqrt[4]{2},i)$. No obstante, en el inciso anterior ya habíamos analizado la torre $\mathbb{Q} \subseteq \mathbb{Q}(\sqrt[4]{2}) \subseteq \mathbb{Q}(\sqrt[4]{2},i)$:
+\[
+\brack[\big]{K : \mathbb{Q}(\sqrt[4]{2})} = 2,%
+\quad%
+\brack[\big]{\mathbb{Q}(\sqrt[4]{2}) : \mathbb{Q}} = 4%
+\quad\text{y}\quad%
+\brack[\big]{K : \mathbb{Q}} = 8
+\]
+
+\item 
+Como el polinomio $\p(x)$ es irreducible sobre $\mathbb{Q}$ y $\operatorname{char}(\mathbb{Q}) = 0$, se sigue que $\p(x)$ es separable; luego, $K$ es el campo de descomposición de un pol. separable sobre $\mathbb{Q}$, lo cual significa que $K/\mathbb{Q}$ es extensión de Galois. Más aún, esto también significa que $\abs{\gal(K/\mathbb{Q})} = \brack{K:\mathbb{Q}} = 8$, pero ya \href{https://drive.google.com/file/d/11XpEmoZvQKK8-aPO5kTbNUl5Omyh1Ppl/view?usp=drive_link}{\emph{vimos en clase}} que, como $K$ es campo de descomposición de un polinomio irreducible y separable de grado $4$, entonces $\gal(K/\mathbb{Q})$ se identifica con un subgrupo transitivo de $S_4$.%
+\footnote{
+    Como $\abs{S_4} = 24 = 2^3\cdot 3$, cualquiera de sus subgrupos de orden $8=2^3$ es un $2\text{-subgrupo}$ Sylow, por lo que todos son conjugados (en particular, isomorfos) entre sí. Esto bastaría para concluir que $\gal(K/\mathbb{Q})$, al ser isomorfo a un subgrupo de orden $8$ de $S_4$, tiene que ser isomorfo al diédrico $D_8 \subseteq S_4$.
+}
+Esta identificación se obtiene haciendo actuar fiel y transitivamente a $\gal(K/\mathbb{Q})$ sobre las raíces de $\p(x)$; con este fin, enumeremos las raíces de $\p(x)$: 
+\[
+\alpha_1 \coloneq \sqrt[4]{2},%
+\quad
+\alpha_2 \coloneq i\sqrt[4]{2},%
+\quad
+\alpha_3 \coloneq -\sqrt[4]{2},%
+\quad
+\alpha_4 \coloneq -i\sqrt[4]{2}
+\]
+Como $K = \mathbb{Q}(i,\alpha_1)/\mathbb{Q}(i)$ es una extensión simple algebraica y $\alpha_1,\alpha_2\en\mathbb{Q}(i,\alpha_1)$ son raíces del polinomio $\p(x)$ irreducible en $\mathbb{Q}(i)$, existe un único $\sigma \en \aut_{\mathbb{Q}(i)}(\mathbb{Q}(i,\alpha_1))$ que asigna $\alpha_1 \mapsto \alpha_2$ (prop. 1.5 y coro. 1.7 en \S VII.1, \cite{aluffi}), en particular, $\sigma \en \gal(K/\mathbb{Q}(i)) \subseteq \gal(K/\mathbb{Q})$. De forma análoga, como $i,-i\en K$ son raíces del polinomio $x^2+1$ irreducible sobre $\mathbb{Q}(\alpha_1)$, existe un único $\tau\en \aut_{\mathbb{Q}(\alpha_1)}(K)$ tal que $i \mapsto -i$, es decir, $\tau \en \gal(K/\mathbb{Q}(\alpha_1)) \subseteq \gal(K/\mathbb{Q})$. Notemos que, además de $\sigma(\alpha_1) = \alpha_2$, se cumple 
+\[
+\sigma(\alpha_2) = i\sigma(\sqrt[4]{2}) = -\sqrt[4]{2} = \alpha_3,%
+\quad
+\sigma(\alpha_3) = -\sigma(\sqrt[4]{2}) = -i\sqrt[4]{2} = \alpha_4,%
+\quad
+\sigma(\alpha_4) = -i\sigma(\sqrt[4]{2}) = \sqrt[4]{2} = \alpha_1
+\]
+por lo tanto, con base en la numeración de las raíces dada, $\sigma$ se corresponde con el $4\text{-ciclo}$ $(1234) \en S_4$. De forma similar, es fácil ver que $\tau$ fija a $\alpha_1$ y $\alpha_3$, mientras que intercambia a $\alpha_2$ y $\alpha_4$, por lo que se corresponde con $(24)\en S_4$. Entonces $\gal(K/\mathbb{Q})$ es identificado con un subgrupo de $S_4$ con orden $8$ y que contiene a los ciclos $(1234)$ y $(24)$,%
+\footnote{
+    Si enumeras las esquinas del cuadrado en sentido antihorario, $(1234)$ es el giro por $\pi/2$ grados, mientras que $(24)$ es la reflexión por la diagonal que pasa por $1$ y $2$.
+} %
+como $D_8 \subseteq S_4$ se define como $\ang{(1234),(12)}$,%
+\footnote{
+    Si no se quiere suponer tal definición de $D_8$, basta con usar el segundo ejercicio de la segunda tarea para probar que $\ang{(1234),(24)} \cong D_8$: notemos que $\ang{(1234),(24)} = \ang{(1234)(24),(24)}$; sin embargo, $(1234)(24)=(12)(34)$ tiene orden $2$, al igual que $(24)$. Además, $((12)(34))(24) = (1234)(24)(24) = (1234)$ tiene orden $4$. De esto se sigue que $\ang{(1234),(24)} = \ang{(1234)(24),(24)} \cong D_8$.
+} %
+$\gal(K/\mathbb{Q})$ es isomorfo a un grupo que contiene a $D_8$, pero ambos tienen $8$ elementos. De esto se sigue que $\gal(K/\mathbb{Q})$ es identificado con $D_8$
+
+\item 
+Denotaremos $r \coloneq (1234)$ y $s\coloneq (24)$, con el fin de encontrar todos los subgrupos de $D_8$ (y por tanto, de $\gal(K/\mathbb{Q})$). Como el orden de $D_8$ es potencia de $2$, todos sus subgrupos son $2\text{-subgrupos}$, así que tiene subgrupos de órdenes $0,2,4$ y $8$. Más aún, por lo visto en la segunda tarea, los elementos en $D_8$ tienen una única forma $r^is^j$ con $i\en\set{0,1,2,3}$ y $j\en\set{0,1}$, es decir:
+\[
+D_8 = \set*{\id_4, r,r^2,r^3,s,rs,r^2s,r^3s}
+\]
+todo elemento $r^js$ tiene orden dos, puesto que $r^isr^is=r^ir^{-i}=\id_4$; además, el único otro elemento con orden dos es $r^2$, puesto que el orden de $r$ es $4$, y también $r^3$ tiene orden $4$ (ya que $3$ y $4$ son coprimos). De esto se sigue que $D_8$ tiene exactamente $5$ subgrupos de orden $2$, los generados por los $r^is$ y el generado por $r^2$. Solo falta encontrar todos los subgrupos de orden $4$: los únicos elementos con orden $4$ son $r$ y $r^3$, pero ambos generan el mismo grupo cíclico $\ang{r}$ (pues $(r^3)^3 = r^9 = r$). Esto significa que solo hay un cíclico de orden $4$ y el resto de posibles subgrupos de orden $4$ no son cíclicos, por lo que tienen que ser isomorfos a $C_2 \times C_2$ (recordemos que solo hay dos grupos de orden $4$ hasta isomorfismo), el cual tiene $3$ subgrupos distintos de orden $2$. Se sigue que cada uno de estos subgrupos tiene a su vez $3$ subgrupos distintos de orden $2$ y la intersección de cada par de ellos tiene que ser de orden a lo más $2$, es decir, cada subgrupo de orden $4$ no cíclico tiene como subgrupos a $3$ de los $5$ grupos de orden $2$ anteriormente encontrados, de modo que todo par de estos subgrupos solo pueden coincidir en a lo sumo un grupo de orden $2$. Un simple argumento de combinatoria implica que, ya que solo hay $5$ subgrupos de orden $2$, a lo sumo puede haber $2$ subgrupos de orden $4$ no cíclicos (para poder existir $3$, sería necesaria la existencia de al menos $6$ subgrupos de orden $2$). Mediante prueba y error con generadores, se pueden encontrar estos dos subgrupos no cíclicos de orden $4$: $\ang{r^2,s} = \set{\id_4,r^2,s,r^2s}$ y $\ang{r^2,rs} = \set{\id_4,r^2,rs,r^3s}$. Junto a los subgrupos triviales, hemos encontrado todos los subgrupos de $D_8$, los cuales se observan en el siguiente retículo (invertido):
+{\mathsurround = 0pt
+\[\begin{tikzcd}[cramped,column sep=1.2em]
+	&& {\ang[\big]{\id_4}} \\
+	\\
+	{\ang[\big]{s}} & {\ang*{r^2s}} & {\ang*{r^2}} & {\ang[\big]{rs}} & {\ang*{r^3s}} \\
+	\\
+	{\ang*{r^2,s}} && {\ang[\big]{r}} && {\ang*{r^2,rs}} \\
+	&& {\vphantom{T^T}D_8}
+	\arrow[no head, from=3-1, to=1-3]
+	\arrow[no head, from=3-2, to=1-3]
+	\arrow[no head, from=3-3, to=1-3]
+	\arrow[no head, from=3-4, to=1-3]
+	\arrow[no head, from=3-5, to=1-3]
+	\arrow[no head, from=5-1, to=3-1]
+	\arrow[no head, from=5-1, to=3-2]
+	\arrow[no head, from=5-1, to=3-3]
+	\arrow[no head, from=5-3, to=3-3]
+	\arrow[no head, from=5-5, to=3-3]
+	\arrow[no head, from=5-5, to=3-4]
+	\arrow[no head, from=5-5, to=3-5]
+	\arrow[no head, from=6-3, to=5-1]
+	\arrow[no head, from=6-3, to=5-3]
+	\arrow[no head, from=6-3, to=5-5]
+\end{tikzcd}\]
+}\par\vspace{1em}
+\emph{Encontremos los campos fijos para estos subgrupos}:\\
+Recordemos que la identificación $\gal(K/\mathbb{Q}) \cong D_8$ hace corresponder $\sigma \leftrightarrow r$ y $\tau \leftrightarrow s$, además, notemos\footnote{Pues si $\sigma$ fija un campo $F$, entonces también su inversa $\sigma^{-1}$ y todas sus potencias.} que el campo fijo de un grupo cíclico es igual al campo fijo por su generador. Luego, obviando los campos fijos triviales $K^{\ang{\id}} = K$ y $K^{\gal(K/\mathbb{Q})} = \mathbb{Q}$ (este último por TFTG), encontremos los otros 8 campos fijos:\par
+En cada caso, usaremos el Teorema Fundamental de la Teoria de Galois (TFTG): para cada $G \leq\gal(K/\mathbb{Q})$ se cumple
+\[
+    \brack{K^G : \mathbb{Q}} = \brack{\gal(K/\mathbb{Q}) : \gal(K/K^G)} = \frac{ \abs{\gal(K/\mathbb{Q})} }{ \abs{\gal(K/K^G)} } = \frac{8}{\abs{G}}
+\]
+puesto que $G = \gal(K/K^G)$ ya que la correspondencia de Galois es biyección.
+\begin{itemize}
+    \item 
+    Encontremos el campo $K^{\ang{\sigma}}$: por definición $\sigma$ fija a $\mathbb{Q}(i)$, así que $\mathbb{Q}(i) \subseteq K^{\ang{\sigma}}$. Más aún, como tenemos $\brack{K^{\ang{\sigma}}:\mathbb{Q}} = 8/\abs*{\sigma} = 2$ y también sabemos que $\brack{\mathbb{Q}(i) : \mathbb{Q}} = 2$, entonces forzosamente%
+    \footnote{
+        A partir de aquí usaremos seguido el siguiente hecho: si $k \subseteq E \subseteq E'$ es una torre de campos y $\brack{E:k} = \brack{E':k}$, entonces $E=E'$. La prueba es inmediata, pues por multiplicatividad, $\brack{E':k} = \brack{E':E} \cdot\brack{E:k}$, así que por hipótesis $\brack{E':k} = \brack{E':E} \cdot\brack{E':k}$. Cancelando $\brack{E':k} \neq 0$, obtenemos $\brack{E':E}=1$, es decir, $E=E'$.
+    }
+    $K^{\ang{\sigma}} =\mathbb{Q}(i)$.
+
+    \item 
+    Hallemos $K^{\ang{\tau}}$: como $\tau$ fija a $\mathbb{Q}(\sqrt[4]{2})$, tenemos $\mathbb{Q}(\sqrt[4]{2}) \subseteq K^{\ang{\tau}}$; sin embargo, tenemos que $\brack{K^{\ang{\tau}}:\mathbb{Q}} = 8/\abs*{\tau} = 4$ y también sabemos $\brack{\mathbb{Q}(\sqrt[4]{2}) : \mathbb{Q}} = 4$. Se sigue que $K^{\ang{\tau}} = \mathbb{Q}(\sqrt[4]{2})$.
+    
+    \item 
+    Para dar con $K^{\ang{\sigma^2}}$, primero notemos que $\sigma^2$ fija a $\mathbb{Q}(i)$ (pues $\sigma$ lo hace) y asigna $\sqrt[4]{2} \mapsto -\sqrt[4]{2}$, por lo cual 
+    \[
+    \sigma^2(\sqrt{2})=\sigma^2(\sqrt[4]{2}\cdot\sqrt[4]{2}) = \sigma^2(\sqrt[4]{2})\cdot\sigma^2(\sqrt[4]{2}) = (-\sqrt[4]{2})(-\sqrt[4]{2}) = \sqrt{2}
+    \]
+    Esto prueba que $\sigma^2$ fija a $\mathbb{Q}(i,\sqrt{2})$, i.e., $\mathbb{Q}(i,\sqrt{2}) \subseteq K^{\ang{\sigma^2}}$. Por otro lado, tenemos $[K^{\ang{\sigma^2}}:\mathbb{Q}] = 8/\abs*{\sigma^2} = 4$ y, análogamente al primer inciso, como $[\mathbb{Q}:\mathbb{Q}(\sqrt{2})] = 2$ (pues $x^2-2$ es su irreducible) y $[\mathbb{Q}(i,\sqrt{2}):\mathbb{Q}(\sqrt{2})] = 2$ (ya que $x^2+1$ es irreducible en $\mathbb{Q}(\sqrt{2})$ por no tener raíces en él), se sigue que $\brack{\mathbb{Q}(i,\sqrt{2}) : \mathbb{Q}} = 4$. Luego, $\mathbb{Q}(i,\sqrt{2}) \subseteq K^{\ang{\sigma^2}}$ tienen ambos grado $4$ sobre $\mathbb{Q}$, por lo que $K^{\ang{\sigma^2}} = \mathbb{Q}(i,\sqrt{2})$.
+
+    \item 
+    Para $K^{\ang{\sigma^2\tau}}$, notemos que $\sigma^2\tau(\sqrt[4]{2}) = -\sqrt[4]{2}$ y $\sigma^2\tau(i) = -i$. Luego,
+    \[
+    \sigma^2\tau(i\sqrt[4]{2}) = \sigma^2\tau(i) \cdot \sigma^2\tau(\sqrt[4]{2}) = (-i)(-\sqrt[4]{2}) = i\sqrt[4]{2}
+    \]
+    por lo que $\mathbb{Q}(i\sqrt[4]{2}) \subseteq K^{\ang{\sigma^2\tau}}$. No obstante, $[K^{\ang{\sigma^2\tau}}:\mathbb{Q}] = 8/\abs*{\sigma^2\tau} = 4$; además, dado que $[\mathbb{Q}(i\sqrt[4]{2}):\mathbb{Q}] = 4$ (pues $i\sqrt[4]{2}$ es raíz de $x^4-2$, que ya vimos es irreducible sobre $\mathbb{Q}$), concluimos que $K^{\ang{\sigma^2\tau}} = \mathbb{Q}(i\sqrt[4]{2})$.
+
+    \item 
+    Para el campo $K^{\ang{\sigma\tau}}$, sabemos que $\sigma\tau(\sqrt[4]{2}) = i\sqrt[4]{2}$ y $\sigma\tau(i) = -i$. Consideremos $\theta = \sqrt[4]{2}(1+i)$.
+    \[
+    \sigma\tau(\theta) = \sigma\tau(\sqrt[4]{2}) \cdot \sigma\tau(1+i) = (i\sqrt[4]{2})(1 - i) = i\sqrt[4]{2} + \sqrt[4]{2} = \sqrt[4]{2}(1+i) = \theta
+    \]
+    Por tanto, $\mathbb{Q}(\theta) \subseteq K^{\ang{\sigma\tau}}$. Nuevamente, $[K^{\ang{\sigma\tau}}:\mathbb{Q}] = 8/\abs*{\sigma\tau} = 4$ y $\theta$ es raíz de $x^4+8$ sobre $\mathbb{Q}$, el cuál se puede probar irreducible.%
+    \footnote{
+        Es evidente que la irreducibilidad de $f(x)\en \mathbb{Q}[x]$ equivale a la irreducibilidad de $f(cx)$ para cualquier $c\en \mathbb{Q}\setminus\set0$. Otro hecho menos evidente es que la irreducibilidad de cualquier $f(x)$ de grado $n$ con coef. constante no nulo (es decir, con $f(0)\neq 0$) equivale a la del polinomio $f^*(x) \coloneq x^nf(1/x)$: primero notemos que si $f(x) = a_nx^n+\cdots + a_0$ entonces $f^*(x) = x^n(a_nx^{-n}+\cdots+x_0) = a_0x^n+\cdots+a_n$. Como $a_0 \neq 0$, tenemos que $f^*(x)$ también es un polinomio de grado $n$. Luego, si $f(x) = g(x)h(x)$ con $g(x),h(x) \en k[x]$ no unitarios, i.e. con grados $m>0$ y $l>0$ positivos, entonces el coeficiente constante de $g(x)$ y $h(x)$ será no nulo ya que su producto debe ser el coeficiente constante de $f(x)$, esto implica (ya que $n = m+l$) que $f^*(x) = x^ng(x)h(x) = x^mg(x) \cdot x^lh(x) = g^*(x)h^*(x)$ donde $g^*(x)$ y $h^*(x)$ tienen grados $m>0$ y $l>0$, respectivamente. Esto prueba que $f^*(x)$ es reducible. Para el recíproco basta notar que $(f^*)^*(x) = f(x)$. Ahora bien, la irreducibilidad de $x^4+8$ equivale a la de $(2x)^4+8 = 16x^4+8 = 8(2x^4+1)$ y la de este último equivale a la de su asociado $2x^4+1$, pero por lo recién visto, la irreducibilidad de $f(x)=2x^4+1$ equivale a la de $f^*(x)=x^4+2$, el cual es irreducible por criterio de Eisenstein, pues $2 \nmid 1$, $2\mid 2$ y $2^2 \nmid 2$.
+    }
+    Luego $[\mathbb{Q}(\theta):\mathbb{Q}] = 4$ y así $K^{\ang{\sigma\tau}} = \mathbb{Q}\big(\sqrt[4]{2}(1+i)\big)$.
+
+    \item 
+    Análogamente con $K^{\ang{\sigma^3\tau}}$: $\sigma^3\tau(\sqrt[4]{2}) = -i\sqrt[4]{2}$ y $\sigma^3\tau(i) = -i$. Consideremos $\ubar{\theta} = \sqrt[4]{2}(1-i)$:
+    \[
+    \sigma^3\tau(\ubar{\theta}) = \sigma^3\tau(\sqrt[4]{2}) \cdot \sigma^3\tau(1-i) = (-i\sqrt[4]{2})(1 + i) = -i\sqrt[4]{2} + \sqrt[4]{2} = \sqrt[4]{2}(1-i) = \ubar{\theta}
+    \]
+    por lo tanto, $\mathbb{Q}(\ubar\theta) \subseteq K^{\ang{\sigma^3\tau}}$. Como también $\brack{K^{\ang{\sigma^3\tau}} : \mathbb{Q}} = 4$ y $\brack{\mathbb{Q}(\ubar\theta):\mathbb{Q}}=4$ (pues $\ubar\theta$ también es raíz del irreducible $x^4+8$) se sigue $K^{\ang{\sigma^3\tau}} = \mathbb{Q}(\sqrt[4]{2}(1-i))$.
+
+    \item 
+    Para el campo $K^{\ang{\sigma^2,\tau}}$, usamos la propiedad de que el campo fijo de un grupo generado por dos grupos es la intersección de los campos fijos de cada uno: 
+    \[
+    K^{\ang{\sigma^2,\tau}} = K^{\ang{\sigma^2}} \cap K^{\ang{\tau}} = \mathbb{Q}\big(i,\sqrt{2}\big) \cap \mathbb{Q}\big(\sqrt[4]{2}\big)
+    \]
+    Puesto que $\sqrt{2} \en \mathbb{Q}(i,\sqrt{2})$ y $\sqrt{2} \en \mathbb{Q}(\sqrt[4]{2})$, se tiene $\mathbb{Q}(\sqrt{2}) \subseteq \mathbb{Q}(i,\sqrt{2}) \cap \mathbb{Q}(\sqrt[4]{2}) = K^{\ang{\sigma^2,\tau}}$. Además, $\brack{K^{\ang{\sigma^2,\tau}}:\mathbb{Q}} = 8/\abs*{\ang{\sigma^2,\tau}} = 2$ y $\brack{\mathbb{Q}(\sqrt{2}):\mathbb{Q}} = 2$ (ya que el pol. mínimo de $\sqrt{2}$ sobre $\mathbb{Q}$ es $x^2 -2$, que es irreducible gracias a que $\sqrt{2} \noten \mathbb{Q}$). Se sigue que $K^{\ang{\sigma^2,\tau}} =\mathbb{Q}(\sqrt{2})$.
+    
+    \item 
+    Para el campo $K^{\ang{\sigma^2,\sigma\tau}}$, análogamente:
+    \[
+    K^{\ang{\sigma^2,\sigma\tau}} = K^{\ang{\sigma^2}} \cap K^{\ang{\sigma\tau}} = \mathbb{Q}\big(i,\sqrt{2}\big) \cap \mathbb{Q}\big(\sqrt[4]{2}(1+i)\big)
+    \]
+    Observemos que el elemento $i\sqrt{2}$ pertenece a ambos campos: claramente está en $\mathbb{Q}(i,\sqrt{2})$, y $(\sqrt[4]{2}(1+i))^2 = 2i\sqrt{2}$, de donde $i\sqrt{2} = \frac{1}{2}(\sqrt[4]{2}(1+i))^2 \en \mathbb{Q}(\sqrt[4]{2}(1+i))$. Así, $\mathbb{Q}(i\sqrt{2}) \subseteq K^{\ang{\sigma^2,\sigma\tau}}$. Dado que el pol. mínimo de $i\sqrt{2}$ sobre $\mathbb{Q}$ es $x^2+2$, se sigue $\brack{{\mathbb{Q}(i\sqrt{2})}:\mathbb{Q}} =2$; sin embargo, también $\brack{K^{\ang{\sigma^2,\sigma\tau}} :\mathbb{Q}} = 8/\abs*{\ang{\sigma^2,\sigma\tau}} = 2$. Por lo tanto, $\mathbb{Q}(i\sqrt{2}) = K^{\ang{\sigma^2,\sigma\tau}}$.
+\end{itemize}
+ Hemos encontrado todos los campos fijos que, por TFTG, corresponden a todas las extensiones intermedias de $K/\mathbb{Q}$. Luego, el retículo de subcampos intermedios de $K/\mathbb{Q}$, que por TFTG es isomorfo al retículo opuesto de subgrupos de $\gal(K/\mathbb{Q})$, se ve como sigue:
+ {\mathsurround = 0pt
+\[\begin{tikzcd}[column sep=1.8em,row sep = 3em]
+	&& {\mathbb{Q}\big(i,\sqrt[4]{2}\big)} \\
+	\\
+	{\mathbb{Q}\big(\sqrt[4]{2}\big)} & {\mathbb{Q}\big(i\sqrt[4]{2}\big)} & {\mathbb{Q}\big(i,\sqrt{2}\big)} & {\hspace{-1em}\mathbb{Q}\big(\sqrt[4]{2}(1+i)\big)\hspace{-1em}} & {\hspace{-1em}\mathbb{Q}\big(\sqrt[4]{2}(1-i)\big)\hspace{-1em}} \\
+	\\
+	{\mathbb{Q}\big(\sqrt{2}\big)} && {\mathbb{Q}\big(i\big)} && {\mathbb{Q}\big(i\sqrt{2}\big)} \\
+	&& {\mathbb{Q}}
+	\arrow[no head, from=3-1, to=1-3]
+	\arrow[no head, from=3-2, to=1-3]
+	\arrow[no head, from=3-3, to=1-3]
+	\arrow[no head, from=3-4, to=1-3]
+	\arrow[no head, from=3-5, to=1-3]
+	\arrow[no head, from=5-1, to=3-1]
+	\arrow[no head, from=5-1, to=3-2]
+	\arrow[no head, from=5-1, to=3-3]
+	\arrow[no head, from=5-3, to=3-3]
+	\arrow[no head, from=5-5, to=3-3]
+	\arrow[no head, from=5-5, to=3-4]
+	\arrow[no head, from=5-5, to=3-5]
+	\arrow[no head, from=6-3, to=5-1]
+	\arrow[no head, from=6-3, to=5-3]
+	\arrow[no head, from=6-3, to=5-5]
+\end{tikzcd}\]
+}\qedhere
+\end{enumerate}
+\end{sol}
+
+%------------------------------ Ejercicio 2 -------------------------------
+\begin{ejer}
+Sea $f(x) = x^3 + \p x + q \en \mathbb{Q}[x]$ irreducible. Recordemos que su discriminante está dado por
+\[
+\Delta(f) = -4\p^3 - 27q^2.
+\]
+
+\begin{enumerate}[label=\alph*)]
+\item Pruebe que el campo de descomposición $L$ de $f$ sobre $\mathbb{Q}$ tiene grado 3 o 6.
+
+\item Demuestre que  
+\[
+\gal(L/\mathbb{Q}) \cong 
+\begin{cases} 
+\;\mathbb{Z}/3\mathbb{Z}, & \text{si } \sqrt{\Delta(f)} \en \mathbb{Q}\\ 
+\;S_3,                    & \text{si } \sqrt{\Delta(f)} \noten \mathbb{Q}
+\end{cases}
+\]
+
+\item Aplique lo anterior a los polinomios  
+\[
+f_1(x) = x^3 - 3x + 1, \quad f_2(x) = x^3 - 9x + 6,
+\]
+determinando en cada caso el campo de descomposición, su grado y el grupo de Galois.
+\end{enumerate}
+\end{ejer}
+\begin{sol}\hphantom{x}
+\begin{enumerate}[label=\alph*)]
+\item 
+Como $f(x)$ es irreducible y $\operatorname{char}(\mathbb{Q}) = 0$, $f(x)$ también es separable. Se sigue que $L/\mathbb{Q}$ es una extensión de Galois y, más aún, $\gal(L/\mathbb{Q})$ se identifica con un subgrupo transitivo de $S_3$; sin embargo, por Lagrange los subgrupos de $S_6$ solo pueden tener órdenes $1, 2,3$ o $6$; más aún, el teorema de órbita-estabilizador implica que todo subgrupo transitivo de $S_6$ tiene orden múltiplo de $3$ (el tamaño de la órbita). Luego, $\gal(L/\mathbb{Q})$ es isomorfo a un subgrupo de $S_3$ de orden $3$ o $6$; en particular, $[L:\mathbb{Q}] = \abs{\gal(L/\mathbb{Q})}$ es $3$ o $6$.
+
+\item 
+Como $S_3$ tiene orden $6=2 \cdot 3$, el ejercicio 4 de la tarea 2 implica que todo $3\text{-subgrupo}$ Sylow de $S_3$ es normal, en particular, esto implica que $S_3$ tiene un único $3\text{-subgrupo Sylow}$, que debe ser cíclico por tener orden primo. Este único subgrupo es $A_3$, pues ya sabemos que tiene $3$ elementos. Esto significa que $\gal(L/\mathbb{Q})$ solo puede identificar con $A_3\cong \mathbb{Z}/3\mathbb{Z}$ o $S_3$.\par
+\href{https://drive.google.com/file/d/11XpEmoZvQKK8-aPO5kTbNUl5Omyh1Ppl/view?usp=drive_link}{\emph{Vimos en clase}} que, como $\operatorname{char}(\mathbb{Q}) \neq 2$, $\sqrt{\Delta(f)} \en \mathbb{Q}$ si y solo si $\gal(L/\mathbb{Q}) \subseteq A_3$ (identificando al grupo de Galois con su imagen en $S_3$). Por lo tanto, si $\sqrt{\Delta(f)} \en \mathbb{Q}$ entonces $\gal(L/\mathbb{Q}) \subseteq A_3$ así que lo antes visto implica que $\gal(L/\mathbb{Q}) = A_3 \cong \mathbb{Z}/3\mathbb{Z}$. Recíprocamente, si $\sqrt{\Delta(f)} \noten \mathbb{Q}$ entonces $\gal(L/\mathbb{Q})$ no se identifica como subgrupo de $A_3$, por lo que en particular no se puede identificar con $A_3$; luego, lo antes visto implica que forzosamente $\gal(L/\mathbb{Q}) \cong S_3$.
+
+\item 
+Aplicamos los resultados anteriores a los polinomios dados.
+\begin{itemize}
+    \item El discriminante de $f_1(x)=x^3-3x+1$ (con $\p=-3$ y $q=1$) es:
+    \[
+    \Delta(f_1) = -4\p^3-27q^2 = -4(-3)^3-27(1)^2 = 108-27=81
+    \]
+    así que $\sqrt{\Delta(f_1)} = 9 \en \mathbb{Q}$. Más aún, el criterio de la raíz racional garantiza que las únicas raíces racionales posibles son de la forma $\frac{a}{b}$ con $a,b$ coprimos y $a,b\mid1$, es decir, las únicas raíces racionales posibles son $\pm1$; sin embargo, $f_1(1)=-1$ y $f_1(-1)=3$ así que $f_1(x)$ no posee raíces racionales, de donde se sigue que es irreducible sobre $\mathbb{Q}$. Luego,
+    % notemos que como $f_1(x)$ es primitivo en $\mathbb{Z}$, su irreducibilidad sobre $\mathbb{Q}$ es equivalente a su irreducibilidad sobre $\mathbb{Z}$. Supongamos por contradicción que tiene un factor propio no unitario en $\mathbb{Z}$: como $f_1$ es primitivo, entonces dicho factor tiene que tener grado al menos $1$. Se sigue que forzosamente $f_1(x)$ tiene un factor lineal (si $f_1 = gh$ entonces $3 = \deg(g)+\deg(h)$ con ambos grados positivos, así que uno de ellos tiene que ser $1$)    
+    el inciso (b) implica $\gal(L_1/\mathbb{Q})\cong\mathbb{Z}/3\mathbb{Z}$, con $L_1$ el campo de descomposición de $f_1(x)$ sobre $\mathbb{Q}$. Puesto que $f_1(x)$ es irreducible, toda raíz $\alpha\en\mathbb{C}$ de $f_1(x)$ genera una extensión $\mathbb{Q}(\alpha)/\mathbb{Q}$ de grado $3$. No obstante, $\mathbb{Q}(\alpha) \subseteq L_1$ (pues $L_1$ tiene a las raíces de $f_1$) y $\brack{L_1:\mathbb{Q}} = \abs{\gal(L_1/\mathbb{Q})} = 3$, por lo tanto, $L_1 = \mathbb{Q}(\alpha)$.
+
+    \item El discriminante de $f_2(x)=x^3-9x+6$ es:
+    \[
+    \Delta(f_2) = -4(-9)^3-27(6)^2 = 2916-972=1944
+    \]
+    Como $1944 = 2^3\cdot3^5$, se tiene $\sqrt{1944}=\sqrt{2^3\cdot3^5} = 18\sqrt{6}\noten\mathbb{Q}$. Más aún, el criterio de Eisenstein garantiza que $f_2(x)$ es irreducible, puesto que $3\nmid 1, 3\mid 9, 3\mid 6$ y $3^2 \nmid 6$, así que el inciso (b) implica que $\gal(L_2/\mathbb{Q})\cong S_3$, donde $L_2$ es el campo de descomposición de $f_2(x)$. Dado que $f_2(x)$ es irreducible, para cualquier raíz $\beta\en\mathbb{C}$ de $f_2(x)$ se satisface que $[\mathbb{Q}(\beta):\mathbb{Q}]=3$.\par\vspace{1em}
+    \emph{Veamos que $L_2 = \mathbb{Q}\big(\beta,\sqrt{\Delta(f_2)}\big)$}:\\
+    Como $L_2$ contiene por definición a las raíces de $f_2(x)$ y $\sqrt{\Delta(f_2)}$ es producto de diferencias de raíces de $f_2(x)$, tenemos $\beta,\sqrt{\Delta(f_2)} \en L_2$, es decir, $\mathbb{Q}\big(\beta,\sqrt{\Delta(f_2)}\big) \subseteq L_2$. Sin embargo, por multiplicatividad, $\brack[\big]{\mathbb{Q}\big(\beta,\sqrt{\Delta(f_2)}\big) : \mathbb{Q}}$ es múltiplo de $\brack{\mathbb{Q}(\beta):\mathbb{Q}} = 3$ y también es múltiplo de $\brack[\big]{\mathbb{Q}\big(\sqrt{\Delta(f_2)}\big) : \mathbb{Q}} = 2$ (pues el pol. mínimo es $x^2 - \Delta(f_2)$ que es irreducible ya que sus raíces no son racionales). Se sigue que el grado de esta extensión es múltiplo de $6$, pero es sub-extensión de $L_1$ y $\brack{L_1 : \mathbb{Q}} = \abs{\gal(L_1/\mathbb{Q})} = 6$, por lo tanto $L_1 = \mathbb{Q}\big(\beta,\sqrt{\Delta(f_2)}\big)$. Más aún, como $\sqrt{\Delta(f_2)} = 18\sqrt{6}$ es asociado en $\mathbb{Q}$ a $\sqrt{6}$, se tiene $L_2 = \mathbb{Q}\big(\beta,\sqrt{6}\big)$.
+\end{itemize}
+\end{enumerate}
+\end{sol}
+
+%------------------------------ Ejercicio 3 -------------------------------
+\begin{ejer}
+Sea $\p$ un número primo y $n \geq 1$. Considere el campo finito $\mathbb{F}_{\p^n}$.
+
+\begin{enumerate}[label=\alph*)]
+\item Pruebe que, hasta isomorfismo, existe un único campo con $\p^n$ elementos.
+
+\item Demuestre que $\mathbb{F}_{\p^n} / \mathbb{F}_{\p}$ es una extensión de Galois y que  
+\[
+\gal{\big(\mathbb{F}_{\p^n} / \mathbb{F}_{\p}\big)} = \langle \varphi \rangle \cong C_n, \quad \varphi(a) = a^{\p}.
+\]
+
+\item Para $\p = 3$ y $n = 4$, describa todos los subcampos de $\mathbb{F}_{3^4}$ y verifique la correspondencia de Galois entre subgrupos y subcampos.
+\end{enumerate}
+\end{ejer}
+\begin{sol}\hphantom{x}
+\begin{enumerate}[label=\alph*)]
+\item 
+Consideremos primero $\mathbb{F}_{\p} \coloneq \mathbb{Z}/\p\mathbb{Z}$ el campo con $\p$ elementos. Ahora bien, si $n\en\mathbb{Z}^+$ entonces el polinomio $f(x) = x^{\p^n}-x \en \mathbb{F}_{\p}[x]$ es separable  puesto que estamos en característica $\p$:
+\[
+f'(x) = \p^nx^{\p^n}-1 = -1%
+\quad\implies\quad%
+(f(x),f'(x)) = 1%
+\quad\implies\quad%
+f\text{ es separable}
+\]
+lo cual implica que, si tomamos $L$ como el campo de descomposición de $f(x)$, entonces $f(x)$ tiene exactamente $\p^n$ raíces distintas en $L$. Denotemos $K$ al conjunto de raíces de $f(x)$. Es sencillo probar que $K$ es subcampo de $L$:\par
+Primero recordemos que, como \href{https://drive.google.com/file/d/15iH5PhKTc8cBRWBbSiZoBqLWRe-y-EZg/view?usp=sharing}{\emph{vimos en clase}}, $\varphi(x) = x^{\p}$ es homomorfismo gracias a que $L$ tiene característica $\p$. Luego, también lo es su $n\text{-ésima}$ iteración $\varphi^n(x) = x^{\p^n}$. Por consiguiente:
+\begin{itemize}
+    \item Si $a,b\en K$ entonces $(a-b)^{\p^n} = \varphi^n(a-b) = \varphi^n(a) - \varphi^n(b) = a^{\p^n} - b^{\p^n}$, pero por hipótesis $a^{\p^n}-a=b^{\p^n}-b=0$, por lo que $a^{\p^n}=a$ y $b^{\p^n}=b$. Por tanto, $(a-b)^{\p^n} = a-b$ o, equivalentemente, $(a-b) \en K$.
+
+    \item Si $a\en K$ y $b\en K\setminus\set0$ entonces $(ab^{-1})^{\p^n} = a^{\p^n}\cdot(b^{-1})^{\p^n} = a^{\p^n}\cdot (b^{\p^n})^{-1}$, pero por hipótesis $a^{\p^n}-a=b^{\p^n}-b=0$, por lo que $a^{\p^n}=a$ y $b^{\p^n}=b$. Se sigue que $(ab^{-1})^{\p^n} = ab^{-1}$ o, equivalentemente, $ab^{-1}\en K$.
+\end{itemize}
+Más aún, $1\en K$, así que estos dos puntos garantizan que $K$ es cerrado bajo restas, productos e inversos, i.e., $K$ es subcampo de $L$. Como $K$ además posee todas las raíces de $f(x)$ en $L$, se concluye que también $L \subseteq K$ así que $L = K$. Luego, $L=K$ es un campo con $\p^n$ elementos.\par
+Para probar la unicidad, supongamos que $F$ es un campo con $\p^n$ elementos. Es sencillo probar que $\operatorname{char} F = \p$,%
+\footnote{
+    En efecto, sabemos que la característica de $F$ es el primo $\p'$ tal que $\mathbb{Z}/\p'\mathbb{Z} \hookrightarrow F$. En particular, $\mathbb{Z}/\p'\mathbb{Z}$ se identifica con un subgrupo de $F$, así que el teorema de Lagrange implica que $\p'=\abs{\mathbb{Z}/\p'\mathbb{Z}}$ divide a $\abs{F} = \p^n$. Se sigue que $\p'=\p$.
+}
+así que $F$ se puede ver como extensión del campo $\mathbb{F}_{\p}$. Por otro lado, su grupo de unidades $F^\times$ es un grupo con $\p^n-1$ elementos; en particular, el orden de cualquier $a\en F^\times$ divide a $\p^n-1$, por lo cual, $a^{\p^n-1} = 1$ de donde $a^{\p^n} = a$ así que $a^{\p^n}-a=0$ y $a$ es raíz de $f(x) = x^{\p^n}-x \en \mathbb{F}_{\p}[x]$ (ya que $\pm 1 \en \mathbb{F}_{\p}$). Como también $0$ es raíz de $f(x)$, tenemos que todo elemento de $F$ es raíz de $f(x)$; sin embargo, $f(x)$ tiene a lo sumo $\p^n$ elementos y $F$ tiene exactamente $\p^n$ elementos. Se sigue que $F$ consta de exactamente todas las posibles raíces de $f(x)$, así que es el campo de descomposición de $f(x)$ (pues es el campo más chico que contiene a todas las posibles raíces de $f(x)$). El hecho de que los campos de descomposición son únicos hasta isomorfismo (de extensiones) garantiza que $F \cong L$ donde $L$ es el campo hallado al inicio.
+
+
+\item 
+Ya vimos que $\mathbb{F}_{\p^n}$ es campo de descomposición del polinomio $f(x)$ que es separable, de esto sigue que $\mathbb{F}_{\p^n}/\mathbb{F}_{\p}$ es de Galois. Como $\brack{\mathbb{F}_{\p^n}:\mathbb{F}_{\p}} = n$,%
+\footnote{
+    En efecto, por definición de índice, hay un isomorfismo de $\mathbb{F}_{\p}\text{-módulos}$ $\mathbb{F}_{\p^n} \cong (\mathbb{F}_{\p})^{\brack{\mathbb{F}_{\p^n}:\mathbb{F}_{\p}}}$. Igualando las cardinalidades, tenemos $\p^n = \p^{\brack{\mathbb{F}_{\p^n}:\mathbb{F}_{\p}}}$, por lo cual $n = \brack{\mathbb{F}_{\p^n}:\mathbb{F}_{\p}}$.
+}
+se sigue que $\abs{\gal(\mathbb{F}_{\p^n}/\mathbb{F}_{\p})} = n$, así que para probar $\gal(\mathbb{F}_{\p^n}/\mathbb{F}_{\p}) = \ang{\varphi}$, basta con demostrar que $\abs{\varphi} = n$:%
+\footnote{
+    También hay que probar que $\varphi \en \gal(\mathbb{F}_{\p^n}/\mathbb{F}_{\p})$: como $\mathbb{F}_{\p^n}$ tiene característica $\p$, ya sabemos que $\varphi$ es homomorfismo, por lo que solo resta probar que fija a $\mathbb{F}_{\p}$. En efecto, si $a\en\mathbb{F}_{\p}$, el teorema chico de Fermat garantiza que $a^{\p} = a$, es decir, $\varphi(a) = a$ para cada $a \en \mathbb{F}_{\p}$. Esto prueba que $\varphi$ fija a $\mathbb{F}_{\p}$.
+}
+\par
+En efecto, si $m<n$ entonces $\varphi^m(x) = x^{\p^m}$. Como $x^{\p^m} - x$ tiene a lo sumo $\p^m$ raíces en $\mathbb{F}_{\p^n}$, se sigue que hay a lo sumo $\p^m<\p^n$ elementos de $\mathbb{F}_{\p^n}$ tales que $x^{\p^m} = x$; en particular, existe un $a \en\mathbb{F}_{\p^n}$ tal que $a^{\p^m} \neq a$, i.e., $\varphi^m(a) \neq a$. Por lo tanto, $\varphi^m \neq \id_{\mathbb{F}_{\p^n}}$ para cualquier $m<n$. Esto implica que $\abs{\varphi} \geq n$ y, como $\abs{\varphi}$ divide a $\abs{\gal(\mathbb{F}_{\p^n}/\mathbb{F}_{\p})} = n$, necesariamente $\abs{\varphi} = n$. Esto prueba que $\gal(\mathbb{F}_{\p^n}/\mathbb{F}_{\p}) = \ang{\varphi}$ así que es cíclico de orden $n$, i.e., isomorfo a $C_n$.
+
+\item 
+\emph{Supondré que tengo que describir los subcampos sin recurrir a la correspondencia de Galois}:\\
+Primero notemos que, si $E$ es un campo intermedio $\mathbb{F}_{\p} \subseteq E \subseteq \mathbb{F}_{\p^n}$, entonces por multiplicatividad, $\brack{E : \mathbb{F}_{\p}}$ divide a $\brack{\mathbb{F}_{\p^n} : \mathbb{F}_{\p}} = n$, i.e., forzosamente $\brack{E : \mathbb{F}_{\p}} = m$ con $m \mid n$. Esto implica que $E \cong (\mathbb{F}_{\p})^m$ como módulos, así que tiene $\p^m$ elementos y, por la unicidad vista en (a), $E \cong \mathbb{F}_{\p^m}$, por lo que todos los subcampos son de esta forma. Recíprocamente, si $m \mid n$ veamos que, en efecto, hay un único subcampo $\mathbb{F}_{\p} \subseteq \mathbb{F}_{\p^m} \subseteq \mathbb{F}_{\p^n}$: supongamos $n=ml$ con $l\en\mathbb{Z}^+$, es bien sabido que,%
+\footnote{
+    Es inmediato de que $a^l-1 = (a-1)(a^{l-1}+\cdots+1)$, para cualquier $l\en\mathbb{Z}^+$.
+}
+para cualquier elemento de un anillo $a\en A$, $(a-1) \mid (a^l-1)$; en particular, $({\p^m}-1) \mid ((\p^m)^l-1) = ({\p^n}-1)$. Luego, tomamos $l'\en\mathbb{Z}^+$ tal que $({\p^n}-1) = ({\p^m}-1)l'$ y volvemos a aplicar el resultado, ahora con $a= x^{{\p^m}-1} \en \mathbb{F}_{\p}[x]$, para obtener
+\[
+\big(x^{{\p^m}-1} - 1\big) \;\Big|\; \big( \big(x^{{\p^m}-1}\big)^{l'} - 1 \big) = x^{{\p^n}-1} - 1
+\]
+De esto se sigue que $(x^{\p^m}-x) \mid (x^{\p^n}-x)$. Denotemos $f(x) = (x^{\p^n}-x)$ y $g(x) = (x^{\p^m}-x)$. Como toda raíz de $g$ es raíz de $f$, se sigue que el campo de descomposición de $g$ (que ya vimos es isomorfo a $\mathbb{F}_{\p^m}$) está contenido en el de $f$ (que es el que tomamos como $\mathbb{F}_{\p^n}$). Esto prueba que existe una copia de $\mathbb{F}_{\p^m}$ entre $\mathbb{F}_{\p} \subseteq \mathbb{F}_{\p^n}$. Llamemos simplemente $\mathbb{F}_{\p^m}$ a esta copia y veamos que es única: si $E$ es otro campo intermedio tal que hay un isomorfismo $\phi \colon \mathbb{F}_{\p^m} \to E$, entonces $\phi$ manda raíces de $g$ en raíces de $g$;%
+\footnote{
+    Esto ocurre gracias a que los coeficientes de $g$ son $\pm1$, los cuales son fijados por cualquier homomorfismo de anillos. Luego, si $a$ es raíz de $g$, se cumple $g(\phi(a)) = \phi(g(a)) = \phi(0) = 0$, es decir, $\phi(a)$ es raíz de $g$.
+}
+sin embargo, $\mathbb{F}_{\p^m}$ consta de todas las raíces de $g$, así que $\im(\phi) \subseteq \mathbb{F}_{\p^m}$, es decir, $E\subseteq \mathbb{F}_{\p^m}$. Como estos son conjuntos finitos con la misma cardinalidad, se sigue $E = \mathbb{F}_{\p^m}$. Hemos probado que para cada $m\mid n$ hay exactamente un campo intermedio $\mathbb{F}_{\p} \subseteq\mathbb{F}_{\p^m} \subseteq\mathbb{F}_{\p^n}$, y todos los campos intermedios son de esta forma.\par
+Ahora bien, para el caso $p=3$ y $n=4$, los únicos divisores de $4$ son $1,2$ y $4$, así que el único campo intermedio propio de $\mathbb{F}_{3^4}$ es $\mathbb{F}_{3^2}$. Por consiguiente, el retículo de campos intermedios para esta extensión se ve como:
+{\mathsurround = 0pt
+\[\begin{tikzcd}[cramped, sep=1.5em]
+	{\mathbb{F}_{3^4}} \\
+	{\mathbb{F}_{3^2}} \\
+	{\mathbb{F}_{3}}
+	\arrow[no head, from=1-1, to=2-1]
+	\arrow[no head, from=2-1, to=3-1]
+\end{tikzcd}\]
+}
+Esto verifica la correspondencia de Galois, pues ya vimos que $\gal(\mathbb{F}_{3^4}/\mathbb{F}_{3}) \cong C_4$ y el único subgrupo propio no trivial de $C_4$ es $C_2$ (y este último corresponde con $\gal(\mathbb{F}_{3^4}/\mathbb{F}_{3^2})$, ya que es el único grupo de orden $2$). Por lo que el retículo opuestos de subgrupos de $\gal(\mathbb{F}_{3^4}/\mathbb{F}_{3})$ es 
+{\mathsurround = 0pt
+\[\begin{tikzcd}[cramped, sep=1.5em]
+	{\gal(\mathbb{F}_{3^4}/\mathbb{F}_{3}) \cong C_4} \\
+	{\gal(\mathbb{F}_{3^2}/\mathbb{F}_{3}) \cong C_2} \\
+	{\ang{\id_{\mathbb{F}_3}}}
+	\arrow[no head, from=1-1, to=2-1]
+	\arrow[no head, from=2-1, to=3-1]
+\end{tikzcd}\]
+}
+\end{enumerate}
+\end{sol}
+
+%------------------------------ Ejercicio 4 -------------------------------
+\begin{ejer}
+Sea $f(x) = x^3 - 2 \en \mathbb{Q}[x]$.
+
+\begin{enumerate}[label=\alph*)]
+\item Pruebe que $f$ es irreducible y que $\mathbb{Q}(\sqrt[3]{2})$ tiene grado 3 sobre $\mathbb{Q}$.
+
+\item Describa las tres raíces de $f$ en $\mathbb{C}$ y pruebe que $\mathbb{Q}(\sqrt[3]{2})$ no es un campo de descomposición.
+
+\item Sea $L$ el campo de descomposición de $f$. Calcule $[L : \mathbb{Q}]$, pruebe que $L/\mathbb{Q}$ es Galois y determine su grupo de Galois, mostrando que es isomorfo a $S_3$.
+
+\item Describa todos los subcampos intermedios $\mathbb{Q} \subseteq E \subseteq L$ e identifique cuáles no son normales sobre $\mathbb{Q}$.
+\end{enumerate}
+\end{ejer}
+\begin{sol}\hphantom{x}
+\begin{enumerate}[label=\alph*)]
+\item 
+Como $2\nmid 1, 2\mid-2$ y $2^2\nmid -2$, el criterio de Eisenstein implica que $f$ es irreducible sobre $\mathbb{Q}$. Como $\sqrt[3]{2}$ es raíz de $f$, se sigue que $f$ es el polinomio mínimo de $\sqrt[3]{2}$ y $\mathbb{Q}(\sqrt[3]{2})$ tiene grado $3$ sobre $\mathbb{Q}$.
+
+\item 
+Las tres raíces de $f$ son $\sqrt[3]{2}, \omega\sqrt[3]{2}$ y $\omega^2\sqrt[3]{2}$ donde $\omega \coloneq e^{\frac23\pi i}$ es raíz cúbica primitiva de la unidad. En efecto, para cualquier $r\en\mathbb{N}_0$:
+\[
+f(\omega^r\sqrt[3]{2}) = \big(\omega^r\sqrt[3]{2}\big)^3-2 = (\omega^3)^r\cdot2 -2 = 1\cdot2 - 2 = 0
+\]
+Además, $1,\omega,\omega^2$ son distintos ya que su argumento no dista de un múltiplo entero de $2\pi$. También notemos que $\omega\cdot\omega^2 = \omega^3 = 1$, así que $\omega^2=\omega^{-1} = \nicefrac{\ubar{\omega}}{\abs{\omega}^2}= \ubar\omega$. Finalmente, como $\omega,\ubar\omega\noten\mathbb{R}$ (ya que su parte imaginaria es $\pm\sin(\smash{\frac23\pi}) \neq 0$) y $\mathbb{Q}(\sqrt[3]{2}) \subseteq \mathbb{R}$, entonces $\omega,\ubar\omega \noten \mathbb{Q}(\sqrt[3]{2})$ por lo cual $\omega\sqrt[3]{2},\ubar{\omega}\sqrt[3]{2} \noten \mathbb{Q}(\sqrt[3]{2})$ y $\mathbb{Q}(\sqrt[3]{2})$ no tiene a todas las posibles raíces de $f$, es decir, no es campo de descomposición de $f$.
+
+\item 
+El campo de descomposición es $L = \mathbb{Q}(\sqrt[3]{2},\omega\sqrt[3]{2},\omega^2\sqrt[3]{2})$. Notemos que $\omega = (\omega\sqrt[3]{2})(\sqrt[3]{2})^{-1} \en L$, por lo que $\mathbb{Q}(\sqrt[3]{2},\omega) \subseteq L$; más aún, como $\sqrt[3]{2},\omega\sqrt[3]{2},\omega^2\sqrt[3]{2} \en \mathbb{Q}(\sqrt[3]{2},\omega)$, se tiene $L = \mathbb{Q}(\sqrt[3]{2},\omega)$.\par
+Ahora bien, como $x^3-1 = (x-1)(x^2+x+1)$ tiene de raíces a $1,\omega,\omega^2$, entonces $\omega$ y $\omega^2$ son las raíces de $g(x)=x^2+x+1$. Como ya vimos que $\omega,\omega^2 \noten\mathbb{Q}(\sqrt[3]{2})$, se sigue que $g$ es irreducible sobre $\mathbb{Q}(\sqrt[3]{2})$, así que $g$ es el polinomio mínimo de $\omega$ y $\brack{\mathbb{Q}(\sqrt[3]{2},\omega):\mathbb{Q}(\sqrt[3]{2})} = 2$. Por consiguiente, usando multiplicatividad y lo visto en (a):
+\[
+\brack[\big]{L:\mathbb{Q}}%
+= \brack[\big]{\mathbb{Q}\big(\sqrt[3]{2},\omega\big):\mathbb{Q}\big(\sqrt[3]{2}\big)} \cdot \brack[\big]{\mathbb{Q}\big(\sqrt[3]{2}\big):\mathbb{Q}}%
+=2 \cdot 3 = 6
+\]
+Por último, como $L$ es el campo de descomposición de un polinomio irreducible y por tanto separable (ya que $\operatorname{char}\mathbb{Q} =0$) sobre $\mathbb{Q}$, se sigue que $L/\mathbb{Q}$ es extensión de Galois, de modo que $\abs{\gal(L/\mathbb{Q})} = \brack[\big]{L:\mathbb{Q}} = 6$; sin embargo, $\gal(L/\mathbb{Q})$ se identifica (actuando sobre las raíces de $f$) con un subgrupo transitivo de $S_3$, así que (como tienen el mismo orden) forzosamente $\gal(L/\mathbb{Q}) \cong S_3$. Esto implica que cualquier permutación de las raíces de $f$ induce un único automorfismo en $\gal(L/\mathbb{Q})$.
+
+\item 
+Ya vimos que solo hay un subgrupo de orden 3 en $S_3$ (\abvref{ejer:7.2}) y es normal, así que, además de los triviales, solo falta determinar los subgrupos de orden $2$. Estos necesariamente son cíclicos generados por un elemento de orden $2$ y, como las clases de conjugación en $S_3$ vienen dadas por los tipos $[1,1,1],[2,1],[3]$, se sigue que los elementos de orden $2$ son los del tipo $[2,1]$, es decir, las transposiciones. Solo existen $3$ distintas en $S_3$: $(12),(23)$ y $(13)$. Luego, todos los subgrupos de $S_3$ de orden $2$ son $\ang{(12)},\ang{(23)}$ y $\ang{(13)}$; más aún, como ninguno de estos subgrupos es unión de clases de conjugación (ya que están contenidos propiamente en una), se sigue que no son normales. Ahora enumeremos las raíces de $f$:
+\[
+\alpha_1 \coloneq \sqrt[3]{2},%
+\quad
+\alpha_2 \coloneq \omega\sqrt[3]{2},%
+\quad
+\alpha_3 \coloneq\omega^2\sqrt[3]{2}
+\]
+Como las permutaciones de estas raíces se corresponden con los automorfismos de $\gal(L/\mathbb{Q})$, denotemos $\sigma_{j,k}$ al $\mathbb{Q}\text{-automorfismo}$ de $L$ inducido por transponer $\alpha_j \leftrightarrow \alpha_k$ (i.e. el que corresponde a $(jk) \en S_3$), y $\sigma_{jkl}$ al inducido por el ciclo $\alpha_j \mapsto \alpha_k \mapsto \alpha_l \mapsto \alpha_j$ (i.e. el que corresponde a $(jkl)\en S_3$). De este modo, el retículo (invertido) de subgrupos de $\gal(L/\mathbb{Q}) \cong S_3$ es:
+{\mathsurround = 0pt
+\[\begin{tikzcd}[cramped, column sep = 1em,row sep = 2em]
+	& {\ang{\id_{L}}} \\
+	& {\ang{\sigma_{1,2}}} & {\ang{\sigma_{2,3}}} & {\ang{\sigma_{1,3}}} \\
+	{\ang{\sigma_{1,2,3}}} \\
+	& {\gal(L/\mathbb{Q})}
+	\arrow[no head, from=2-2, to=1-2]
+	\arrow[no head, from=2-3, to=1-2]
+	\arrow[no head, from=2-4, to=1-2]
+	\arrow[no head, from=3-1, to=1-2]
+	\arrow[no head, from=4-2, to=2-2]
+	\arrow[no head, from=4-2, to=2-3]
+	\arrow[no head, from=4-2, to=2-4]
+	\arrow[no head, from=4-2, to=3-1]
+\end{tikzcd}\]
+}
+Ahora calculemos los campos fijos no triviales aprovechando los resultados del TFTG: para cada $G \leq\gal(L/\mathbb{Q})$ se cumple
+\[
+    \brack[\big]{L^G : \mathbb{Q}} = \brack[\big]{\gal(L/\mathbb{Q}) : \gal(L/L^G)} = \frac{ \abs{\gal(L/\mathbb{Q})} }{ \abs{\gal(L/L^G)} } = \frac{6}{\abs{G}}
+\]
+puesto que $G = \gal(L/L^G)$ ya que la correspondencia de Galois es biyección.
+\begin{itemize}
+    \item 
+    Si $j,k\en\set{1,2,3}$ son distintos, el automorfismo $\sigma_{j,k}\en\gal(L/\mathbb{Q})$ por definición fija a la raíz $\alpha_l$ distinta de $\alpha_{j}$ y $\alpha_{k}$. Luego, fija a $\mathbb{Q}(\alpha_l)$, así que $\mathbb{Q}(\alpha_l) \subseteq L^{\ang{\sigma_{j,k}}}$; más aún, como 
+    \[
+    \brack[\big]{L^{\ang{\sigma_{j,k}}} : \mathbb{Q}}%
+    ={6}\,/\,{\abs*{\sigma_{j,k}}} = 3
+    \]
+    y también $\brack{\mathbb{Q}(\alpha_l):\mathbb{Q}} = 3$ ya que el pol. mínimo de $\alpha_l$ sobre $\mathbb{Q}$ es $f$, entonces se cumple que $L^{\ang{\sigma_{j,k}}} = \mathbb{Q}(\alpha_l)$. Por otro lado, como ya vimos que $\ang{\sigma_{j,k}} = \gal\big(L/L^{\ang{\sigma_{j,k}}}\big)$ no es normal en $\gal(L/\mathbb{Q})$, entonces el teorema 6.15 (\S VII.6, \cite{aluffi}) implica que $L^{\ang{\sigma_{j,k}}}/\mathbb{Q}$ no es de Galois, sin embargo, sí es separable (en característica cero, toda extensión es separable), por lo tanto $L^{\ang{\sigma_{j,k}}}/\mathbb{Q}$ no es normal.
+
+    \item 
+    Para $L^{\ang{\sigma_{1,2,3}}}$ notemos que $\sigma_{1,2,3}$ cicla a las tres raíces, i.e., $\sqrt[3]{2} \mapsto \omega\sqrt[3]{2} \mapsto \omega^2\sqrt[3]{2} \mapsto \sqrt[3]{2}$. Luego, por un lado $\sigma_{1,2,3}(\omega\sqrt[3]{2}) = \omega^2\sqrt[3]{2}$ y, por otro lado,
+    \[
+    \sigma_{1,2,3}(\omega\sqrt[3]{2}) = \sigma_{1,2,3}(\omega)\cdot\sigma_{1,2,3}(\sqrt[3]{2})= \sigma_{1,2,3}(\omega)\cdot\omega\sqrt[3]{2}
+    \]
+    de esto se sigue que $\sigma_{1,2,3}(\omega)\omega\sqrt[3]{2} = \omega^2\sqrt[3]{2}$, de donde (cancelando $\omega\sqrt[3]{2} \neq0$) $\sigma_{1,2,3}(\omega) = \omega$. Es decir, $\sigma_{1,2,3}$ fija a $\mathbb{Q}(\omega)$, así que $\mathbb{Q}(\omega) \subseteq L^{\ang{\sigma_{1,2,3}}}$. Más aún, como
+    \[
+    \brack[\big]{L^{\ang{\sigma_{1,2,3}}} : \mathbb{Q}}%
+    ={6}\,/\,{\abs*{\sigma_{1,2,3}}} = 2
+    \]
+    y también $\brack{\mathbb{Q}(\omega) : \mathbb{Q}} = 2$ (pues ya vimos que $\omega$ es raíz de $x^2+x+1$ que es irreducible en $\mathbb{Q}(\alpha)$ y, por tanto, también en $\mathbb{Q}$). De esto se sigue que $L^{\ang{\sigma_{1,2,3}}} = \mathbb{Q}(\omega)$. Por otro lado, como ya vimos que $\ang{\sigma_{1,2,3}} = \gal\big(L/L^{\ang{\sigma_{1,2,3}}}\big)$ es normal en $\gal(L/\mathbb{Q})$, se sigue (teo. 6.15, \S VII.6, \cite{aluffi}) que $L^{\ang{\sigma_{1,2,3}}}/\mathbb{Q}$ es de Galois y, por tanto, normal.
+\end{itemize}
+El resto de campos fijos son los triviales: $L^{\ang{\id}} = L$ y $L^{\gal(L/\mathbb{Q})} = \mathbb{Q}$ que ya sabemos que son normales sobre $\mathbb{Q}$. Luego, el TFTG garantiza que estos campos fijos son exactamente todos los campos intermedios, garantizado que el retículo de subcampos intermedios de $L/\mathbb{Q}$ es isomorfo al retículo opuesto de subgrupos de $\gal(L/\mathbb{Q})$:\\\vspace{1em}
+{\mathsurround = 0pt
+\[\begin{tikzcd}[column sep = 2.5em,row sep = 3em]
+	& \mathbb{Q}\big(\sqrt[3]{2},\omega\big) \\
+	& {\mathbb{Q}\big(\omega^2\sqrt[3]{2}\big)} & {\mathbb{Q}\big(\sqrt[3]{2}\big)} & {\mathbb{Q}\big(\omega\sqrt[3]{2}\big)} \\
+	{\mathbb{Q}\big(\omega\big)} \\
+	& {\mathbb{Q}}
+	\arrow[no head, from=2-2, to=1-2]
+	\arrow[no head, from=2-3, to=1-2]
+	\arrow[no head, from=2-4, to=1-2]
+	\arrow[no head, from=3-1, to=1-2]
+	\arrow[no head, from=4-2, to=2-2]
+	\arrow[no head, from=4-2, to=2-3]
+	\arrow[no head, from=4-2, to=2-4]
+	\arrow[no head, from=4-2, to=3-1]
+\end{tikzcd}\]
+}
+\end{enumerate}
+\end{sol}
+
+%------------------------------ Ejercicio 5 -------------------------------
+\begin{ejer}
+Sea $L/K$ una extensión de Galois con $\gal(L/K)$ cíclico de orden $n$.
+
+\begin{enumerate}[label=\alph*)]
+\item Pruebe que para cada divisor $d \mid n$ existe un único subcampo intermedio
+
+\[
+K \subseteq E_d \subseteq L \quad \text{con} \quad [L : E_d] = d.
+\]
+
+\item Aplique esto al caso $L = \mathbb{F}_{5^6}$ y $K = \mathbb{F}_5$: describa todos los subcampos $E_d$.
+
+\item Considere ahora la extensión ciclotómica $K = \mathbb{Q}(\zeta_{\p})$, donde $\p$ es primo. Explique por qué $K/\mathbb{Q}$ es Galois y, dado un divisor $d \mid (\p-1)$, describa la subextensión $E_d$ correspondiente.
+\end{enumerate}
+\end{ejer}
+\begin{sol}\hphantom{r}
+\begin{enumerate}[label=\alph*)]
+\item 
+Antes que nada, es menester citar un resultado bien conocido de la teoría de grupos (prop. 6.11 de \S II.6, \cite{aluffi}): un grupo cíclico de orden $n$ tiene exactamente un subgrupo de orden $d$, para cada $d|n$. Este resultado se traspasa directo a los subcampos intermedios usando TFTG, pues si $d|n$ entonces hay un único $G_d \leq \gal(L/K)$ de orden $d$, luego tomamos $E_d$ como el campo fijo de $G_d$, de donde $[L:E_d] = \abs{G_d} = d$; más aún, si $E$ cualquier otro campo intermedio con $[L:E] = d$, entonces $\gal(L/E) \leq \gal(L/K)$ tiene orden $d$, por lo que $G_d = \gal(L/E)$; no obstante, el campo fijo de $\gal(L/E)$ es $E$ y el campo fijo de $G_d$ es, por definición, $E_d$. Por lo tanto, $E=E_d$.
+
+\item 
+En c) del \myref{ejer:7.3}, ya describí todos los campos intermedios de $\mathbb{F}_{\p^n}/\mathbb{F}_{\p}$ sin recurrir a la correspondencia de Galois. Ahora veamos que, usando el inciso anterior (que usa la correspondencia), se sigue de forma mucho más sencilla:\par
+Como ya probamos que $\mathbb{F}_{\p^n}/\mathbb{F}_{\p}$ es de Galois y $\gal(\mathbb{F}_{\p^n}/\mathbb{F}_{\p}) \cong C_n$ (\abvref{ejer:7.3}), el inciso anterior implica que para cada $d|n$ hay un único campo intermedio $\mathbb{F}_{\p} \subseteq E_d \subseteq \mathbb{F}_{\p^n}$ con $[\mathbb{F}_{\p^n}:E_d] = d$. De esto se sigue que $\mathbb{F}_{\p^n} \cong (E_d)^d$ (como $E_d\text{-módulo}$), de donde $(\p^{n/d})^d = \abs*{\mathbb{F}_{\p^n}} = \abs{E_d}^d$ y, como estos son enteros positivos, $\p^{n/d} = \abs{E_d}$. Luego el inciso a) del \myref{ejer:7.3} garantiza que $E_d \cong \mathbb{F}_{\p^{n/d}}$. Sabemos que $d|n$ implica $(n/d) | n$, por lo tanto, hemos probado que, para cada divisor $m|n$, hay un único campo intermedio $\mathbb{F}_{\p} \subseteq E_{m/n} \subseteq \mathbb{F}_{\p^n}$ isomorfo a $\mathbb{F}_{\p^m}$.\par
+Finalmente, esto garantiza que todos los campos intermedios propios de $\mathbb{F}_{5^6}/\mathbb{F}_{5}$ son $\mathbb{F}_{5^2}$ y $\mathbb{F}_{5^3}$. Es decir, el retículo de campos intermedios de esta extensión es isomorfo al retículo opuesto de subgrupos de $C_6$, que a su vez es isomorfo al retículo opuesto de divisores de $6$:
+{\mathsurround = 0pt
+\[\begin{tikzcd}[%
+    cells={inner sep=0pt, text width=1.5em, align=center},%
+    column sep =small,%
+    arrows={shorten >=1ex, shorten <=1ex}
+]
+	& {\mathbb{F}_{5^6}} &&&& {\ang{0}} &&&& 1 \\
+	&& {\mathbb{F}_{5^3}} & \cong &&& {C_2} & \cong &&& 2 \\
+	{\mathbb{F}_{5^2}} &&&& {C_3} &&&& 3 \\
+	& {\mathbb{F}_{5}} &&&& {C_6} &&&& 6
+	\arrow[no head, from=1-2, to=2-3]
+	\arrow[no head, from=1-2, to=3-1]
+	\arrow[no head, from=1-6, to=2-7]
+	\arrow[no head, from=1-6, to=3-5]
+	\arrow[no head, from=1-10, to=2-11]
+	\arrow[no head, from=1-10, to=3-9]
+	\arrow[no head, from=2-3, to=4-2]
+	\arrow[no head, from=2-7, to=4-6]
+	\arrow[no head, from=2-11, to=4-10]
+	\arrow[no head, from=3-1, to=4-2]
+	\arrow[no head, from=3-5, to=4-6]
+	\arrow[no head, from=3-9, to=4-10]
+\end{tikzcd}\]
+}
+
+\item 
+Como $\zeta_{\p}$ es raíz primitiva de $f(x)\coloneq x^{\p} - 1$, toda otra raíz de $f$ en $\mathbb{C}$ es una potencia de $\zeta_{\p}$ y, por tanto, pertenece a $\mathbb{Q}(\zeta_{\p})$. De esto se sigue que $\mathbb{Q}(\zeta_{\p})$ es campo de descomposición de $f$. En particular, esto implica que $\mathbb{Q}(\zeta_{\p})/\mathbb{Q}$ es normal y, como toda extensión sobre un campo de característica cero es separable, es extensión de Galois.\par
+
+\emph{Veamos que el grado de la extensión es ${\p}-1$}:\\
+Como $x^{\p}-1 = (x-1)(x^{{\p}-1}+\cdots+1)$ y $\zeta_{\p} \neq 1$, entonces $\zeta_{\p}$ es raíz de $\Phi_{\p}(x) \coloneq x^{{\p}-1}+\cdots+1$. Basta con demostrar que $\Phi_{\p}$ es irreducible. En efecto, la irreducibilidad de $\Phi_{\p}(x)$ es equivalente a la de $\Phi_{\p}(x+1)$;%
+\footnote{
+    Es evidente que $f(x) = g(x)h(x)$ si y solo si $f(x+c) = g(x+c)h(x+c)$ y además $\deg g(x) = \deg g(x+c)$ y $\deg h(x) = \deg h(x+c)$. Es decir, $f(x)$ es reducible sobre $\mathbb{Q}$ (o cualquier \emph{cuerpo}) si y solo si lo es $f(x+c)$.
+}
+luego, aplicando la definición de $\Phi_{\p}$ y el binomio de Newton:
+\[
+\Phi_{\p}(x+1)%
+=\frac{ (x+1)^{\p}-1 } {(x+1)-1 }%
+=\frac{\left( \sum^{\p}_{k=0} \binom{\p}{k}x^{k}\right)  - 1}{x}%
+=\sum^{\p}_{k=1} \tbinom{\p}{k} x^{k-1}
+\]
+Ahora basta con usar criterio de Eisenstein: el coeficiente principal es $\binom{{\p}}{{\p}} = 1$, el cual no es divisible por $\p$; sin embargo, sabemos que $\p$ divide $\binom{\p}{k}$ para todo $1 \leq k \leq {\p}-1$,%
+\footnote{
+    Este hecho es el que se usa en la prueba de que el homomorfismo de Frobenius es aditivo: como $k!({\p}-k)!\binom{\p}{k} = {\p}!$ y ${\p} | {\p}!$, tenemos que ${\p} | k!({\p}-k)!\binom{\p}{k}$. No obstante, por hipótesis ${\p}-k < {\p}$ y $k < {\p}$, así que $k!$ y $({\p}-k)!$ son productos de enteros positivos menores que $\p$, por lo que sus factores primos también tienen que ser menores a ${\p}$; es decir, ${\p}$ no aparece en los factores primos de $k!({\p}-k)!$, por lo tanto, ${\p} \nmid k!({\p}-k)!$. Como ya teníamos ${\p} | k!({\p}-k)!\binom{\p}{k}$ y ${\p}$ es primo, se sigue forzosamente que ${\p} | \binom{\p}{k}$.
+}
+y que el coeficiente constante $\binom{\p}{1} = \p$ no es divisible por $\p^2$. Se sigue que $\Phi_{\p}(x+1)$ es irreducible en $\mathbb{Q}[x]$ y, por consiguiente, también $\Phi_{\p}(x)$. Por lo tanto, $\Phi_{\p}$ es el polinomio mínimo de $\zeta_{\p}$ sobre $\mathbb{Q}$ y $\brack{\mathbb{Q}(\zeta_{\p}) : \mathbb{Q}} = {\p}-1$.\par
+En particular, esto implica que $\set[\big]{\zeta_{\p},\dots,\zeta_{\p}^{{\p}-1}}$ es una base de $\mathbb{Q}(\zeta_{\p})$ como $\mathbb{Q}\text{-esp.}$ vectorial.%
+\footnote{
+    En efecto, si $\sum^{{\p}-1}_{k=1} \lambda_k \zeta^k_{\p}=0$ entonces $\zeta_{\p}$ es raíz del pol. $\sum^{{\p}-1}_{k=1} \lambda_kx^k = x\sum^{{\p}-1}_{k=1} \lambda_kx^{k-1}$, así que (como $\zeta_{\p}\neq 0$) también es raíz de $h(x) \coloneq \sum^{{\p}-1}_{k=1} \lambda_kx^{k-1}$, el cual tiene grado ${\p}-2$. Luego, la minimalidad de $\Phi_{\p}$ implica que el polinomio $h(x)$ es nulo, por lo que $\lambda_k=0$ para cada $1 \leq k \leq {\p}-1$. Esto prueba que $\set{\zeta_{\p},\dots,\zeta_{\p}^{{\p}-1}}$ es l.i.. Más aún, como la dimensión de $\mathbb{Q}(\zeta_{\p})/\mathbb{Q}$ es ${\p}-1$, se concluye que $\set{\zeta_{\p},\dots,\zeta_{\p}^{{\p}-1}}$ es una base.
+}
+\par\vspace{1em}
+
+\emph{Veamos que $\gal(\mathbb{Q}(\zeta_{\p})/\mathbb{Q}) \cong C_{{\p}-1}$}:\\
+Definimos el mapeo $\sigma_{\bullet} \colon (\mathbb{Z}/{\p}\mathbb{Z})^{\times} \to \gal(\mathbb{Q}(\zeta_{\p})/\mathbb{Q})$ que asigna $[a] \mapsto \sigma_a$ donde $\sigma_a$ es el único $\mathbb{Q}\text{-automorfismo}$ tal que $\sigma_a(\zeta_{\p}) = \zeta^a_{\p}$. Este mapeo está bien definido, primero notemos que $\sigma_a$ existe por prop. 1.5 de \S VII.1, \cite{aluffi} (como $[a] \neq [0]$, $\zeta_{\p}$ y $\zeta^a_{\p}$ son raíces del irreducible $\Phi_{\p}$). Más aún, si $a,b\en\mathbb{Z}$ son tales que ${\p}|(a-b)$, entonces 
+\[
+\sigma_a(\zeta_{\p})\sigma_b(\zeta_{\p})^{-1} = \zeta^{a}_{\p} \cdot \zeta^{-b}_{\p} = \zeta^{a-b}_{\p} = 1
+\]
+por lo que $\sigma_a(\zeta_{\p}) = \sigma_b(\zeta_{\p})$ y la unicidad implica que $\sigma_a = \sigma_b$. Finalmente, $\sigma_{\bullet}$ es homomorfismo gracias a que $\sigma_a\sigma_b(\zeta_{\p}) = \sigma_a(\zeta^b_{\p}) = (\zeta^b_{\p})^a = \zeta^{ab}_{\p} = \sigma_{ab}(\zeta_{\p})$; luego, la unicidad implica $\sigma_a\sigma_b = \sigma_{ab}$. Por otro lado, también es inyectivo ya que si $\sigma_{a} = \id_{\mathbb{Q}(\zeta_{\p})}$ entonces $\zeta^a_{\p}=\sigma_a(\zeta_{\p}) = \zeta_{\p}$ de donde $\zeta^{a-1}_{\p} = 1$. Como $\zeta_{\p}$ es primitiva, su orden multiplicativo es ${\p}$, así que ${\p}|(a-1)$ y $[a] = [1]$. Hemos probado que el kernel de $\sigma_{\bullet}$ es trivial. Más aún, como $\gal(\mathbb{Q}(\zeta_{\p})/\mathbb{Q})$ tiene orden finito $\brack{\mathbb{Q}(\zeta_{\p}):\mathbb{Q}} = {\p}-1$ al igual que $(\mathbb{Z}/{\p}\mathbb{Z})^{\times}$, concluimos que $\sigma_{\bullet}$ es un isomorfismo. Por último, basta con que usemos el hecho de que $(\mathbb{Z}/{\p}\mathbb{Z})^{\times} \cong C_{{\p}-1}$.%
+\footnote{
+    Más generalmente, en el teorema 6.10 de \S IV.6, \cite{aluffi}, se prueba (como consecuencia directa de la clasificación de grupos abelianos finitos) que el grupo de unidades de cualquier grupo finito es cíclico.
+}\vspace{1em}
+
+\emph{Ahora encontremos los campos intermedios}:\\
+Como el grupo $\gal(\mathbb{Q}(\zeta_{\p})/ \mathbb{Q})$ es cíclico, el inciso a) garantiza que los $E_d$ con $d|({\p}-1)$ son todos los campos intermedios de la extensión. Sean entonces $d | ({\p}-1)$ y $G_d \leq \gal(\mathbb{Q}(\zeta_{\p})/\mathbb{Q})$, con índice $d$. Luego, $G_d$ es cíclico de orden $q \coloneq({\p}-1)/d$ generado por un elemento $\sigma_a$ (recordemos el isomorfismo $\sigma_{\bullet}$), entonces $[a] \neq [0]$ genera un subgrupo (cíclico) de orden $q$ de $(\mathbb{Z}/{\p}\mathbb{Z})^\times$. Definimos entonces
+\[
+\eta_d \coloneq \sum_{\sigma\en G_d} \sigma(\zeta_{\p}) = \sum^{q-1}_{l=0} \sigma^l_a(\zeta_{\p}) = \sum^{q-1}_{l=0} \zeta^{a^l}_{\p}
+\]
+Afirmamos que $E_d = \mathbb{Q}(\eta_d)$.%
+\footnote{
+    Recordemos que $E_d$ se define como el campo fijo de $G_d = \ang{\sigma_a}$.
+}
+En efecto, primero notemos que $G_d = \ang{\sigma_a}$ fija a $\eta_d$ (y por tanto a $\mathbb{Q}(\eta_d)$). Ya sabemos que, para probar esto, basta con probar que el generador $\sigma_a$ fija a $\eta_d$: 
+\[
+\sigma_a(\eta_d)%
+=\sum^{q-1}_{l=0} \sigma_a\big(\zeta^{a^l}_{\p}\big)%
+=\sum^{q-1}_{l=0} \zeta^{a^{l+1}}_{\p}
+\]
+sin embargo, es inmediato que $\set[\big]{a^{l+1} \given 0 \leq l \leq q-1} = \set{a^{l} \given 0 \leq l \leq q-1}$, por tanto 
+\[
+\sigma_a(\eta_d)%
+=\sum^{q-1}_{l=0} \zeta^{a^{l+1}}_{\p} = \sum^{q-1}_{l=0} \zeta^{a^l}_{\p} = \eta_d
+\]
+Esto prueba que $\sigma_a$ fija a $\mathbb{Q}(\eta_d)$, i.e., $\mathbb{Q}(\eta_d) \subseteq \mathbb{Q}(\zeta_\alpha)^{G_d} = E_d$. Para la otra contención haremos algo menos habitual. Sea $\sigma_b \en \gal(\mathbb{Q}(\zeta_{\p})/\mathbb{Q})$ que no pertenece a $G_d$, es decir (ya que $\sigma_{\bullet}$ es isomorfismo), tal que $b \noten \ang{a}$. Ahora, supongamos por contradicción, que $\sigma_b$ fija a $\eta_d$: como
+\[
+\sigma_b(\eta_d) = \sum^{q-1}_{l=1} \sigma_b(\zeta^{a^l}_{\p}) = \sum^{q-1}_{l=0} \zeta^{a^lb}_{\p}
+\]
+y supusimos que $\sigma_b(\eta_d) = \eta_d = \sum^{q-1}_{l=0} \zeta^{a^l}_{\p}$, entonces $\sum^{q-1}_{l=0} \zeta^{a^l}_{\p} = \sum^{q-1}_{l=0} \zeta^{a^lb}_{\p}$. Ahora bien, como $a,b \not\equiv 0 \bmod {\p}$ (ya que están en $(\mathbb{Z}/{\p}\mathbb{Z})^\times$), se tiene $\zeta^{a^l}_{\p},\zeta^{a^lb}_{\p} \en \set{\zeta_{\p},\dots,\zeta_{\p}^{{\p}-1}}$ para cada $l$. Como este conjunto forma una base, forzosamente la suma $\sum_l \zeta^{a^lb}_{\p}$ tiene que ser un re-ordenamiento de $\sum_{l} \zeta^{a^l}_{\p}$; en particular, tiene que existir un $1 \leq l <{\p}$ tal que $\zeta^{a^l}_{\p} = \zeta^{a^0b}_{\p} = \zeta^{b}_{\p}$, i.e., $\sigma^l_{a}(\zeta_{\p}) = \sigma_b(\zeta_{\p})$. Por la unicidad, se sigue $\sigma^l_a = \sigma_b$, lo cual implica $\sigma_b \en \ang{\sigma_a} = G_d$. Esto es una contradicción, pues escogimos $\sigma_b \noten G_b$: el error estuvo en suponer que $\sigma_b$ fija a $\eta_b$, así que para cada $\sigma_b \noten G_d$ se cumple $\sigma_b(\eta_d) \neq \eta_b$. Apelando a la contraposición lógica, hemos probado que si $\sigma_b$ fija a $\eta_b$ (i.e., fija a $\mathbb{Q}(\eta_d)$) entonces $\sigma_b \en G_d$. En otras palabras, $\gal(\mathbb{Q}(\zeta_{\p})/\mathbb{Q}(\eta_d)) \subseteq G_d$; de esto se sigue, tomando campos fijos (y usando que la correspondencia de Galois es isomorfismo que invierte el órden), $E_d \subseteq \mathbb{Q}(\eta_d)$. Finalmente, concluimos que $E_d = \mathbb{Q}(\eta_d)$. \qedhere
+\end{enumerate}
+\end{sol}

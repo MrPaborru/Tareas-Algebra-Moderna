@@ -1,0 +1,111 @@
+% Primer ejercicio
+\begin{ejer}
+    Demuestre que si $x^2 = e$ para todo elemento $x$ de un grupo $G$, entonces $G$ es abeliano.
+\end{ejer}
+\begin{sol}
+    Sean $x,y \en G$ arbitrarios. Por hipótesis, todo elemento de $G$ es su propio inverso, así:
+    \[
+        xy = (xy)^{-1}
+    \]
+    por otro lado, también se tiene que
+    \[
+        (xy)^{-1} = y^{-1}x^{-1}=yx
+    \]
+    De esto se sigue que $xy = yx$. Hemos probado que $G$ es abeliano.
+\end{sol}
+
+
+% Segundo ejercicio
+\begin{ejer}
+    Demuestre que si $G$ es un grupo de orden par, entonces tiene un elemento de orden $2$.
+\end{ejer}
+\begin{sol}
+    Procedamos por contraposición suponiendo que $G$ no tiene elementos de orden $2$. Esto significa que $x \neq x^{-1}$ para todo $x \en G$ distinto de la identidad; por lo tanto, $G$ se descompone como la siguiente unión disjunta
+    \[
+        G = \dot{\bigcup_{x \en X}} \set*{x,x^{-1}} \mathbin{\dot{\cup}} \set{e}
+    \]
+    donde $X \en \cat{Set}$ es construido de modo que, para cada $x \en G$, o bien $x \en X$, o bien $x^{-1} \en X$. Sin embargo, esto implica que $|G| = 2|X| + 1$, lo cual prueba que $|G|$ es impar. 
+\end{sol}
+
+
+% Tercer ejercicio
+\begin{ejer}
+    Considere el producto $C_2 \times C_3$ de los grupos cíclicos $C_2$ y $C_3$. Demuestre que este producto no es coproducto de $C_2$ y $C_3$ en $\cat{Grp}$.
+\end{ejer}
+\begin{sol}
+    Presento dos versiones de la prueba:
+    \begin{enumerate}[label=\alph*)]
+    \item Los coproductos son únicos hasta isomorfismo y los isomorfismos preservan la propiedad de ser grupo abeliano. No obstante, $C_2 \times C_3$ es abeliano y $C_2 * C_3$ no, por lo que $C_2 \times C_3$ no puede ser coproducto (con ningún par de flechas) de $C_2$ y $C_3$ en $\cat{Grp}$.
+
+    \item Procedamos por reducción al absurdo suponiendo que $(C_2 \times C_3, i_1, i_2)$ es coproducto de $C_2$ y $C_3$, donde $i_1 \colon C_2 \to C_2 \times C_3$ y $i_2 \colon C_3 \to C_2 \times C_3$ son las inclusiones canónicas. Con este fin, consideremos el grupo $S_3$ y los elementos 
+    \(
+        a \coloneq (1 \; 2)
+        \), \(%
+        b \coloneq (1 \; 2 \; 3)%
+        \en S_3
+    \).
+    Entonces podemos definir las flechas obvias $\varphi_1 \colon C_2 \to S_3$ y $\varphi_2 \colon C_3 \to S_3$ tales que $\varphi_1([1]_2) = a$ y $\varphi_2([1]_3) = b$ (están bien definidas gracias a que $|[1]_2| = 2 = |a|$ y $|[1]_3| = 3 = |b|$). Luego, por hipótesis, existe un único homomorfismo $\varphi \colon C_2 \times C_3 \to S_3$ que cumple $\varphi_k = \varphi \circ i_k$ con $k = 1,2$; sin embargo, esto implica que 
+    \begin{gather*}
+        \varphi([1]_2, [0]_3) = \varphi_1([1]_2) = a\\
+        \varphi([0]_2, [1]_3) = \varphi_2([1]_3) = b
+    \end{gather*}
+    pero $([1]_2, [0]_3)$ y $([0]_2, [1]_3)$ conmutan mientras que $a$ y $b$ no. Esto es absurdo, pues los homomorfismos mandan elementos que conmutan en elementos que conmutan. El error estuvo en suponer que $C_2 \times C_3$ es coproducto de $C_2$ y $C_3$ en $\cat{Grp}$. \qedhere
+    \end{enumerate}
+\end{sol}
+
+
+
+% Cuarto ejercicio
+\begin{ejer}
+    Demuestre que $\aut_{\cat{Grp}}(%
+        \nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}}%
+    )%
+    \cong S_3$.
+\end{ejer}
+\begin{sol}
+    $\nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}}$ tiene $4$ elementos, pero todo automorfismo es una permutación que mantiene fija a la identidad y, por lo tanto, se identifica con una permutación de los otros tres elementos; es decir, existe un encaje evidente
+    \[
+        \aut_{\cat{Grp}}(%
+            \nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}}%
+        )%
+        \,\xhookrightarrow{\quad{H}\quad}\, S_{%
+            \nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}}-\set{e}%
+        }%
+        \,\cong\, S_3 
+    \]
+    Entonces, basta con ver que $H$ es sobre, lo cual equivale a probar que cualquier permutación $\varphi$ de $\nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}}$
+    que fija a la identidad es un homomorfismo de grupos. En efecto, como todos los elementos de $\nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}}$ tienen orden $2$ y $\varphi(e) = e$, basta con verificar que $\varphi$ separa sumas de elementos no nulos distintos entre sí: es sencillo ver que, si $a,b \en \nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}} - \set{e}$ son diferentes, su suma es distinta de $a$, $b$ y $e$, i.e., $a + b$ es el único elemento de $\nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}} - \set{a, b, e}$; análogamente, $\varphi(a), \varphi(b) \en \nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}} - \set{e}$ son distintos y $\varphi(a) + \varphi(b)$ es el único elemento de $\nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}} - \set{\varphi(a), \varphi(b), e}$, pero como $\varphi$ es biyectiva, tenemos
+    \[          
+        \nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}} - \set{\varphi(a), \varphi(b), e}%
+        = \varphi\big(%
+            \nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}} - \set{a, b, e}
+        \big)%
+        = \varphi(\set{a+b})
+    \]
+    de esto se sigue que $\varphi(a + b) = \varphi(a) + \varphi(b)$. Hemos probado que $\varphi \en \aut_{\cat{Grp}}(\nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}})$ así que $H$ es un isomorfismo y, por consiguiente, $\aut_{\cat{Grp}}(\nicefrac{\mathbb{Z}}{2\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{2\mathbb{Z}}) \cong S_3$.
+\end{sol}
+
+
+
+% Quinto ejercicio
+\begin{ejer}
+    Demuestre que $F(\set{x,y})$ es coproducto $\mathbb{Z} *\mathbb{Z}$ de $\mathbb{Z}$ consigo mismo en $\cat{Grp}$.
+\end{ejer}
+\begin{sol}
+    Veamos que $(F(\set{x,y}), \sigma_x, \sigma_y)$ es cocono inicial en $\cat{Grp}$, donde los homomorfismos $\sigma_x, \sigma_y \colon \mathbb{Z} \to F(\set{x,y})$ asignan $z \mapsto x^z$ y $z \mapsto y^z$, respectivamente. En efecto, supongamos que $(G, \varphi_x, \varphi_y)$ es cualquier cocono con $\varphi_x, \varphi_y \colon \mathbb{Z} \to G$. Como los elementos de $F(\set{x,y})$ tienen una única representación de la forma $\prod^n_{i=1}x^{\alpha_i}y^{\beta_i}$ con $\alpha_2, \dots\alpha_n, \beta_1, \dots, \beta_{n-1}\en \mathbb{Z}-\set{0}$ y $\alpha_1,\beta_n \en \mathbb{Z}$,
+    entonces la función $\varphi \colon F(\set{x,y}) \to G$ que asigna
+    \[
+        \prod^n_{i=1} x^{\alpha_i}y^{\beta_i}%
+        \,\mapsto\,%
+        \prod^n_{i=1} \varphi_x(\alpha_i)\varphi_y(\beta_i)
+    \]
+    está bien definida y es un homomorfismo. Más aún, se tiene que $\varphi_x(\alpha) =\varphi(x^\alpha) = \varphi(\sigma_x(\alpha))$ y $\varphi_y(\beta) =\varphi(y^\beta) = \varphi(\sigma_y(\beta))$ para cualesquiera $\alpha, \beta \en \mathbb{Z}$, i.e., $\varphi_x = \varphi \circ \sigma_x$ y $\varphi_y = \varphi \circ \sigma_y$. Esto prueba que $\varphi$ es morfismo de coconos; además, cualquier morfismo de coconos $\psi \colon F(\set{x,y}) \to G$ cumple por definición que $\psi(x^\alpha) = \varphi_x(\alpha)$ y $\psi(y^\beta) = \varphi_y(\beta)$ por lo que, al ser homomorfismo, 
+    \[
+        \psi\bigg(%
+            \prod^n_{i=1} x^{\alpha_i} y^{\beta_i}  
+        \bigg)%
+        = \prod^n_{i=1} \psi(x^{\alpha_i})\psi(y^{\beta_i})%
+        = \prod^n_{i=1} \varphi_x(\alpha_i)\varphi_y(\beta_i)
+    \]
+    se sigue que $\psi = \varphi$, por lo que $\varphi$ es única. Esto prueba que $F(\set{x,y})$ es $\mathbb{Z} * \mathbb{Z}$.
+\end{sol}

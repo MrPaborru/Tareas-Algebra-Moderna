@@ -1,0 +1,47 @@
+\begin{center}
+\begin{tikzpicture}[scale=1]
+    % Ajuste de desplazamiento vertical entre cada óvalo (para la perspectiva)
+    \def\offsetY{0.3}
+
+    % Definimos el centro inicial para el óvalo más grande
+    \coordinate (C_base) at (0, 6*\offsetY);
+
+    % 1. Integral domains
+    \coordinate (C7) at (C_base);
+    \node[ellipse, draw=black, thick, fill=gray, minimum width=10.5cm, minimum height=6.5cm] (integral_domains) at (C7) {};
+    \node[font=\large\bfseries, color=black, anchor=north, yshift = -5pt] at (integral_domains.north) {Dominios enteros};
+
+    % 2. Domains with factorization
+    \coordinate (C6) at (0, 5*\offsetY);
+    \node[ellipse, draw=black, thick, fill=gray!80, minimum width=9.5cm, minimum height=5.5cm] (factorization_domains) at (C6) {};
+    \node[font=\bfseries, color=black, anchor=north, yshift = -7pt] at (factorization_domains.north) {Dominios con factorización};
+
+    % 3. Noetherian domains (Dominio Noetheriano)
+    \coordinate (C5) at (0.8, 4*\offsetY);
+    \node[ellipse, draw=black, thick, fill=gray!65, minimum width=7cm, minimum height=4.5cm] (noetherian_domains) at (C5) {};
+    \node[font=\small\bfseries, color=black, rotate=-33, anchor=north, xshift = -7pt, yshift = -11pt] at (noetherian_domains.north east) {Dominios noetherianos};
+
+    % 4. UFDs (Dominio de Factorización Única)
+    \coordinate (C4) at (-0.8, 4*\offsetY);
+    \node[ellipse, draw=black, thick, fill=gray!65, minimum width=7cm, minimum height=4.5cm] (ufds) at (C4) {};
+    \node[font=\bfseries, color=black, rotate=33, anchor=north] at (ufds.north west) {DFU};
+
+    % Segundo trazo frontera de 3
+    \node[ellipse, draw=black, thick, minimum width=7cm, minimum height=4.5cm] at (noetherian_domains.center) {};
+
+    % 5. PIDs (Dominio de Ideales Principales)
+    \coordinate (C3) at (0, 3.2*\offsetY);
+    \node[ellipse, draw=black, thick, fill=gray!50, minimum width=4.8cm, minimum height=3.2cm] (pids) at (C3) {};
+    \node[font=\bfseries, color=black, anchor=north] at (pids.north) {DIP};
+
+    % 6. Euclidean Domains 
+    \coordinate (C2) at (0, 2.4*\offsetY);
+    \node[ellipse, draw=black, thick, fill=gray!25, minimum width=4.2cm, minimum height=2.5cm] (euclidean_domains) at (C2) {};
+    \node[font=\small\bfseries, color=black, anchor=north, yshift=-8pt] at (euclidean_domains.north) {Dominios euclídeos};
+
+    % 7. Fields (Cuerpos)
+    \coordinate (C1) at (0, 1.2*\offsetY);
+    \node[ellipse, draw=black, thick, fill=gray!10, minimum width=3cm, minimum height=1.5cm] (fields) at (C1) {};
+    \node[font=\bfseries, color=black] at (fields.center) {Campos};
+\end{tikzpicture}
+\end{center}
